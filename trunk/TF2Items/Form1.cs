@@ -58,6 +58,8 @@ namespace TF2Items
         string c_attach_to_hands;
         int[] c_used_by_classes = new int[9];
 
+        string lastTip;
+
         string[] c_item_attribs = new string[number_of_attribs];
         double[] c_item_attribs_value = new double[number_of_attribs];
         #endregion
@@ -1192,6 +1194,28 @@ namespace TF2Items
                     grid_attribs.Rows[n].Cells[2].Value = item_attribs_value[comboName.SelectedIndex, j];
                     if (!item_attribs[comboName.SelectedIndex, j].Contains("custom employee number")) c++;
                 }
+            }
+        }
+
+        private void list_all_attribs_MouseMove_1(object sender, MouseEventArgs e)
+        {
+            ListBox listBox = (ListBox)sender;
+            try
+            {
+                int index = listBox.IndexFromPoint(e.Location);
+                if (index > -1 && index < listBox.Items.Count)
+                {
+                    string tip = listBox.Items[index].ToString();
+                    if (tip != lastTip)
+                    {
+                        ListToolTip.SetToolTip(listBox, ToolTips.m_arrItemToolTips[index]);
+                        lastTip = tip;
+                    }
+                }
+            }
+            catch
+            {
+                ListToolTip.Hide(listBox);
             }
         }
 

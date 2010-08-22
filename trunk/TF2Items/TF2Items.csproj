@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ToolTips.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="HLLib.cs" />
     <Compile Include="Osinfo.cs" />
