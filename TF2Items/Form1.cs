@@ -79,7 +79,7 @@ namespace TF2Items
         {
             
             filediagOpen.Title = "Select items_game.txt or team fortress 2 content.gcf";
-            filediagOpen.InitialDirectory = "C:\\Program Files\\Steam\\steamapps";
+            
             filediagOpen.Filter = "items_game.txt|items_game.txt|Team Fortress 2 content|team fortress 2 content.gcf";
             filediagOpen.RestoreDirectory = false;
             DialogResult result =  filediagOpen.ShowDialog();
