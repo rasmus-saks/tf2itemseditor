@@ -129,15 +129,6 @@
   <metadata name="grid_hdr_value.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="data_hdr_name.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="grid_hdr_class.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="grid_hdr_value.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="filediagSave.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>139, 17</value>
   </metadata>
@@ -145,7 +136,7 @@
   <data name="pictureBox1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAUoAAAAkCAIAAABgwuTMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAY8SURBVHhe7VzZgesgDExdKSj1pJo0s8XsS3xy6BjJYLN5
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAY8SURBVHhe7VzZgesgDExdKSj1pJo0s8XsS3xy6BjJYLN5
         yu8akGY0Egh7b7/xCwQCgS9F4PalfoVbgUAg8BvyjiAIBL4WgZD311IbjgUCIe+IgUDgaxHoIu/X42b+
         PV5XYExaen/+XGHL+WsKPF1DxxsCNHYwkq7i9+d5JxUgWM0NKebB/F5jiZM3uFi+9hoTKEUlArTp3GwN
         IpD2sp7YjYYXidsMRT0cYrccVjkEmwUtl+cleG6afftwIQ6681ulZDBSCJvBkStqWPSX8nbU3Z2mtvLG
@@ -175,6 +166,9 @@
         Av8A6z+2gaYIjaAAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="ListToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>256, 17</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>41</value>
   </metadata>

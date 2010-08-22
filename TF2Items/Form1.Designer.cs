@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnOpen = new System.Windows.Forms.Button();
             this.filediagOpen = new System.Windows.Forms.OpenFileDialog();
@@ -84,6 +85,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnPaste = new System.Windows.Forms.Button();
+            this.ListToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -452,6 +454,7 @@
             this.list_all_attribs.Size = new System.Drawing.Size(188, 199);
             this.list_all_attribs.TabIndex = 24;
             this.list_all_attribs.DoubleClick += new System.EventHandler(this.list_all_attribs_DoubleClick);
+            this.list_all_attribs.MouseMove += new System.Windows.Forms.MouseEventHandler(this.list_all_attribs_MouseMove_1);
             // 
             // label18
             // 
@@ -715,6 +718,7 @@
         private System.Windows.Forms.TextBox txt_item_type_name;
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.Button btnPaste;
+        private System.Windows.Forms.ToolTip ListToolTip;
     }
 }
 
