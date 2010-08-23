@@ -178,6 +178,7 @@ namespace TF2Items
                             tmp = tmp.Replace("	", "");
                             current = tmp;
                             comboName.Items.Insert(i, tmp + "\r\n");
+                            name[i] = tmp;
                             i++;
                             aN = 0;
                         }
@@ -757,15 +758,16 @@ namespace TF2Items
                 temp = line;
                 if (line.Contains("{")) level++;
                 if (line.Contains("}")) level--;
-                if (line.Contains("\"name\"")) //Parsing new item
+                if (line.Contains("\"name\"") && current != "Slot Token - Head") //Parsing new item
                 {
                     i++;
                     current = line.Replace("name", "").Replace("\"", "").Replace("\t", "");
-                    newFile.Append(line + "\r\n");
                     don = false;
                     for (int ii = 0; ii < 14; ii++)
                         saved[ii] = false;
-                    continue;
+                    if (i < number_of_items) temp = line.Replace(current, name[i - 1]);
+                    else temp = line;
+                    goto end;
                 }
                 #region Write from arrays
                 if (line.Contains("\"item_class\""))
@@ -1244,6 +1246,15 @@ namespace TF2Items
                     list_all_attribs.Items.Add(attrib_name[i]);
                 }
             }
+        }
+
+        private void comboName_TextUpdate(object sender, EventArgs e)
+        {
+            if (firstSetup) return;
+            if (comboName.SelectedIndex == -1 || comboName.Text == "") return;
+            if (comboName.DroppedDown) return;
+            name[comboName.SelectedIndex] = comboName.Text.Replace("\r\n", "");
+            comboName.Items[comboName.SelectedIndex] = name[comboName.SelectedIndex];
         }
 
     }

@@ -81,13 +81,13 @@
             this.txt_item_type_name = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.searchBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnPaste = new System.Windows.Forms.Button();
             this.ListToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.searchBox = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -113,7 +113,6 @@
             // 
             this.comboName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.comboName.DropDownHeight = 503;
-            this.comboName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboName.FormattingEnabled = true;
             this.comboName.IntegralHeight = false;
             this.comboName.ItemHeight = 13;
@@ -122,6 +121,7 @@
             this.comboName.Size = new System.Drawing.Size(209, 21);
             this.comboName.TabIndex = 4;
             this.comboName.SelectedIndexChanged += new System.EventHandler(this.comboName_SelectedIndexChanged);
+            this.comboName.TextUpdate += new System.EventHandler(this.comboName_TextUpdate);
             // 
             // txt_item_class
             // 
@@ -588,6 +588,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Attributes";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(499, 19);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(41, 13);
+            this.label17.TabIndex = 26;
+            this.label17.Text = "Search";
+            // 
+            // searchBox
+            // 
+            this.searchBox.Location = new System.Drawing.Point(499, 35);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(188, 20);
+            this.searchBox.TabIndex = 25;
+            this.searchBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
@@ -628,23 +645,6 @@
             this.btnPaste.Text = "Paste";
             this.btnPaste.UseVisualStyleBackColor = true;
             this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
-            // 
-            // searchBox
-            // 
-            this.searchBox.Location = new System.Drawing.Point(499, 35);
-            this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(188, 20);
-            this.searchBox.TabIndex = 25;
-            this.searchBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(499, 19);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(41, 13);
-            this.label17.TabIndex = 26;
-            this.label17.Text = "Search";
             // 
             // Form1
             // 
