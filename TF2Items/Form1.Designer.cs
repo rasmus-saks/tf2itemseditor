@@ -86,6 +86,8 @@
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnPaste = new System.Windows.Forms.Button();
             this.ListToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -421,7 +423,7 @@
             this.grid_attribs.ShowCellToolTips = false;
             this.grid_attribs.ShowEditingIcon = false;
             this.grid_attribs.ShowRowErrors = false;
-            this.grid_attribs.Size = new System.Drawing.Size(488, 213);
+            this.grid_attribs.Size = new System.Drawing.Size(488, 215);
             this.grid_attribs.TabIndex = 23;
             this.grid_attribs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_attribs_CellValueChanged);
             this.grid_attribs.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.grid_attribs_UserDeletedRow);
@@ -449,9 +451,9 @@
             // list_all_attribs
             // 
             this.list_all_attribs.FormattingEnabled = true;
-            this.list_all_attribs.Location = new System.Drawing.Point(499, 33);
+            this.list_all_attribs.Location = new System.Drawing.Point(499, 74);
             this.list_all_attribs.Name = "list_all_attribs";
-            this.list_all_attribs.Size = new System.Drawing.Size(188, 199);
+            this.list_all_attribs.Size = new System.Drawing.Size(188, 160);
             this.list_all_attribs.TabIndex = 24;
             this.list_all_attribs.DoubleClick += new System.EventHandler(this.list_all_attribs_DoubleClick);
             this.list_all_attribs.MouseMove += new System.Windows.Forms.MouseEventHandler(this.list_all_attribs_MouseMove_1);
@@ -459,7 +461,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(496, 17);
+            this.label18.Location = new System.Drawing.Point(499, 58);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(163, 13);
             this.label18.TabIndex = 7;
@@ -574,12 +576,14 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.searchBox);
             this.groupBox3.Controls.Add(this.list_all_attribs);
             this.groupBox3.Controls.Add(this.grid_attribs);
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Location = new System.Drawing.Point(15, 334);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(693, 238);
+            this.groupBox3.Size = new System.Drawing.Size(693, 242);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Attributes";
@@ -624,6 +628,23 @@
             this.btnPaste.Text = "Paste";
             this.btnPaste.UseVisualStyleBackColor = true;
             this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
+            // 
+            // searchBox
+            // 
+            this.searchBox.Location = new System.Drawing.Point(499, 35);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(188, 20);
+            this.searchBox.TabIndex = 25;
+            this.searchBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(499, 19);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(41, 13);
+            this.label17.TabIndex = 26;
+            this.label17.Text = "Search";
             // 
             // Form1
             // 
@@ -719,6 +740,8 @@
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.Button btnPaste;
         private System.Windows.Forms.ToolTip ListToolTip;
+        private System.Windows.Forms.TextBox searchBox;
+        private System.Windows.Forms.Label label17;
     }
 }
 
