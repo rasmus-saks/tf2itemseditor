@@ -668,7 +668,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "TF2 Items Editor v0.8.1";
+            this.Text = "TF2 Items Editor v0.8.5";
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
