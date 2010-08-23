@@ -424,7 +424,7 @@
             this.grid_attribs.Size = new System.Drawing.Size(488, 213);
             this.grid_attribs.TabIndex = 23;
             this.grid_attribs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_attribs_CellValueChanged);
-            this.grid_attribs.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.grid_attribs_RowsRemoved);
+            this.grid_attribs.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.grid_attribs_UserDeletedRow);
             // 
             // data_hdr_name
             // 
@@ -617,9 +617,9 @@
             // 
             // btnPaste
             // 
-            this.btnPaste.Location = new System.Drawing.Point(273, 41);
+            this.btnPaste.Location = new System.Drawing.Point(276, 41);
             this.btnPaste.Name = "btnPaste";
-            this.btnPaste.Size = new System.Drawing.Size(44, 21);
+            this.btnPaste.Size = new System.Drawing.Size(43, 21);
             this.btnPaste.TabIndex = 357;
             this.btnPaste.Text = "Paste";
             this.btnPaste.UseVisualStyleBackColor = true;

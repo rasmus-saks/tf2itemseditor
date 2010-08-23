@@ -569,7 +569,7 @@ namespace TF2Items
             grid_attribs.Rows.Clear();
             for (int j = 0; j < number_of_attribs; j++)
             {
-                if (item_attribs[comboName.SelectedIndex, j] != null)
+                if (item_attribs[comboName.SelectedIndex, j] != null && item_attribs[comboName.SelectedIndex, j] != "")
                 {
                     n = grid_attribs.Rows.Add();
                     grid_attribs.Rows[n].Cells[0].Value = item_attribs[comboName.SelectedIndex, j];
@@ -719,21 +719,7 @@ namespace TF2Items
                 i++;
             }
         }
-        private void grid_attribs_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            if (comboName.SelectedIndex == -1) return;
-            if (e == null || firstSetup) return;
-            int i = 0;
-            item_attribs[comboName.SelectedIndex, e.RowIndex] = null;
-            item_attribs_value[comboName.SelectedIndex, e.RowIndex] = 0;
-            foreach (DataGridViewRow roo in grid_attribs.Rows)
-            {
-                if (roo.Index == e.RowIndex) continue;
-                item_attribs_value[comboName.SelectedIndex, i] = Converter.ToDouble(roo.Cells[2].Value.ToString());
-                item_attribs[comboName.SelectedIndex, i] = roo.Cells[0].Value.ToString();
-                i++;
-            }
-        }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -1216,6 +1202,23 @@ namespace TF2Items
             catch
             {
                 ListToolTip.Hide(listBox);
+            }
+        }
+
+
+        private void grid_attribs_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if (comboName.SelectedIndex == -1) return;
+            if (e == null || firstSetup) return;
+            for (int i = 0; i < number_of_attribs; i++)
+            {
+                item_attribs[comboName.SelectedIndex, i] = "";
+                item_attribs_value[comboName.SelectedIndex, i] = 0;
+            }
+            foreach (DataGridViewRow roo in grid_attribs.Rows)
+            {
+                item_attribs_value[comboName.SelectedIndex, roo.Index] = Converter.ToDouble(roo.Cells[2].Value.ToString());
+                item_attribs[comboName.SelectedIndex, roo.Index] = roo.Cells[0].Value.ToString();
             }
         }
 
