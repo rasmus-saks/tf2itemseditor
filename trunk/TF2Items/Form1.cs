@@ -954,6 +954,12 @@ namespace TF2Items
                         {
                             temp = temp + "\t\t\t\t\"" + item_attribs[i - 1, j] +  "\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t" + "\"" + GetAttribClass(item_attribs[i - 1, j]) + "\"\r\n\t\t\t\t\t" + "\"value\"\t" + "\"" + item_attribs_value[i - 1, j] + "\"\r\n\t\t\t\t}\r\n";
                         }
+                        if(j+1 == number_of_attribs)
+                        {
+                            temp += "\t\t\t}";
+                            itemAtr--;
+                            break;
+                        }
                         if (GetAttribClass(item_attribs[i - 1, j + 1]) == null)
                         {
                             temp += "\t\t\t}";
@@ -1229,6 +1235,7 @@ namespace TF2Items
             }
             foreach (DataGridViewRow roo in grid_attribs.Rows)
             {
+                if (roo.Cells[2].Value == null) roo.Cells[2].Value = 0;
                 item_attribs_value[comboName.SelectedIndex, roo.Index] = Converter.ToDouble(roo.Cells[2].Value.ToString());
                 item_attribs[comboName.SelectedIndex, roo.Index] = roo.Cells[0].Value.ToString();
             }
