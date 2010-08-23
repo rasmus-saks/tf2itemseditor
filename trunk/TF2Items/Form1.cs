@@ -513,6 +513,14 @@ namespace TF2Items
 
             return "";
         }
+        public int GetAttribID(string name)
+        {
+            for (int i = 0; i < number_of_attribs; i++)
+            {
+                if (attrib_name[i] == name) return i;
+            }
+                return -1;
+        }
         private void comboName_SelectedIndexChanged(object sender, EventArgs e) //When user selects an item
         {
             if (comboName.SelectedIndex == -1) return;
@@ -1191,10 +1199,12 @@ namespace TF2Items
                 int index = listBox.IndexFromPoint(e.Location);
                 if (index > -1 && index < listBox.Items.Count)
                 {
-                    string tip = listBox.Items[index].ToString();
+                    string tipp = listBox.Items[index].ToString();
+                    int idd = GetAttribID(tipp);
+                    string tip = ToolTips.m_arrItemToolTips[idd];
                     if (tip != lastTip)
                     {
-                        ListToolTip.SetToolTip(listBox, ToolTips.m_arrItemToolTips[index]);
+                        ListToolTip.SetToolTip(listBox, tip);
                         lastTip = tip;
                     }
                 }
@@ -1219,6 +1229,20 @@ namespace TF2Items
             {
                 item_attribs_value[comboName.SelectedIndex, roo.Index] = Converter.ToDouble(roo.Cells[2].Value.ToString());
                 item_attribs[comboName.SelectedIndex, roo.Index] = roo.Cells[0].Value.ToString();
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (comboName.SelectedIndex == -1) return;
+            list_all_attribs.Items.Clear();
+            for (int i = 0; i < number_of_attribs; i++)
+            {
+                if (attrib_name[i] == null || attrib_name[i] == "") continue;
+                if (attrib_name[i].Contains(searchBox.Text))
+                {
+                    list_all_attribs.Items.Add(attrib_name[i]);
+                }
             }
         }
 
