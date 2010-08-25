@@ -88,6 +88,7 @@
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnPaste = new System.Windows.Forms.Button();
             this.ListToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -647,11 +648,22 @@
             this.btnPaste.UseVisualStyleBackColor = true;
             this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(149, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(72, 23);
+            this.button1.TabIndex = 359;
+            this.button1.Text = "Save Item";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(716, 581);
+            this.ClientSize = new System.Drawing.Size(710, 581);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnPaste);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.groupBox1);
@@ -669,7 +681,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "TF2 Items Editor v0.8.5 R3";
+            this.Text = "TF2 Items Editor v0.8.7";
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -743,6 +755,7 @@
         private System.Windows.Forms.ToolTip ListToolTip;
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button button1;
     }
 }
 
