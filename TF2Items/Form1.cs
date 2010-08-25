@@ -42,27 +42,10 @@ namespace TF2Items
         string[,] item_attribs = new string[number_of_items, number_of_attribs];
         double[,] item_attribs_value = new double[number_of_items, number_of_attribs];
 
-        #region Clipboard vars
-        string c_item_class;
-        string c_item_type_name;
-        string c_item_name;
-        string c_item_slot;
-        string c_item_quality;
-        string c_baseitem;
-        string c_min_ilevel;
-        string c_max_ilevel;
-        string c_image_inventory;
-        string c_image_inventory_size_w;
-        string c_image_inventory_size_h;
-        string c_model_player;
-        string c_attach_to_hands;
-        int[] c_used_by_classes = new int[9];
+        string saveStr = "";
+        int saveNum = -1;
 
         string lastTip;
-
-        string[] c_item_attribs = new string[number_of_attribs];
-        double[] c_item_attribs_value = new double[number_of_attribs];
-        #endregion
 
         bool firstSetup = false;
         double percent;
@@ -151,6 +134,10 @@ namespace TF2Items
                     used_by_classes[jj, kk] = 0;
                 }
             }
+            ReadFile();
+        }
+        public void ReadFile()
+        {
             using (StreamReader sReader = new StreamReader(fileName))
             {
                 StreamReader file = null;
@@ -158,7 +145,7 @@ namespace TF2Items
                 string current = "";
                 int i = 0;
                 file = new StreamReader(fileName);
-                percent = file.BaseStream.Length/(double)100;
+                percent = file.BaseStream.Length / (double)100;
                 bool usedby = false;
                 bool inAttribs = false;
                 int itemAtr = -1;
@@ -167,8 +154,8 @@ namespace TF2Items
                 while ((line = file.ReadLine()) != null)
                 {
                     if (line == null) continue;
-                    progressReading.Value = (int)file.BaseStream.Position / (int)percent;
-                   // if (Osinfo.MajorVersion.ToString() + "." + Osinfo.MinorVersion.ToString() == "6.1") progressReading.SetTaskbarProgress(); //Only show progress bar on the taskbar if using Windows 7
+                    progressReading.Value = (int)file.BaseStream.Position / (int)percent > 100 ? 100 : (int)file.BaseStream.Position / (int)percent;
+                    // if (Osinfo.MajorVersion.ToString() + "." + Osinfo.MinorVersion.ToString() == "6.1") progressReading.SetTaskbarProgress(); //Only show progress bar on the taskbar if using Windows 7
                     if (!inAttribs)
                     {
                         if (line.Contains("\"name\"")) //Parsing new item
@@ -200,7 +187,7 @@ namespace TF2Items
                         if (line.Contains("\"use_custom_logic\"") && itemAtr > 0) continue;
                         if (line.Contains("\"") && itemAtr > 0 && !line.Contains("\"value\""))
                         {
-                            item_attribs[i-1, aN] = line.Replace("\"", "").Replace("	", "");
+                            item_attribs[i - 1, aN] = line.Replace("\"", "").Replace("	", "");
                         }
 
                         #region Assign arrays
@@ -1115,88 +1102,122 @@ namespace TF2Items
         private void btnCopy_Click(object sender, EventArgs e)
         {
             if(comboName.SelectedIndex == -1) return;
-            #region Assign clipboard
-            c_attach_to_hands = txt_attach_to_hands.Text;
-            c_baseitem = txt_baseitem.Text;
-            c_image_inventory = txt_image_inventory.Text;
-            c_image_inventory_size_h = txt_image_inventory_size_h.Text;
-            c_image_inventory_size_w = txt_image_inventory_size_w.Text;
-            c_item_class = txt_item_class.Text;
-            c_item_name = txt_item_name.Text;
-            c_item_quality = txt_item_quality.Text;
-            c_item_slot = txt_item_slot.Text;
-            c_item_type_name = txt_item_type_name.Text;
-            c_max_ilevel = txt_max_ilevel.Text;
-            c_min_ilevel = txt_min_ilevel.Text;
-            c_model_player = txt_model_player.Text;
-            for (int i = 0; i < 9; i++)
-                c_used_by_classes[i] = used_by_classes[comboName.SelectedIndex, i];
-            for (int j = 0; j < number_of_attribs; j++)
+            string[] file = File.ReadAllLines(@fileName);
+            int level = 0;
+            string temp = "";
+            string lastline = "";
+            saveStr = "";
+            bool saving = false;
+            foreach (string line in file)
             {
-                if (item_attribs[comboName.SelectedIndex, j] != null)
+                temp = line;
+                if (line.Contains("{"))
                 {
-                    c_item_attribs[j] = item_attribs[comboName.SelectedIndex, j];
-                    c_item_attribs_value[j] = item_attribs_value[comboName.SelectedIndex, j];
+                    level++;
+                    if(!saving)goto end;
                 }
+                if (line.Contains("}"))
+                {
+                    level--;
+                    if(!saving)goto end;
+                }
+
+                if (isNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) && (lastline.Contains("\t\t}") || lastline.Contains("\t\t{")))
+                {
+                    if (Convert.ToInt32(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) == comboName.SelectedIndex)
+                    {
+                        saving = true;
+                        saveNum = comboName.SelectedIndex;
+                        saveStr += line + "\r\n";
+                        goto end;
+                    }
+                }
+                if (saving == true && level == 2 && line.Contains("\t\t}"))
+                {
+                    saveStr += "\t\t}";
+                    saving = false;
+                    break;
+                }
+                if (saving == true)
+                {
+                    saveStr += line + "\r\n";
+                }
+                end:
+                lastline = temp;
             }
-            #endregion
+            return;
 
         }
 
         private void btnPaste_Click(object sender, EventArgs e)
         {
             if (comboName.SelectedIndex == -1) return;
-            #region Assign textboxes
-            txt_attach_to_hands.Text = c_attach_to_hands;
-            txt_baseitem.Text = c_baseitem;
-            txt_image_inventory.Text = c_image_inventory;
-            txt_image_inventory_size_h.Text = c_image_inventory_size_h;
-            txt_image_inventory_size_w.Text = c_image_inventory_size_w;
-            txt_item_class.Text = c_item_class;
-            txt_item_name.Text = c_item_name;
-            txt_item_quality.Text = c_item_quality;
-            txt_item_slot.Text = c_item_slot;
-            txt_item_type_name.Text = c_item_type_name;
-            txt_max_ilevel.Text = c_max_ilevel;
-            txt_min_ilevel.Text = c_min_ilevel;
-            txt_model_player.Text = c_model_player;
-            for (int i = 0; i < 9; i++)
-                used_by_classes[comboName.SelectedIndex, i] = c_used_by_classes[i];
-            for (int j = 0; j < number_of_attribs; j++)
+            if (saveNum == -1) return;
+            StringBuilder newFile = new StringBuilder();
+            if (!File.Exists(@fileName))
             {
-                if (c_item_attribs[j] != null)
+                FileStream rofl = File.Create(@fileName);
+                rofl.Close();
+            }
+            string[] file = File.ReadAllLines(@fileName);
+            int level = 0;
+            string temp = "";
+            string lastline = "";
+            bool saving = false;
+            bool saved = false;
+            foreach (string line in file)
+            {
+                temp = line;
+                if (saved == true)
                 {
-                    item_attribs[comboName.SelectedIndex, j] =  c_item_attribs[j];
-                    item_attribs_value[comboName.SelectedIndex, j] = c_item_attribs_value[j];
+                    goto end;
                 }
-            }
-            #endregion
-
-            list_used_by_classes.Items.Clear();
-            list_available_classes.Items.Clear();
-
-            for (int i = 0; i < 9; i++)
-            {
-                if (used_by_classes[comboName.SelectedIndex, i] == 1)
-                    list_used_by_classes.Items.Add(GetClassName(i));
-                else
-                    list_available_classes.Items.Add(GetClassName(i));
-            }
-
-            int n = 0;
-            int c = 0;
-            grid_attribs.Rows.Clear();
-            for (int j = 0; j < number_of_attribs; j++)
-            {
-                if (item_attribs[comboName.SelectedIndex, j] != null)
+                if (line.Contains("{"))
                 {
-                    n = grid_attribs.Rows.Add();
-                    grid_attribs.Rows[n].Cells[0].Value = item_attribs[comboName.SelectedIndex, j];
-                    grid_attribs.Rows[n].Cells[1].Value = GetAttribClass(item_attribs[comboName.SelectedIndex, j]);
-                    grid_attribs.Rows[n].Cells[2].Value = item_attribs_value[comboName.SelectedIndex, j];
-                    if (!item_attribs[comboName.SelectedIndex, j].Contains("custom employee number")) c++;
+                    level++;
+                    if (!saving) goto end;
                 }
+                if (line.Contains("}"))
+                {
+                    level--;
+                    if (!saving) goto end;
+                }
+
+                if (isNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) && (lastline.Contains("\t\t}") || lastline.Contains("\t\t{")))
+                {
+                    if (Convert.ToInt32(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) == comboName.SelectedIndex)
+                    {
+                        temp = saveStr.Replace("\""+saveNum+"\"", "\""+comboName.SelectedIndex+"\"");
+                        saving = true;
+                        goto end;
+                    }
+                }
+                if (saving == true && level == 2 && line.Contains("\t\t}"))
+                {
+                    saving = false;
+                    saved = true;
+                    continue;
+                }
+                if (saving == true)
+                {
+                    continue;
+                }
+                end:
+                newFile.Append(temp + "\r\n");
+                lastline = temp;
             }
+            try
+            {
+                StreamWriter lol = new StreamWriter(fileName);
+                lol.Write(newFile.ToString());
+                lol.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Something went wrong while saving!", "Who send all these babies to fight!?", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            ReadFile();
         }
 
         private void list_all_attribs_MouseMove_1(object sender, MouseEventArgs e)
@@ -1264,5 +1285,69 @@ namespace TF2Items
             comboName.Items[comboName.SelectedIndex] = name[comboName.SelectedIndex];
         }
 
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            if (comboName.SelectedIndex == -1) return;
+            filediagSave.Title = "Select a file to save the item to";
+
+            filediagSave.Filter = "Any file|*.*";
+            filediagSave.RestoreDirectory = false;
+            DialogResult result = filediagSave.ShowDialog();
+            if (result != DialogResult.OK) return;
+            string tmpFile = filediagSave.FileName;
+            if (!File.Exists(@tmpFile))
+            {
+                FileStream rofl = File.Create(@tmpFile);
+                rofl.Close();
+            }
+            string[] file = File.ReadAllLines(@fileName);
+            int level = 0;
+            string temp = "";
+            string lastline = "";
+            saveStr = "";
+            bool saving = false;
+           
+            foreach (string line in file)
+            {
+                temp = line;
+                if (line.Contains("{"))
+                {
+                    level++;
+                    if (!saving) goto end;
+                }
+                if (line.Contains("}"))
+                {
+                    level--;
+                    if (!saving) goto end;
+                }
+
+                if (isNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) && (lastline.Contains("\t\t}") || lastline.Contains("\t\t{")))
+                {
+                    if (Convert.ToInt32(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) == comboName.SelectedIndex)
+                    {
+                        saving = true;
+                        saveNum = comboName.SelectedIndex;
+                        saveStr += line + "\r\n";
+                        goto end;
+                    }
+                }
+                if (saving == true && level == 2 && line.Contains("\t\t}"))
+                {
+                    saveStr += "\t\t}";
+                    saving = false;
+                    break;
+                }
+                if (saving == true)
+                {
+                    saveStr += line + "\r\n";
+                }
+                end:
+                lastline = temp;
+            }
+            StreamWriter rofll = new StreamWriter(@tmpFile);
+            rofll.Write(saveStr);
+            rofll.Close();
+            return;
+        }
     }
 }
