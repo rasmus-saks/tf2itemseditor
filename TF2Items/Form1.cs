@@ -950,7 +950,7 @@ namespace TF2Items
                             break;
                         }
 
-                        if (GetAttribClass(item_attribs[i - 1, j]) != null)
+                        if (GetAttribClass(item_attribs[i - 1, j]) != null && GetAttribClass(item_attribs[i - 1, j]) != "")
                         {
                             temp = temp + "\t\t\t\t\"" + item_attribs[i - 1, j] +  "\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t" + "\"" + GetAttribClass(item_attribs[i - 1, j]) + "\"\r\n\t\t\t\t\t" + "\"value\"\t" + "\"" + item_attribs_value[i - 1, j] + "\"\r\n\t\t\t\t}\r\n";
                         }
@@ -1230,7 +1230,7 @@ namespace TF2Items
             if (e == null || firstSetup) return;
             for (int i = 0; i < number_of_attribs; i++)
             {
-                item_attribs[comboName.SelectedIndex, i] = "";
+                item_attribs[comboName.SelectedIndex, i] = null;
                 item_attribs_value[comboName.SelectedIndex, i] = 0;
             }
             foreach (DataGridViewRow roo in grid_attribs.Rows)
@@ -1248,7 +1248,7 @@ namespace TF2Items
             for (int i = 0; i < number_of_attribs; i++)
             {
                 if (attrib_name[i] == null || attrib_name[i] == "") continue;
-                if (attrib_name[i].Contains(searchBox.Text))
+                if (attrib_name[i].ToLower().Contains(searchBox.Text.ToLower()))
                 {
                     list_all_attribs.Items.Add(attrib_name[i]);
                 }

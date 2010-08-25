@@ -454,6 +454,7 @@
             this.list_all_attribs.Location = new System.Drawing.Point(499, 74);
             this.list_all_attribs.Name = "list_all_attribs";
             this.list_all_attribs.Size = new System.Drawing.Size(188, 160);
+            this.list_all_attribs.Sorted = true;
             this.list_all_attribs.TabIndex = 24;
             this.list_all_attribs.DoubleClick += new System.EventHandler(this.list_all_attribs_DoubleClick);
             this.list_all_attribs.MouseMove += new System.Windows.Forms.MouseEventHandler(this.list_all_attribs_MouseMove_1);
@@ -668,7 +669,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "TF2 Items Editor v0.8.5 R2";
+            this.Text = "TF2 Items Editor v0.8.5 R3";
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
