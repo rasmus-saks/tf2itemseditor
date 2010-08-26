@@ -1050,7 +1050,7 @@ namespace TF2Items
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (fileName == null) return;
-            
+            SaveFile();
             //if (Osinfo.MajorVersion.ToString() + "." + Osinfo.MinorVersion.ToString() == "6.1") Windows7.DesktopIntegration.Windows7Taskbar.SetProgressState(this.Handle, Windows7Taskbar.ThumbnailProgressState.NoProgress);
         }
 
@@ -1063,7 +1063,7 @@ namespace TF2Items
             DialogResult result = filediagSave.ShowDialog();
             if (result == DialogResult.OK)
             {
-                if (File.Exists(@filediagSave.FileName))
+                if (File.Exists(@filediagSave.FileName) && filediagSave.FileName != fileName)
                     File.Delete(@filediagSave.FileName);
                 File.Copy(@fileName, @filediagSave.FileName);
                 fileName = filediagSave.FileName;
