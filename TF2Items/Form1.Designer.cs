@@ -496,7 +496,6 @@
             this.btnSaveAs.TabIndex = 3;
             this.btnSaveAs.Text = "As";
             this.btnSaveAs.UseVisualStyleBackColor = true;
-            this.btnSaveAs.Visible = false;
             this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
             // progressReading
