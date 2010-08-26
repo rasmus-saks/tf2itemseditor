@@ -716,12 +716,10 @@ namespace TF2Items
             }
         }
 
-
-        private void btnSave_Click(object sender, EventArgs e)
+        public void SaveFile()
         {
-            if (fileName == null) return;
             StringBuilder newFile = new StringBuilder();
-            if(!File.Exists(@fileName))
+            if (!File.Exists(@fileName))
             {
                 FileStream rofl = File.Create(@fileName);
                 rofl.Close();
@@ -927,7 +925,7 @@ namespace TF2Items
                     temp = "";
                     for (int j = 0; j < number_of_attribs; j++)
                     {
-                        if (i >= number_of_items-1) break;
+                        if (i >= number_of_items - 1) break;
                         if (item_attribs[i - 1, j] == "custom employee number")
                         {
                             //Badges have weird attributes, here's a dirty workaround...
@@ -939,9 +937,9 @@ namespace TF2Items
 
                         if (GetAttribClass(item_attribs[i - 1, j]) != null && GetAttribClass(item_attribs[i - 1, j]) != "")
                         {
-                            temp = temp + "\t\t\t\t\"" + item_attribs[i - 1, j] +  "\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t" + "\"" + GetAttribClass(item_attribs[i - 1, j]) + "\"\r\n\t\t\t\t\t" + "\"value\"\t" + "\"" + item_attribs_value[i - 1, j] + "\"\r\n\t\t\t\t}\r\n";
+                            temp = temp + "\t\t\t\t\"" + item_attribs[i - 1, j] + "\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t" + "\"" + GetAttribClass(item_attribs[i - 1, j]) + "\"\r\n\t\t\t\t\t" + "\"value\"\t" + "\"" + item_attribs_value[i - 1, j] + "\"\r\n\t\t\t\t}\r\n";
                         }
-                        if(j+1 == number_of_attribs)
+                        if (j + 1 == number_of_attribs)
                         {
                             temp += "\t\t\t}";
                             itemAtr--;
@@ -954,7 +952,7 @@ namespace TF2Items
                             break;
                         }
                     }
-                    
+
                     don = true;
                 }
                 if (line.Contains("\"used_by_classes\""))
@@ -979,7 +977,7 @@ namespace TF2Items
                 {
                     if (usedBy == true)
                     {
-                        if(!isNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")))
+                        if (!isNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")))
                         {
                             temp = "";
                             continue;
@@ -1026,13 +1024,13 @@ namespace TF2Items
                         }
                     }
                     don = true;
-                    
+
                 }
                 if (isNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) && lastline.Contains("\t\t\t}"))
                 {
                     temp = "\t\t}\r\n" + line;
                 }
-                end:
+            end:
                 newFile.Append(temp + "\r\n");
                 lastline = temp;
             }
@@ -1047,19 +1045,29 @@ namespace TF2Items
                 MessageBox.Show("Something went wrong while saving!", "Who send all these babies to fight!?", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             progressReading.Value = 100;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (fileName == null) return;
+            
             //if (Osinfo.MajorVersion.ToString() + "." + Osinfo.MinorVersion.ToString() == "6.1") Windows7.DesktopIntegration.Windows7Taskbar.SetProgressState(this.Handle, Windows7Taskbar.ThumbnailProgressState.NoProgress);
         }
 
         private void btnSaveAs_Click(object sender, EventArgs e) //Save As doesn't work at the moment!!
         {
+            if (fileName == null) return;
             filediagSave.InitialDirectory = "C:\\Program Files\\Steam\\steamapps";
             filediagSave.Filter = "All files|*.*";
             filediagSave.RestoreDirectory = false;
             DialogResult result = filediagSave.ShowDialog();
             if (result == DialogResult.OK)
             {
+                if (File.Exists(@filediagSave.FileName))
+                    File.Delete(@filediagSave.FileName);
+                File.Copy(@fileName, @filediagSave.FileName);
                 fileName = filediagSave.FileName;
-                btnSave_Click(null, null);
+                SaveFile();
             }
         }
 
