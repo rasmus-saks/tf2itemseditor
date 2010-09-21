@@ -121,4 +121,50 @@
   <data name="tf2itemsmanager" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tf2itemsmanager3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+	<data name="Form1_BtnSaveAsClick_All_files____">
+		<value xml:space="preserve">All files|*.*</value>
+	</data>
+	<data name="Form1_SaveFile_Something_went_wrong_while_saving_">
+		<value xml:space="preserve">Something went wrong while saving!</value>
+	</data>
+	<data name="Form1_SaveFile_Who_send_all_these_babies_to_fight__">
+		<value xml:space="preserve">Who send all these babies to fight!?</value>
+	</data>
+	<data name="Form1_Button1Click2_Select_a_file_to_save_the_item_to">
+		<value xml:space="preserve">Select a file to save the item to</value>
+	</data>
+	<data name="Form1_Button1Click2_Any_file____">
+		<value xml:space="preserve">Any file|*.*</value>
+	</data>
+	<data name="Form1_button1_Click_Select_an_item">
+		<value xml:space="preserve">Select an item</value>
+	</data>
+	<data name="Form1_button1_Click_Extracted_successfully_to_">
+		<value><![CDATA[Extracted successfully to ]]></value>
+	</data>
+	<data name="Form1_button1_Click_">
+		<value><![CDATA[
+After saving, remember to place this in your \steamapps\username\team fortress 2\tf\scripts\items\ folder!]]></value>
+	</data>
+	<data name="Form1_button1_Click_Listen_up_">
+		<value xml:space="preserve">Listen up!</value>
+	</data>
+	<data name="Form1_button1_Click_Something_went_wrong_when_extracting___">
+		<value xml:space="preserve">Something went wrong when extracting :(</value>
+	</data>
+	<data name="Form1_button1_Click_Who_send_all_these_babies_to_fight__">
+		<value xml:space="preserve">Who send all these babies to fight?!</value>
+	</data>
+	<data name="Form1_button1_Click_HLLib_dll_is_missing_from_the_program_folder_">
+		<value xml:space="preserve">HLLib.dll is missing from the program folder!</value>
+	</data>
+	<data name="Form1_button1_Click_HLExtract_exe_is_missing_from_the_program_folder_">
+		<value xml:space="preserve">HLExtract.exe is missing from the program folder!</value>
+	</data>
+	<data name="Form1_button1_Click_items_game_txt_items_game_txt_Team_Fortress_2_content_team_fortress_2_content_gcf">
+		<value xml:space="preserve">items_game.txt|items_game.txt|Team Fortress 2 content|team fortress 2 content.gcf</value>
+	</data>
+	<data name="Form1_button1_Click_Select_items_game_txt_or_team_fortress_2_content_gcf">
+		<value xml:space="preserve">Select items_game.txt or team fortress 2 content.gcf</value>
+	</data>
 </root>

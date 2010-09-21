@@ -60,6 +60,143 @@ namespace TF2Items.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to All files|*.*.
+        /// </summary>
+        internal static string Form1_BtnSaveAsClick_All_files____ {
+            get {
+                return ResourceManager.GetString("Form1_BtnSaveAsClick_All_files____", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///After saving, remember to place this in your \steamapps\username\team fortress 2\tf\scripts\items\ folder!.
+        /// </summary>
+        internal static string Form1_button1_Click_ {
+            get {
+                return ResourceManager.GetString("Form1_button1_Click_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracted successfully to .
+        /// </summary>
+        internal static string Form1_button1_Click_Extracted_successfully_to_ {
+            get {
+                return ResourceManager.GetString("Form1_button1_Click_Extracted_successfully_to_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HLExtract.exe is missing from the program folder!.
+        /// </summary>
+        internal static string Form1_button1_Click_HLExtract_exe_is_missing_from_the_program_folder_ {
+            get {
+                return ResourceManager.GetString("Form1_button1_Click_HLExtract_exe_is_missing_from_the_program_folder_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HLLib.dll is missing from the program folder!.
+        /// </summary>
+        internal static string Form1_button1_Click_HLLib_dll_is_missing_from_the_program_folder_ {
+            get {
+                return ResourceManager.GetString("Form1_button1_Click_HLLib_dll_is_missing_from_the_program_folder_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to items_game.txt|items_game.txt|Team Fortress 2 content|team fortress 2 content.gcf.
+        /// </summary>
+        internal static string Form1_button1_Click_items_game_txt_items_game_txt_Team_Fortress_2_content_team_fortress_2_content_gcf {
+            get {
+                return ResourceManager.GetString("Form1_button1_Click_items_game_txt_items_game_txt_Team_Fortress_2_content_team_fo" +
+                        "rtress_2_content_gcf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Listen up!.
+        /// </summary>
+        internal static string Form1_button1_Click_Listen_up_ {
+            get {
+                return ResourceManager.GetString("Form1_button1_Click_Listen_up_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an item.
+        /// </summary>
+        internal static string Form1_button1_Click_Select_an_item {
+            get {
+                return ResourceManager.GetString("Form1_button1_Click_Select_an_item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select items_game.txt or team fortress 2 content.gcf.
+        /// </summary>
+        internal static string Form1_button1_Click_Select_items_game_txt_or_team_fortress_2_content_gcf {
+            get {
+                return ResourceManager.GetString("Form1_button1_Click_Select_items_game_txt_or_team_fortress_2_content_gcf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong when extracting :(.
+        /// </summary>
+        internal static string Form1_button1_Click_Something_went_wrong_when_extracting___ {
+            get {
+                return ResourceManager.GetString("Form1_button1_Click_Something_went_wrong_when_extracting___", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Who send all these babies to fight?!.
+        /// </summary>
+        internal static string Form1_button1_Click_Who_send_all_these_babies_to_fight__ {
+            get {
+                return ResourceManager.GetString("Form1_button1_Click_Who_send_all_these_babies_to_fight__", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any file|*.*.
+        /// </summary>
+        internal static string Form1_Button1Click2_Any_file____ {
+            get {
+                return ResourceManager.GetString("Form1_Button1Click2_Any_file____", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a file to save the item to.
+        /// </summary>
+        internal static string Form1_Button1Click2_Select_a_file_to_save_the_item_to {
+            get {
+                return ResourceManager.GetString("Form1_Button1Click2_Select_a_file_to_save_the_item_to", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong while saving!.
+        /// </summary>
+        internal static string Form1_SaveFile_Something_went_wrong_while_saving_ {
+            get {
+                return ResourceManager.GetString("Form1_SaveFile_Something_went_wrong_while_saving_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Who send all these babies to fight!?.
+        /// </summary>
+        internal static string Form1_SaveFile_Who_send_all_these_babies_to_fight__ {
+            get {
+                return ResourceManager.GetString("Form1_SaveFile_Who_send_all_these_babies_to_fight__", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap tf2itemsmanager {
             get {
                 object obj = ResourceManager.GetObject("tf2itemsmanager", resourceCulture);
