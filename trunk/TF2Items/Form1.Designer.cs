@@ -104,7 +104,7 @@
             this.btnOpen.TabIndex = 1;
             this.btnOpen.Text = "Open";
             this.btnOpen.UseVisualStyleBackColor = true;
-            this.btnOpen.Click += new System.EventHandler(this.button1_Click);
+            this.btnOpen.Click += new System.EventHandler(this.Button1Click);
             // 
             // filediagOpen
             // 
@@ -121,8 +121,8 @@
             this.comboName.Name = "comboName";
             this.comboName.Size = new System.Drawing.Size(209, 21);
             this.comboName.TabIndex = 4;
-            this.comboName.SelectedIndexChanged += new System.EventHandler(this.comboName_SelectedIndexChanged);
-            this.comboName.TextUpdate += new System.EventHandler(this.comboName_TextUpdate);
+            this.comboName.SelectedIndexChanged += new System.EventHandler(this.ComboNameSelectedIndexChanged);
+            this.comboName.TextUpdate += new System.EventHandler(this.ComboNameTextUpdate);
             // 
             // txt_item_class
             // 
@@ -130,7 +130,7 @@
             this.txt_item_class.Name = "txt_item_class";
             this.txt_item_class.Size = new System.Drawing.Size(208, 20);
             this.txt_item_class.TabIndex = 5;
-            this.txt_item_class.TextChanged += new System.EventHandler(this.txt_item_class_TextChanged);
+            this.txt_item_class.TextChanged += new System.EventHandler(this.TxtItemClassTextChanged);
             // 
             // label1
             // 
@@ -147,7 +147,7 @@
             this.txt_craft_class.Name = "txt_craft_class";
             this.txt_craft_class.Size = new System.Drawing.Size(208, 20);
             this.txt_craft_class.TabIndex = 6;
-            this.txt_craft_class.TextChanged += new System.EventHandler(this.txt_craft_class_TextChanged);
+            this.txt_craft_class.TextChanged += new System.EventHandler(this.TxtCraftClassTextChanged);
             // 
             // label2
             // 
@@ -173,7 +173,7 @@
             this.txt_item_name.Name = "txt_item_name";
             this.txt_item_name.Size = new System.Drawing.Size(208, 20);
             this.txt_item_name.TabIndex = 8;
-            this.txt_item_name.TextChanged += new System.EventHandler(this.txt_item_name_TextChanged);
+            this.txt_item_name.TextChanged += new System.EventHandler(this.TxtItemNameTextChanged);
             // 
             // label5
             // 
@@ -190,7 +190,7 @@
             this.txt_item_slot.Name = "txt_item_slot";
             this.txt_item_slot.Size = new System.Drawing.Size(208, 20);
             this.txt_item_slot.TabIndex = 9;
-            this.txt_item_slot.TextChanged += new System.EventHandler(this.txt_item_slot_TextChanged);
+            this.txt_item_slot.TextChanged += new System.EventHandler(this.TxtItemSlotTextChanged);
             // 
             // label6
             // 
@@ -207,7 +207,7 @@
             this.txt_item_quality.Name = "txt_item_quality";
             this.txt_item_quality.Size = new System.Drawing.Size(208, 20);
             this.txt_item_quality.TabIndex = 10;
-            this.txt_item_quality.TextChanged += new System.EventHandler(this.txt_item_quality_TextChanged);
+            this.txt_item_quality.TextChanged += new System.EventHandler(this.TxtItemQualityTextChanged);
             // 
             // label7
             // 
@@ -224,7 +224,7 @@
             this.txt_baseitem.Name = "txt_baseitem";
             this.txt_baseitem.Size = new System.Drawing.Size(61, 20);
             this.txt_baseitem.TabIndex = 16;
-            this.txt_baseitem.TextChanged += new System.EventHandler(this.txt_baseitem_TextChanged);
+            this.txt_baseitem.TextChanged += new System.EventHandler(this.TxtBaseitemTextChanged);
             // 
             // txt_min_ilevel
             // 
@@ -232,7 +232,7 @@
             this.txt_min_ilevel.Name = "txt_min_ilevel";
             this.txt_min_ilevel.Size = new System.Drawing.Size(65, 20);
             this.txt_min_ilevel.TabIndex = 17;
-            this.txt_min_ilevel.TextChanged += new System.EventHandler(this.txt_min_ilevel_TextChanged);
+            this.txt_min_ilevel.TextChanged += new System.EventHandler(this.TxtMinIlevelTextChanged);
             // 
             // txt_max_ilevel
             // 
@@ -240,7 +240,7 @@
             this.txt_max_ilevel.Name = "txt_max_ilevel";
             this.txt_max_ilevel.Size = new System.Drawing.Size(71, 20);
             this.txt_max_ilevel.TabIndex = 18;
-            this.txt_max_ilevel.TextChanged += new System.EventHandler(this.txt_max_ilevel_TextChanged);
+            this.txt_max_ilevel.TextChanged += new System.EventHandler(this.TxtMaxIlevelTextChanged);
             // 
             // label8
             // 
@@ -275,7 +275,7 @@
             this.txt_image_inventory.Name = "txt_image_inventory";
             this.txt_image_inventory.Size = new System.Drawing.Size(209, 20);
             this.txt_image_inventory.TabIndex = 11;
-            this.txt_image_inventory.TextChanged += new System.EventHandler(this.txt_image_inventory_TextChanged);
+            this.txt_image_inventory.TextChanged += new System.EventHandler(this.TxtImageInventoryTextChanged);
             // 
             // label11
             // 
@@ -292,7 +292,7 @@
             this.txt_image_inventory_size_w.Name = "txt_image_inventory_size_w";
             this.txt_image_inventory_size_w.Size = new System.Drawing.Size(209, 20);
             this.txt_image_inventory_size_w.TabIndex = 12;
-            this.txt_image_inventory_size_w.TextChanged += new System.EventHandler(this.txt_image_inventory_size_w_TextChanged);
+            this.txt_image_inventory_size_w.TextChanged += new System.EventHandler(this.TxtImageInventorySizeWTextChanged);
             // 
             // label12
             // 
@@ -309,7 +309,7 @@
             this.txt_image_inventory_size_h.Name = "txt_image_inventory_size_h";
             this.txt_image_inventory_size_h.Size = new System.Drawing.Size(209, 20);
             this.txt_image_inventory_size_h.TabIndex = 13;
-            this.txt_image_inventory_size_h.TextChanged += new System.EventHandler(this.txt_image_inventory_size_h_TextChanged);
+            this.txt_image_inventory_size_h.TextChanged += new System.EventHandler(this.TxtImageInventorySizeHTextChanged);
             // 
             // txt_model_player
             // 
@@ -317,7 +317,7 @@
             this.txt_model_player.Name = "txt_model_player";
             this.txt_model_player.Size = new System.Drawing.Size(209, 20);
             this.txt_model_player.TabIndex = 14;
-            this.txt_model_player.TextChanged += new System.EventHandler(this.txt_model_player_TextChanged);
+            this.txt_model_player.TextChanged += new System.EventHandler(this.TxtModelPlayerTextChanged);
             // 
             // label13
             // 
@@ -334,7 +334,7 @@
             this.txt_attach_to_hands.Name = "txt_attach_to_hands";
             this.txt_attach_to_hands.Size = new System.Drawing.Size(209, 20);
             this.txt_attach_to_hands.TabIndex = 15;
-            this.txt_attach_to_hands.TextChanged += new System.EventHandler(this.txt_attach_to_hands_TextChanged);
+            this.txt_attach_to_hands.TextChanged += new System.EventHandler(this.TxtAttachToHandsTextChanged);
             // 
             // label14
             // 
@@ -392,7 +392,7 @@
             this.move_left_btn.TabIndex = 20;
             this.move_left_btn.Text = "<-";
             this.move_left_btn.UseVisualStyleBackColor = true;
-            this.move_left_btn.Click += new System.EventHandler(this.button1_Click_1);
+            this.move_left_btn.Click += new System.EventHandler(this.Button1Click1);
             // 
             // move_right_btn
             // 
@@ -403,7 +403,7 @@
             this.move_right_btn.TabIndex = 21;
             this.move_right_btn.Text = "->";
             this.move_right_btn.UseVisualStyleBackColor = true;
-            this.move_right_btn.Click += new System.EventHandler(this.move_right_btn_Click);
+            this.move_right_btn.Click += new System.EventHandler(this.MoveRightBtnClick);
             // 
             // grid_attribs
             // 
@@ -426,8 +426,8 @@
             this.grid_attribs.ShowRowErrors = false;
             this.grid_attribs.Size = new System.Drawing.Size(488, 215);
             this.grid_attribs.TabIndex = 23;
-            this.grid_attribs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_attribs_CellValueChanged);
-            this.grid_attribs.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.grid_attribs_UserDeletedRow);
+            this.grid_attribs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridAttribsCellValueChanged);
+            this.grid_attribs.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.GridAttribsUserDeletedRow);
             // 
             // data_hdr_name
             // 
@@ -457,8 +457,8 @@
             this.list_all_attribs.Size = new System.Drawing.Size(188, 160);
             this.list_all_attribs.Sorted = true;
             this.list_all_attribs.TabIndex = 24;
-            this.list_all_attribs.DoubleClick += new System.EventHandler(this.list_all_attribs_DoubleClick);
-            this.list_all_attribs.MouseMove += new System.Windows.Forms.MouseEventHandler(this.list_all_attribs_MouseMove_1);
+            this.list_all_attribs.DoubleClick += new System.EventHandler(this.ListAllAttribsDoubleClick);
+            this.list_all_attribs.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ListAllAttribsMouseMove1);
             // 
             // label18
             // 
@@ -486,7 +486,7 @@
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.BtnSaveClick);
             // 
             // btnSaveAs
             // 
@@ -496,7 +496,7 @@
             this.btnSaveAs.TabIndex = 3;
             this.btnSaveAs.Text = "As";
             this.btnSaveAs.UseVisualStyleBackColor = true;
-            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
+            this.btnSaveAs.Click += new System.EventHandler(this.BtnSaveAsClick);
             // 
             // progressReading
             // 
@@ -559,6 +559,7 @@
             this.txt_item_type_name.Name = "txt_item_type_name";
             this.txt_item_type_name.Size = new System.Drawing.Size(208, 20);
             this.txt_item_type_name.TabIndex = 19;
+            this.txt_item_type_name.TextChanged += new System.EventHandler(this.TxtItemTypeNameTextChanged);
             // 
             // groupBox2
             // 
@@ -604,7 +605,7 @@
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(188, 20);
             this.searchBox.TabIndex = 25;
-            this.searchBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.searchBox.TextChanged += new System.EventHandler(this.TextBox1TextChanged);
             // 
             // pictureBox1
             // 
@@ -625,7 +626,7 @@
             this.linkLabel1.TabIndex = 355;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "http://nemesis.thewavelength.net/index.php?p=35";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1LinkClicked);
             // 
             // btnCopy
             // 
@@ -635,7 +636,7 @@
             this.btnCopy.TabIndex = 356;
             this.btnCopy.Text = "Copy";
             this.btnCopy.UseVisualStyleBackColor = true;
-            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            this.btnCopy.Click += new System.EventHandler(this.BtnCopyClick);
             // 
             // btnPaste
             // 
@@ -645,7 +646,7 @@
             this.btnPaste.TabIndex = 357;
             this.btnPaste.Text = "Paste";
             this.btnPaste.UseVisualStyleBackColor = true;
-            this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
+            this.btnPaste.Click += new System.EventHandler(this.BtnPasteClick);
             // 
             // button1
             // 
@@ -655,7 +656,7 @@
             this.button1.TabIndex = 359;
             this.button1.Text = "Save Item";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            this.button1.Click += new System.EventHandler(this.Button1Click2);
             // 
             // Form1
             // 
@@ -680,7 +681,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "TF2 Items Editor v0.8.7";
+            this.Text = "TF2 Items Editor v0.9";
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
