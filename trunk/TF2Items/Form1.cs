@@ -7,6 +7,10 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using TF2Items.Properties;
 
+//ADDED: Sexy arrows
+//ADDED: Code cleanup
+//ADDED: Save As button
+
 
 //using Windows7.DesktopIntegration;
 //using Windows7.DesktopIntegration.WindowsForms;
@@ -18,9 +22,6 @@ namespace TF2Items
         private const int NumberOfItems = 220;
         private const int NumberOfAttribs = 150;
         private static readonly Regex IsNumber = new Regex(@"^\d+$");
-        private readonly string[] _name = new string[NumberOfItems];
-        private readonly bool[] _saved = new bool[14];
-        private readonly int[,] _usedByClasses = new int[NumberOfItems,9];
         private readonly string[] _attachToHands = new string[NumberOfItems];
         private readonly string[] _attribAname = new string[NumberOfAttribs];
         private readonly string[] _attribClass = new string[NumberOfAttribs];
@@ -41,6 +42,9 @@ namespace TF2Items
         private readonly string[] _maxIlevel = new string[NumberOfItems];
         private readonly string[] _minIlevel = new string[NumberOfItems];
         private readonly string[] _modelPlayer = new string[NumberOfItems];
+        private readonly string[] _name = new string[NumberOfItems];
+        private readonly bool[] _saved = new bool[14];
+        private readonly int[,] _usedByClasses = new int[NumberOfItems,9];
         private string _fileName;
 
         private bool _firstSetup;
@@ -48,7 +52,7 @@ namespace TF2Items
         private double _percent;
         private int _saveNum = -1;
         private string _saveStr = "";
-        
+
 
         public Form1()
         {
@@ -1449,12 +1453,13 @@ namespace TF2Items
             if (comboName.SelectedIndex == -1) return;
             _itemTypeName[comboName.SelectedIndex] = txt_item_type_name.Text;
         }
+
         private void TxtCraftClassTextChanged(object sender, EventArgs e)
         {
             if (comboName.SelectedIndex == -1) return;
             _craftClass[comboName.SelectedIndex] = txt_craft_class.Text;
         }
+
         #endregion
-        
     }
 }
