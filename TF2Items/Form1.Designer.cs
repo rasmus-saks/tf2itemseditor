@@ -390,7 +390,7 @@
             this.move_left_btn.Name = "move_left_btn";
             this.move_left_btn.Size = new System.Drawing.Size(49, 23);
             this.move_left_btn.TabIndex = 20;
-            this.move_left_btn.Text = "<-";
+            this.move_left_btn.Text = "←";
             this.move_left_btn.UseVisualStyleBackColor = true;
             this.move_left_btn.Click += new System.EventHandler(this.Button1Click1);
             // 
@@ -401,7 +401,7 @@
             this.move_right_btn.Name = "move_right_btn";
             this.move_right_btn.Size = new System.Drawing.Size(49, 23);
             this.move_right_btn.TabIndex = 21;
-            this.move_right_btn.Text = "->";
+            this.move_right_btn.Text = "→";
             this.move_right_btn.UseVisualStyleBackColor = true;
             this.move_right_btn.Click += new System.EventHandler(this.MoveRightBtnClick);
             // 
