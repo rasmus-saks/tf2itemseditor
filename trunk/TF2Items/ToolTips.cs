@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TF2Items
+﻿namespace TF2Items
 {
     public class ToolTips
     {
-        public static string[] m_arrItemToolTips = {
+        public static string[] MArrItemToolTips = {
                                         "Decreases the weapon's damage by a percentage.",
                                         "Increases the weapon's damage by a percentage.",
                                         "Decreases the cap size of the clip (which carries ammunition to fire with) by a percentage. Only applies to guns.",
@@ -148,6 +144,7 @@ namespace TF2Items
                                         "Gives you an additional 50 HP for 30 seconds. Only applies to the Dalokohs Bar.",
                                         "It just boosts your max health, but without telling you so.",
                                         "Just adds the Selfmade description. No, you can't edit it, it's not what you think it is.",
+                                        "Sets the RGB on tinted items",
                                         "The description of the Bronze, Silver, Gold, and Platinum badges. It is based on when you joined the game. ",
                                         "Gives you the ability to give and take Mini-Crit damage. Only applies to the Crit-a-Cola and Pepsi.",
                                         "Gives the weapon the ability to be able to remove sappers based on your damage.",
@@ -155,6 +152,43 @@ namespace TF2Items
                                         "Reduces the cost of buildings",
                                         "Makes the opponent bleed on hit. The duration is based on the value, on units.",
                                         "Turns any victim that is killed by the weapon turn into a gold statue. Only applies to the Wrenches.",
+                                        "Weapon can not be traded",
+                                        "Instantly disguises as the backstab victim. Only applies to Spies.",
+                                        "Wearer can't disguise. Only applies to Spies",
+                                        "Almost instantly removes the victim's ragdoll.",
+                                        "Speed is reduced while disguised. Only applies to Spies.",
+                                        "Adds cloak when you kill someone. Only applies to Spies.",
+                                        "Half-visible time during a cloak is reduced. Only applies to Spies.",
+                                        "Decloak sound is reduced. Only applies to Spies.",
+                                        "Flamethrower flame size is reduced. Only applies to Pyros.",
+                                        "Flamethrower flame size is increased. Only applies to Pyros.",
+                                        "Afterburn lasts a shorter amount of time. Only applies to Pyros.",
+                                        "Afterburn lasts longer. Only applies to Pyros.",
+                                        "Airblast is charged. Only applies to Pyros.",
+                                        "Increases cloak on hit. Only applies to Spies.",
+                                        "Damage is reduced while disguised. Only applies to Spies.",
+                                        "Unable to burn while disguised. Only applies to Spies.",
+                                        "Damage taken from sentries is reduced.",
+                                        "Airblasting takes more ammo. Only applies to Pyros.",
+                                        "Airblasting takes less ammo. Only applies to Pyros.",
+                                        "Probably the games puts this attribute on purchased items.",
+                                        "Firing the flamethrower takes more ammo per second. Only applies to Pyros.",
+                                        "Firing the flamethrower takes less ammo per second. Only applies to Pyros.",
+                                        "Applies Jarate effects to target on hit.",
+                                        "Weapon can't headshot. Only applies to Snipers.",
+                                        "Switching weapons is slower.",
+                                        "Switching weapons is faster",
+                                        "Every time he weapon should mini-crit it crits instead.",
+                                        "Adds health on kill.",
+                                        "Own explosive weapons can't damage user. Only applies to Demomen and Soldiers.",
+                                        "Slows enemies on hit.",
+                                        "Aiming movement speed is decreased.",
+                                        "Adds the duel loser ID to duel badge.",
+                                        "Adds last duel date to duel badge.",
+                                        "Adds gifter account to item.",
+                                        "Sets supply crate series number.",
+                                        "Stores the given percentage of your Ubercharge on death (if you died with 40% charge, it stores 8%)",
+                                        "Probably increases the quality value of an item."
                                      };
 
     }

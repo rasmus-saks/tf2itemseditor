@@ -89,6 +89,8 @@
             this.btnPaste = new System.Windows.Forms.Button();
             this.ListToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.debug = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -472,11 +474,11 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(523, 105);
+            this.label19.Location = new System.Drawing.Point(529, 79);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(179, 26);
+            this.label19.Size = new System.Drawing.Size(179, 39);
             this.label19.TabIndex = 11;
-            this.label19.Text = "Created by bogeyman_EST, 2010\r\nGCF extracter thanks to Nem\'s tools:";
+            this.label19.Text = "Created by bogeyman_EST, 2010\r\n\r\nGCF extracter thanks to Nem\'s tools:";
             // 
             // btnSave
             // 
@@ -620,7 +622,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(459, 132);
+            this.linkLabel1.Location = new System.Drawing.Point(460, 121);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(248, 13);
             this.linkLabel1.TabIndex = 355;
@@ -658,11 +660,29 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1Click2);
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(456, 148);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(252, 13);
+            this.label20.TabIndex = 11;
+            this.label20.Text = "A lot of the attribute descriptions thanks to AbeX300";
+            // 
+            // debug
+            // 
+            this.debug.Location = new System.Drawing.Point(714, 12);
+            this.debug.Multiline = true;
+            this.debug.Name = "debug";
+            this.debug.Size = new System.Drawing.Size(681, 564);
+            this.debug.TabIndex = 360;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 581);
+            this.ClientSize = new System.Drawing.Size(1395, 581);
+            this.Controls.Add(this.debug);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnPaste);
             this.Controls.Add(this.btnCopy);
@@ -673,6 +693,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.comboName);
             this.Controls.Add(this.progressReading);
@@ -756,6 +777,8 @@
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox debug;
     }
 }
 
