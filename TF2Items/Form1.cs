@@ -8,8 +8,10 @@ using System.Windows.Forms;
 using TF2Items.Properties;
 
 //ADDED: Sexy arrows
-//ADDED: Code cleanup
+//FIXED: Code cleanup
 //ADDED: Save As button
+//ADDED: Credits to AbeX300 for the attribute descriptions
+//FIXED: Parsing items_game.txt after Mann-Conomy update
 
 
 //using Windows7.DesktopIntegration;
@@ -19,8 +21,8 @@ namespace TF2Items
 {
     public partial class Form1 : Form
     {
-        private const int NumberOfItems = 220;
-        private const int NumberOfAttribs = 150;
+        private const int NumberOfItems = 375;
+        private const int NumberOfAttribs = 200;
         private static readonly Regex IsNumber = new Regex(@"^\d+$");
         private readonly string[] _attachToHands = new string[NumberOfItems];
         private readonly string[] _attribAname = new string[NumberOfAttribs];
@@ -164,20 +166,24 @@ namespace TF2Items
                 bool inAttribs = false;
                 int itemAtr = -1;
                 string lastline = "";
+                int level = 0;
                 int aN = 0;
+                bool inSets = false;
                 while ((line = file.ReadLine()) != null)
                 {
                     progressReading.Value = (int) file.BaseStream.Position/(int) _percent > 100
                                                 ? 100
                                                 : (int) file.BaseStream.Position/(int) _percent;
                     // if (Osinfo.MajorVersion.ToString() + "." + Osinfo.MinorVersion.ToString() == "6.1") progressReading.SetTaskbarProgress(); //Only show progress bar on the taskbar if using Windows 7
+                    if (inSets) continue;
                     if (!inAttribs)
                     {
-                        if (line.Contains("\"name\"")) //Parsing new item
+                        if (line.Contains("\t\t\"name\"")) //Parsing new item
                         {
                             string tmp = line.Replace("\"name\"", "");
                             tmp = tmp.Replace("\"", "");
                             tmp = tmp.Replace("	", "");
+                            if (tmp.Substring(0, 1) == " ") tmp = tmp.Substring(1); //Removes leading space in Polycount class bundles
                             current = tmp;
                             comboName.Items.Insert(i, tmp + "\r\n");
                             _name[i] = tmp;
@@ -196,7 +202,7 @@ namespace TF2Items
                         if (line.Contains("\"value\"") && itemAtr > 0)
                         {
                             _itemAttribsValue[i - 1, aN] =
-                                Converter.ToDouble(line.Replace("\"", "").Replace("	", "").Replace("value", ""));
+                                Converter.ToDouble(Regex.Replace(line.Replace("\"", "").Replace("	", "").Replace("value", ""), "(?<comment>//.*)", ""));
                             aN++;
                         }
                         if (line.Contains("\"force_gc_to_generate\"") && itemAtr > 0) continue;
@@ -360,6 +366,11 @@ namespace TF2Items
                     }
                     else
                     {
+                        if (line.Contains("\"item_sets\""))
+                        {
+                            inSets = true;
+                            continue;
+                        }
                         if (line.Contains("\"name\""))
                         {
                             string tmp = line.Replace("\"name\"", "");
@@ -387,7 +398,7 @@ namespace TF2Items
                                     line.Replace("\"min_value\"", "").Replace("\"", "").Replace("\t", ""));
                         }
                     }
-                    if (current.Contains("Slot Token - Head") && line.Contains("slot_token_id"))
+                    if (current.Contains("Paint Can 14") && line.Contains("ui/item_paint_can_pickup.wav"))
                     {
                         inAttribs = true;
                         i = 0;
@@ -712,6 +723,9 @@ namespace TF2Items
             bool don = false;
             bool usedBy = false;
             int level = 0;
+            bool inTools = false;
+            bool inSets = false;
+            bool inAttribs = false;
             for (int ii = 0; ii < 14; ii++) _saved[ii] = false;
             foreach (string line in file)
             {
@@ -720,7 +734,31 @@ namespace TF2Items
                 temp = line;
                 if (line.Contains("{")) level++;
                 if (line.Contains("}")) level--;
-                if (line.Contains("\"name\"") && current != "Slot Token - Head") //Parsing new item
+                if (line.Contains("}") && current == "Paint Can 14" && level == 1)
+                {
+                    inAttribs = true;
+                    goto end;
+                }
+                if (inAttribs) goto end;
+                if (line.Contains("\"item_sets\""))
+                {
+                    inSets = true;
+                    goto end;
+                }
+
+                if (inSets) goto end;
+                if (line.Contains("\"tool\"") && !line.Contains("_class"))
+                {
+                    inTools = true;
+                    goto end;
+                }
+                if (level == 4 && inTools) goto end;
+                if (level == 3 && inTools)
+                {
+                    inTools = false;
+                    goto end;
+                }
+                if (line.Contains("\"name\"") && current != "Paint Can 14" && level == 3) //Parsing new item
                 {
                     i++;
                     current = line.Replace("name", "").Replace("\"", "").Replace("\t", "");
@@ -729,7 +767,7 @@ namespace TF2Items
                     temp = i < NumberOfItems ? line.Replace(current, _name[i - 1]) : line;
                     goto end;
                 }
-
+                
                 #region Write from arrays
 
                 if (line.Contains("\"item_class\""))
@@ -930,8 +968,8 @@ namespace TF2Items
                 }
 
                 #endregion
-
                 if (current == null) goto end;
+                if (current.Contains("Upgradeable")) goto end;
                 if (current == "Slot Token - Head") goto end;
                 if (line.Contains("\"attributes\"") && !current.Contains("Badge"))
                 {
@@ -966,10 +1004,22 @@ namespace TF2Items
                             //Badges have weird attributes, here's a dirty workaround...
                             temp =
                                 "\t\t\t\t\"custom employee number\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t\"set_employee_number\"\r\n\t\t\t\t\t\"force_gc_to_generate\"\t\"1\"\r\n\t\t\t\t\t\"use_custom_logic\"\t\"employee_number\"\r\n\t\t\t\t}\r\n";
-                            itemAtr = 0;
-                            break;
+                            continue;
                         }
-
+                        if (_itemAttribs[i - 1, j] == "set supply crate series")
+                        {
+                            //So do supply crates
+                            temp =
+                                "\t\t\t\t\"set supply crate series\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t\"supply_crate_series\"\r\n\t\t\t\t\t\"value\"\t\"" + _itemAttribsValue[i-1, j] + "\"\r\n\t\t\t\t\t\"force_gc_to_generate\"\t\"1\"\r\n\t\t\t\t}\r\n";
+                            continue;
+                        }
+                        if (_itemAttribs[i - 1, j] == "set item tint RGB" && current == "Paint Can")
+                        {
+                            //And paint cans
+                            temp =
+                                "\t\t\t\t\"set item tint RGB\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t\"set_item_tint_rgb\"\r\n\t\t\t\t\t\"force_gc_to_generate\"\t\"1\"\r\n\t\t\t\t}\r\n";
+                            continue;
+                        }
                         if (GetAttribClass(_itemAttribs[i - 1, j]) != null &&
                             GetAttribClass(_itemAttribs[i - 1, j]) != "")
                         {
@@ -984,12 +1034,10 @@ namespace TF2Items
                             itemAtr--;
                             break;
                         }
-                        if (GetAttribClass(_itemAttribs[i - 1, j + 1]) == null)
-                        {
-                            temp += "\t\t\t}";
-                            itemAtr--;
-                            break;
-                        }
+                        if (GetAttribClass(_itemAttribs[i - 1, j + 1]) != null) continue;
+                        temp += "\t\t\t}";
+                        itemAtr--;
+                        break;
                     }
 
                     don = true;
@@ -1017,16 +1065,13 @@ namespace TF2Items
                     int count = 0;
                     for (int k = 0; k < 14; k++)
                     {
-                        if (!_saved[k] && ReturnSettingVal(i - 1, k) != null && ReturnSettingVal(i - 1, k) != "")
-                        {
-                            temp += "\r\n\t\t\t\"" + ReturnSettingStr(k) + "\"\t\"" + ReturnSettingVal(i - 1, k) + "\"";
-                            _saved[k] = true;
-                            count++;
-                        }
+                        if (_saved[k] || ReturnSettingVal(i - 1, k) == null || ReturnSettingVal(i - 1, k) == "") continue;
+                        temp += "\r\n\t\t\t\"" + ReturnSettingStr(k) + "\"\t\"" + ReturnSettingVal(i - 1, k) + "\"";
+                        _saved[k] = true;
+                        count++;
                     }
 
-                    if (count > 0) temp += "\r\n\t\t}";
-                    else temp += "\t\t}";
+                    temp += count > 0 ? "\r\n\t\t}" : "\t\t}";
                     goto end;
                 }
                 if (line.Contains("}") && level == 2 && !don && DoesItemHaveAttribs(i - 1))
@@ -1042,12 +1087,10 @@ namespace TF2Items
                                     GetAttribClass(_itemAttribs[i - 1, j]) + "\"\r\n\t\t\t\t\t" + "\"value\"\t" + "\"" +
                                     _itemAttribsValue[i - 1, j] + "\"\r\n\t\t\t\t}\r\n";
                         }
-                        if (GetAttribClass(_itemAttribs[i - 1, j + 1]) == null)
-                        {
-                            temp += "\t\t\t}";
-                            itemAtr--;
-                            break;
-                        }
+                        if (GetAttribClass(_itemAttribs[i - 1, j + 1]) != null) continue;
+                        temp += "\t\t\t}";
+                        itemAtr--;
+                        break;
                     }
                     don = true;
                 }
@@ -1259,7 +1302,7 @@ namespace TF2Items
                 {
                     string tipp = listBox.Items[index].ToString();
                     int idd = GetAttribId(tipp);
-                    string tip = ToolTips.m_arrItemToolTips[idd];
+                    string tip = ToolTips.MArrItemToolTips[idd];
                     if (tip != _lastTip)
                     {
                         ListToolTip.SetToolTip(listBox, tip);
