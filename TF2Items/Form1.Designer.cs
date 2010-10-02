@@ -90,7 +90,6 @@
             this.ListToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
-            this.debug = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -669,20 +668,11 @@
             this.label20.TabIndex = 11;
             this.label20.Text = "A lot of the attribute descriptions thanks to AbeX300";
             // 
-            // debug
-            // 
-            this.debug.Location = new System.Drawing.Point(714, 12);
-            this.debug.Multiline = true;
-            this.debug.Name = "debug";
-            this.debug.Size = new System.Drawing.Size(681, 564);
-            this.debug.TabIndex = 360;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1395, 581);
-            this.Controls.Add(this.debug);
+            this.ClientSize = new System.Drawing.Size(711, 581);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnPaste);
             this.Controls.Add(this.btnCopy);
@@ -778,7 +768,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox debug;
     }
 }
 
