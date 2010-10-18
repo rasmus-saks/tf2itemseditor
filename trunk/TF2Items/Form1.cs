@@ -7,11 +7,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using TF2Items.Properties;
 
-//ADDED: Sexy arrows
-//FIXED: Code cleanup
-//ADDED: Save As button
-//ADDED: Credits to AbeX300 for the attribute descriptions
-//FIXED: Parsing items_game.txt after Mann-Conomy update
 
 
 //using Windows7.DesktopIntegration;
@@ -54,7 +49,7 @@ namespace TF2Items
         private double _percent;
         private int _saveNum = -1;
         private string _saveStr = "";
-
+        private int lastSel;
 
         public Form1()
         {
@@ -1349,10 +1344,12 @@ namespace TF2Items
         private void ComboNameTextUpdate(object sender, EventArgs e)
         {
             if (_firstSetup) return;
-            if (comboName.SelectedIndex == -1 || comboName.Text == "") return;
+            if (comboName.Text == "") return;
             if (comboName.DroppedDown) return;
-            _name[comboName.SelectedIndex] = comboName.Text.Replace("\r\n", "");
-            comboName.Items[comboName.SelectedIndex] = _name[comboName.SelectedIndex];
+            if (comboName.SelectedIndex != -1) lastSel = comboName.SelectedIndex;
+            _name[lastSel] = comboName.Text.Replace("\r\n", "");
+            comboName.Items[lastSel] = _name[lastSel];
+            comboName.Select(_name[lastSel].Length, _name[lastSel].Length);
         }
 
         private void Button1Click2(object sender, EventArgs e)
