@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using TF2Items.Properties;
+using System.Globalization;
 
 
 
@@ -14,10 +15,11 @@ using TF2Items.Properties;
 
 namespace TF2Items
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        private const int NumberOfItems = 375;
-        private const int NumberOfAttribs = 200;
+
+        private const int NumberOfItems = 425;
+        public const int NumberOfAttribs = 250;
         private static readonly Regex IsNumber = new Regex(@"^\d+$");
         private readonly string[] _attachToHands = new string[NumberOfItems];
         private readonly string[] _attribAname = new string[NumberOfAttribs];
@@ -49,9 +51,9 @@ namespace TF2Items
         private double _percent;
         private int _saveNum = -1;
         private string _saveStr = "";
-        private int lastSel;
+        private int _lastSel;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -171,6 +173,13 @@ namespace TF2Items
                                                 : (int) file.BaseStream.Position/(int) _percent;
                     // if (Osinfo.MajorVersion.ToString() + "." + Osinfo.MinorVersion.ToString() == "6.1") progressReading.SetTaskbarProgress(); //Only show progress bar on the taskbar if using Windows 7
                     if (inSets) continue;
+                    if (line.Contains("{")) level++;
+                    if (line.Contains("}")) level--;
+                    if (line.Contains("attributes") && level == 1)
+                    {
+                        inAttribs = true;
+                        i = 0;
+                    }
                     if (!inAttribs)
                     {
                         if (line.Contains("\t\t\"name\"")) //Parsing new item
@@ -196,8 +205,10 @@ namespace TF2Items
                         if (line.Contains("}") && lastline.Contains("}")) itemAtr = 0;
                         if (line.Contains("\"value\"") && itemAtr > 0)
                         {
-                            _itemAttribsValue[i - 1, aN] =
-                                Converter.ToDouble(Regex.Replace(line.Replace("\"", "").Replace("	", "").Replace("value", ""), "(?<comment>//.*)", ""));
+                            string sumthin = Regex.Replace(line.Replace("\"", "").Replace("	", "").Replace("value", ""), "(?<comment>//.*)", "");
+                            double sum = Converter.ToDouble(sumthin);
+                            _itemAttribsValue[i - 1, aN] = sum;
+                                
                             aN++;
                         }
                         if (line.Contains("\"force_gc_to_generate\"") && itemAtr > 0) continue;
@@ -393,11 +404,7 @@ namespace TF2Items
                                     line.Replace("\"min_value\"", "").Replace("\"", "").Replace("\t", ""));
                         }
                     }
-                    if (current.Contains("Paint Can 14") && line.Contains("ui/item_paint_can_pickup.wav"))
-                    {
-                        inAttribs = true;
-                        i = 0;
-                    }
+                    
                     lastline = line;
                 }
                 file.Close();
@@ -642,7 +649,7 @@ namespace TF2Items
                     int n = grid_attribs.Rows.Add();
                     grid_attribs.Rows[n].Cells[0].Value = _itemAttribs[comboName.SelectedIndex, j];
                     grid_attribs.Rows[n].Cells[1].Value = GetAttribClass(_itemAttribs[comboName.SelectedIndex, j]);
-                    grid_attribs.Rows[n].Cells[2].Value = _itemAttribsValue[comboName.SelectedIndex, j];
+                    grid_attribs.Rows[n].Cells[2].Value = _itemAttribsValue[comboName.SelectedIndex, j].ToString().Replace(",", ".");
                     if (!_itemAttribs[comboName.SelectedIndex, j].Contains("custom employee number")) c++;
                 }
             }
@@ -726,10 +733,15 @@ namespace TF2Items
             {
                 progressReading.Value = newFile.Length/(int) _percent > 100 ? (100) : (newFile.Length/(int) _percent);
                 //if (Osinfo.MajorVersion.ToString() + "." + Osinfo.MinorVersion.ToString() == "6.1") progressReading.SetTaskbarProgress(); //Only show progress bar on the taskbar if using Windows 7
+                
                 temp = line;
+                if (line.Contains("\"items_game\"") && !lastline.Contains("//"))
+                {
+                    temp = "//items_game.txt generated using " + this.Text + " (Created by bogeyman_EST)\r\n" + line;
+                }
                 if (line.Contains("{")) level++;
                 if (line.Contains("}")) level--;
-                if (line.Contains("}") && current == "Paint Can 14" && level == 1)
+                if (line.Contains("attributes") && level == 1)
                 {
                     inAttribs = true;
                     goto end;
@@ -753,7 +765,7 @@ namespace TF2Items
                     inTools = false;
                     goto end;
                 }
-                if (line.Contains("\"name\"") && current != "Paint Can 14" && level == 3) //Parsing new item
+                if (line.Contains("\"name\"") && level == 3) //Parsing new item
                 {
                     i++;
                     current = line.Replace("name", "").Replace("\"", "").Replace("\t", "");
@@ -965,7 +977,6 @@ namespace TF2Items
                 #endregion
                 if (current == null) goto end;
                 if (current.Contains("Upgradeable")) goto end;
-                if (current == "Slot Token - Head") goto end;
                 if (line.Contains("\"attributes\"") && !current.Contains("Badge"))
                 {
                     itemAtr++;
@@ -1021,7 +1032,7 @@ namespace TF2Items
                             temp = temp + "\t\t\t\t\"" + _itemAttribs[i - 1, j] +
                                    "\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t" + "\"" +
                                    GetAttribClass(_itemAttribs[i - 1, j]) + "\"\r\n\t\t\t\t\t" + "\"value\"\t" + "\"" +
-                                   _itemAttribsValue[i - 1, j] + "\"\r\n\t\t\t\t}\r\n";
+                                   _itemAttribsValue[i - 1, j].ToString().Replace(",", ".") + "\"\r\n\t\t\t\t}\r\n";
                         }
                         if (j + 1 == NumberOfAttribs)
                         {
@@ -1052,8 +1063,12 @@ namespace TF2Items
                     temp += "\r\n\t\t\t}";
                     goto end;
                 }
-                if (line.Contains("\"1\"") || line.Contains("}")) if (usedBy) if (!IsNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", ""))) continue;
-                if (!line.Contains("\"1\"") && !line.Contains("}") && usedBy) usedBy = false;
+                if (line.Contains("\"1\"")) if (usedBy) if (!IsNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", ""))) continue;
+                if (line.Contains("}") && usedBy == true) 
+                {
+                    usedBy = false;
+                    continue;
+                }
                 if (line.Contains("}") && level == 2)
                 {
                     temp = "";
@@ -1297,7 +1312,7 @@ namespace TF2Items
                 {
                     string tipp = listBox.Items[index].ToString();
                     int idd = GetAttribId(tipp);
-                    string tip = ToolTips.MArrItemToolTips[idd];
+                    string tip = ToolTips.FindToolTip(tipp);
                     if (tip != _lastTip)
                     {
                         ListToolTip.SetToolTip(listBox, tip);
@@ -1346,10 +1361,10 @@ namespace TF2Items
             if (_firstSetup) return;
             if (comboName.Text == "") return;
             if (comboName.DroppedDown) return;
-            if (comboName.SelectedIndex != -1) lastSel = comboName.SelectedIndex;
-            _name[lastSel] = comboName.Text.Replace("\r\n", "");
-            comboName.Items[lastSel] = _name[lastSel];
-            comboName.Select(_name[lastSel].Length, _name[lastSel].Length);
+            if (comboName.SelectedIndex != -1) _lastSel = comboName.SelectedIndex;
+            _name[_lastSel] = comboName.Text.Replace("\r\n", "");
+            comboName.Items[_lastSel] = _name[_lastSel];
+            comboName.Select(_name[_lastSel].Length, _name[_lastSel].Length);
         }
 
         private void Button1Click2(object sender, EventArgs e)
