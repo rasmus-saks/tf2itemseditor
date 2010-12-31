@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
 
 namespace TF2Items
 {
@@ -10,17 +11,17 @@ namespace TF2Items
         /// Convert a string to a double
         /// </summary>
         /// <param name="value">String to convert</param>
-        /// <returns>The string converted to a double, 0.0 on error</returns>
+        /// <returns>The string converted to a double, -1.0 on error</returns>
         public static double ToDouble(string value)
         {
             double res;
             try
             {
-                res = Convert.ToDouble(value);
+                res = double.Parse(value, CultureInfo.InvariantCulture);
             }
             catch
             {
-                return 0.0;
+                return -1.0;
             }
             return res;
         }
@@ -28,7 +29,7 @@ namespace TF2Items
         /// Converts a string to an integer
         /// </summary>
         /// <param name="value">String to convert</param>
-        /// <returns>The string converted to an int, 0 on error</returns>
+        /// <returns>The string converted to an int, -1 on error</returns>
         public static int ToInt(string value)
         {
             int res;
@@ -38,7 +39,7 @@ namespace TF2Items
             }
             catch
             {
-                return 0;
+                return -1;
             }
             return res;
         }

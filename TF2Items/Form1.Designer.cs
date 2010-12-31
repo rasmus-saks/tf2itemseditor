@@ -1,6 +1,6 @@
 ﻿namespace TF2Items
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnOpen = new System.Windows.Forms.Button();
             this.filediagOpen = new System.Windows.Forms.OpenFileDialog();
             this.comboName = new System.Windows.Forms.ComboBox();
@@ -668,11 +668,11 @@
             this.label20.TabIndex = 11;
             this.label20.Text = "A lot of the attribute descriptions thanks to AbeX300";
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 581);
+            this.ClientSize = new System.Drawing.Size(713, 581);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnPaste);
             this.Controls.Add(this.btnCopy);
@@ -691,8 +691,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "TF2 Items Editor v0.9";
+            this.Name = "MainForm";
+            this.Text = "TF2 Items Editor v0.95";
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
