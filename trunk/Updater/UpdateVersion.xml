@@ -2,8 +2,6 @@
 
 	<AvailableVersion>1.0.0.0</AvailableVersion>
 	<AppFileURL>http://tf2itemseditor.googlecode.com/svn/trunk/Updater/app.zip</AppFileURL>
-	<LatestChanges>Added small tooltips describing the setting when moving your mouse over a setting.
-Added item set editing.
-Fixed "Upgradeable" weapon's attribute saving.</LatestChanges>
+	<LatestChanges>Added small tooltips describing the setting when moving your mouse over a setting. - Added item set editing. - Fixed "Upgradeable" weapon's attribute saving.</LatestChanges>
 	<ChangeLogURL>http://tf2itemseditor.googlecode.com/svn/trunk/Updater/change_log.htm</ChangeLogURL>
 </VersionConfig>
