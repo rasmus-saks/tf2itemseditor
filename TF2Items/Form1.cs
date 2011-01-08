@@ -20,19 +20,22 @@ namespace TF2Items
 
         private const int NumberOfItems = 425;
         public const int NumberOfAttribs = 250;
+        private const int NumberOfSets = 20;
+        private const int NumberOfSetItems = 6;
+        private const int NumberOfSetAttribs = 250;
         private static readonly Regex IsNumber = new Regex(@"^\d+$");
-        private readonly string[] _attachToHands = new string[NumberOfItems];
+
         private readonly string[] _attribAname = new string[NumberOfAttribs];
         private readonly string[] _attribClass = new string[NumberOfAttribs];
         private readonly double[] _attribMinvalue = new double[NumberOfAttribs];
         private readonly string[] _attribName = new string[NumberOfAttribs];
+
         private readonly string[] _baseitem = new string[NumberOfItems];
         private readonly string[] _craftClass = new string[NumberOfItems];
         private readonly string[] _imageInventory = new string[NumberOfItems];
         private readonly string[] _imageInventorySizeH = new string[NumberOfItems];
         private readonly string[] _imageInventorySizeW = new string[NumberOfItems];
-        private readonly string[,] _itemAttribs = new string[NumberOfItems,NumberOfAttribs];
-        private readonly double[,] _itemAttribsValue = new double[NumberOfItems,NumberOfAttribs];
+        private readonly string[] _attachToHands = new string[NumberOfItems];
         private readonly string[] _itemClass = new string[NumberOfItems];
         private readonly string[] _itemName = new string[NumberOfItems];
         private readonly string[] _itemQuality = new string[NumberOfItems];
@@ -42,8 +45,20 @@ namespace TF2Items
         private readonly string[] _minIlevel = new string[NumberOfItems];
         private readonly string[] _modelPlayer = new string[NumberOfItems];
         private readonly string[] _name = new string[NumberOfItems];
+
+        private readonly string[,] _itemAttribs = new string[NumberOfItems,NumberOfAttribs];
+        private readonly double[,] _itemAttribsValue = new double[NumberOfItems,NumberOfAttribs];
+
+        private readonly string[] _setName = new string[NumberOfSets];
+        private readonly string[,] _setItems = new string[NumberOfSets,NumberOfSetItems];
+        private readonly string[] _setBundle = new string[NumberOfSets];
+
+        private readonly string[,] _setAttribsName = new string[NumberOfSets,NumberOfSetAttribs];
+        private readonly double[,] _setAttribsValue = new double[NumberOfSets, NumberOfSetAttribs];
+        
         private readonly bool[] _saved = new bool[14];
         private readonly int[,] _usedByClasses = new int[NumberOfItems,9];
+
         private string _fileName;
 
         private bool _firstSetup;
@@ -52,6 +67,9 @@ namespace TF2Items
         private int _saveNum = -1;
         private string _saveStr = "";
         private int _lastSel;
+        private int _lastSet;
+        private int _lastSetItem;
+        private int _lastItem;
 
         public MainForm()
         {
@@ -125,6 +143,14 @@ namespace TF2Items
             }
             else _fileName = filediagOpen.FileName;
             _firstSetup = true;
+            comboName.SelectedIndex = -1;
+            comboName.Text = Resources.Form1_button1_Click_Select_an_item;
+            for (int jj = 0; jj < NumberOfItems; jj++) for (int kk = 0; kk < 9; kk++) _usedByClasses[jj, kk] = 0;
+            ReadFile();
+        }
+
+        public void ReadFile()
+        {
             comboName.Items.Clear();
             grid_attribs.Rows.Clear();
             list_all_attribs.Items.Clear();
@@ -144,14 +170,8 @@ namespace TF2Items
             txt_max_ilevel.Clear();
             txt_min_ilevel.Clear();
             txt_model_player.Clear();
-            comboName.SelectedIndex = -1;
-            comboName.Text = Resources.Form1_button1_Click_Select_an_item;
-            for (int jj = 0; jj < NumberOfItems; jj++) for (int kk = 0; kk < 9; kk++) _usedByClasses[jj, kk] = 0;
-            ReadFile();
-        }
-
-        public void ReadFile()
-        {
+            comboSets.Items.Clear();
+            listSetItems.Items.Clear();
             using (var sReader = new StreamReader(_fileName))
             {
                 string line;
@@ -166,13 +186,17 @@ namespace TF2Items
                 int level = 0;
                 int aN = 0;
                 bool inSets = false;
+                int iSet = 0;
+                int iSetItems = 0;
+                bool inSetItems = false;
+                bool inSetAttribs = false;
+                int iSetAttribs = 0;
                 while ((line = file.ReadLine()) != null)
                 {
                     progressReading.Value = (int) file.BaseStream.Position/(int) _percent > 100
                                                 ? 100
                                                 : (int) file.BaseStream.Position/(int) _percent;
                     // if (Osinfo.MajorVersion.ToString() + "." + Osinfo.MinorVersion.ToString() == "6.1") progressReading.SetTaskbarProgress(); //Only show progress bar on the taskbar if using Windows 7
-                    if (inSets) continue;
                     if (line.Contains("{")) level++;
                     if (line.Contains("}")) level--;
                     if (line.Contains("attributes") && level == 1)
@@ -180,7 +204,7 @@ namespace TF2Items
                         inAttribs = true;
                         i = 0;
                     }
-                    if (!inAttribs)
+                    if (!inAttribs && !inSets)
                     {
                         if (line.Contains("\t\t\"name\"")) //Parsing new item
                         {
@@ -370,7 +394,7 @@ namespace TF2Items
                             _usedByClasses[i - 1, res] = 1;
                         }
                     }
-                    else
+                    else if(!inSets)
                     {
                         if (line.Contains("\"item_sets\""))
                         {
@@ -404,6 +428,75 @@ namespace TF2Items
                                     line.Replace("\"min_value\"", "").Replace("\"", "").Replace("\t", ""));
                         }
                     }
+                    else if (inSets)
+                    {
+                        if(level == 1 && line.Contains("}")) 
+                        {
+                            inSets = false;
+                            continue;
+                        }
+                        if (!inSetAttribs)
+                        {
+                            if (level == 2 && line.Contains("\""))
+                            {
+                                comboSets.Items.Add(line.Replace("\"", "").Replace("\t", ""));
+                                continue;
+                            }
+                            if (line.Contains("\"name\""))
+                            {
+                                _setName[iSet] = line.Replace("\"name\"", "").Replace("\"", "").Replace("\t", "");
+                                iSet++;
+                                iSetItems = 0;
+                                iSetAttribs = 0;
+                                continue;
+                            }
+                            if (line.Contains("\"items\""))
+                            {
+                                inSetItems = true;
+                                continue;
+                            }
+                            if (inSetItems && line.Contains("\"1\""))
+                            {
+                                _setItems[iSet - 1, iSetItems] = line.Replace("\"1\"", "").Replace("\t", "").Replace("\"", "");
+                                iSetItems++;
+                                continue;
+                            }
+                            if (inSetItems && line.Contains("}"))
+                            {
+                                inSetItems = false;
+                                continue;
+                            }
+                            if (line.Contains("\"store_bundle\""))
+                            {
+                                _setBundle[iSet - 1] = line.Replace("\"store_bundle\"", "").Replace("\t", "").Replace(" \"", "").Replace("\"", "");
+                                continue;
+                            }
+                            if (line.Contains("\"attributes\""))
+                            {
+                                inSetAttribs = true;
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            if (line.Contains("\"attribute_class\"")) continue;
+                            if (line.Contains("\"") && level == 4 && !line.Contains("\"value\""))
+                            {
+                                _setAttribsName[iSet-1, iSetAttribs] = line.Replace("\t", "").Replace("\"", "");
+                                continue;
+                            }
+                            if (line.Contains("\"value\""))
+                            {
+                                _setAttribsValue[iSet-1, iSetAttribs] = Convert.ToDouble(line.Replace("\t", "").Replace("value", "").Replace("\"", ""));
+                                iSetAttribs++;
+                            }
+                            if(line.Contains("}") && lastline.Contains("}"))
+                            {
+                                inSetAttribs = false;
+                            }
+                        }
+                    }
+                    
                     
                     lastline = line;
                 }
@@ -413,10 +506,16 @@ namespace TF2Items
                 //Somehow the mini-crit airborne doesn't have attribute_name, here's a workaround
                 comboName.SelectedIndex = comboName.SelectedIndex;
                 progressReading.Value = 100;
+                foreach (object itm in comboName.Items)
+                {
+                    comboAddSetItem.Items.Add(itm);
+                }
                 //if(Osinfo.MajorVersion.ToString() + "." + Osinfo.MinorVersion.ToString() == "6.1") Windows7.DesktopIntegration.Windows7Taskbar.SetProgressState(this.Handle, Windows7Taskbar.ThumbnailProgressState.NoProgress);
             }
             _firstSetup = false;
             comboName.SelectedIndex = 0;
+            comboAddSetItem.SelectedIndex = 0;
+            comboSets.SelectedIndex = 0;
         }
 
         /// <summary>Returns a TF2 class name based on the classid</summary>
@@ -591,7 +690,7 @@ namespace TF2Items
             return -1;
         }
 
-        private void ComboNameSelectedIndexChanged(object sender, EventArgs e) //When user selects an item
+        private void comboName_SelectedIndexChanged(object sender, EventArgs e) //When user selects an item
         {
             if (comboName.SelectedIndex == -1) return;
             _firstSetup = true;
@@ -625,12 +724,13 @@ namespace TF2Items
             txt_image_inventory_size_h.Enabled = comboName.SelectedIndex > 30;
             txt_model_player.Enabled = comboName.SelectedIndex > 30;
             txt_attach_to_hands.Enabled = comboName.SelectedIndex > 30;
-            list_all_attribs.Enabled = comboName.SelectedIndex > 30;
+            list_all_attribs.Enabled = true;
             list_used_by_classes.Enabled = comboName.SelectedIndex > 30;
             list_available_classes.Enabled = comboName.SelectedIndex > 30;
             move_left_btn.Enabled = comboName.SelectedIndex > 30;
             move_right_btn.Enabled = comboName.SelectedIndex > 30;
             grid_attribs.Enabled = comboName.SelectedIndex > 30;
+            searchBox.Enabled = true;
 
             list_used_by_classes.Items.Clear();
             list_available_classes.Items.Clear();
@@ -657,7 +757,7 @@ namespace TF2Items
             _firstSetup = false;
         }
 
-        private void Button1Click1(object sender, EventArgs e)
+        private void move_left_btn_Click(object sender, EventArgs e)
         {
             if (comboName.SelectedIndex == -1) return;
             if (list_available_classes.SelectedItem == null) return;
@@ -670,7 +770,7 @@ namespace TF2Items
             }
         }
 
-        private void MoveRightBtnClick(object sender, EventArgs e)
+        private void move_right_btn_Click(object sender, EventArgs e)
         {
             if (comboName.SelectedIndex == -1) return;
             if (list_used_by_classes.SelectedItem == null) return;
@@ -682,17 +782,29 @@ namespace TF2Items
                 else _usedByClasses[comboName.SelectedIndex, i] = 0;
             }
         }
-
-        private void ListAllAttribsDoubleClick(object sender, EventArgs e)
+        private void list_all_attribs_DoubleClick(object sender, EventArgs e)
         {
-            if (comboName.SelectedIndex == -1) return;
-            int n = grid_attribs.Rows.Add();
-            grid_attribs.Rows[n].Cells[0].Value = list_all_attribs.SelectedItem.ToString();
-            grid_attribs.Rows[n].Cells[1].Value = GetAttribClass(list_all_attribs.SelectedItem.ToString());
-            _itemAttribs[comboName.SelectedIndex, n] = list_all_attribs.SelectedItem.ToString();
+            if (radioItem.Checked)
+            {
+                if (comboName.SelectedIndex == -1) return;
+                int n = grid_attribs.Rows.Add();
+                grid_attribs.Rows[n].Cells[0].Value = list_all_attribs.SelectedItem.ToString();
+                grid_attribs.Rows[n].Cells[1].Value = GetAttribClass(list_all_attribs.SelectedItem.ToString());
+                grid_attribs.Rows[n].Cells[2].Value = "0";
+                _itemAttribs[comboName.SelectedIndex, n] = list_all_attribs.SelectedItem.ToString();
+            }
+            else if (radioSet.Checked)
+            {
+                if (comboSets.SelectedIndex == -1) return;
+                int n = gridSet.Rows.Add();
+                gridSet.Rows[n].Cells[0].Value = list_all_attribs.SelectedItem.ToString();
+                gridSet.Rows[n].Cells[1].Value = GetAttribClass(list_all_attribs.SelectedItem.ToString());
+                gridSet.Rows[n].Cells[2].Value = "0";
+                _setAttribsName[comboSets.SelectedIndex, n] = list_all_attribs.SelectedItem.ToString();
+            }
         }
 
-        private void GridAttribsCellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void grid_attribs_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (comboName.SelectedIndex == -1) return;
             if (e == null) return;
@@ -719,15 +831,19 @@ namespace TF2Items
 
             int i = 0;
             string temp;
-            string current = null;
             int itemAtr = 0;
             string lastline = "";
+            string current = "";
             bool don = false;
             bool usedBy = false;
             int level = 0;
             bool inTools = false;
             bool inSets = false;
             bool inAttribs = false;
+            bool inSetItems = false;
+            string[] wasInSet = new string[NumberOfSets];
+            int inSetItem = 0;
+            bool ended = false;
             for (int ii = 0; ii < 14; ii++) _saved[ii] = false;
             foreach (string line in file)
             {
@@ -741,19 +857,91 @@ namespace TF2Items
                 }
                 if (line.Contains("{")) level++;
                 if (line.Contains("}")) level--;
-                if (line.Contains("attributes") && level == 1)
+                if (ended) goto end;
+                
+                if (line.Contains("\"attributes\"") && level == 1 && !inAttribs) //The list of attributes
                 {
                     inAttribs = true;
                     goto end;
                 }
-                if (inAttribs) goto end;
-                if (line.Contains("\"item_sets\""))
+                if (line.Contains("}") && level == 1 && inAttribs)
                 {
-                    inSets = true;
+                    inAttribs = false;
+                    goto end;
+                }
+                if (line.Contains("\"achievement_rewards\""))
+                {
+                    inSets = false;
+                    ended = true;
+                    temp = "\t}\r\n" + temp;
                     goto end;
                 }
 
-                if (inSets) goto end;
+                if (inAttribs) goto end;
+                if (inSets) continue;
+                if (line.Contains("\"item_sets\""))
+                {
+                    inSets = true;
+                    temp += "\r\n\t{";
+                }
+                if (line.Contains("\"item_set\""))
+                {
+                    string ss = line.Replace("\t", "").Replace("\"item_set\"", "").Replace("\"", "").Replace("\r\n", "");
+                    for(int k = 0; k < comboSets.Items.Count; k++)
+                    {
+                        bool brk = false;
+                        if(comboSets.Items[k] == ss)
+                        {
+                            for (int j = 0; j < NumberOfSetItems; j++)
+                            {
+                                if(_setItems[k,j] == current) 
+                                {
+                                    brk = true;
+                                    break;
+                                }
+                            }
+                            wasInSet[inSetItem] = ss;
+                            inSetItem++;
+                            goto end;
+
+                        }
+                        if(brk) break;
+                    }
+                    continue;
+                }
+                if (inSets)
+                {
+                    int iSet = 0;
+                    foreach(object set in comboSets.Items)
+                    {
+                        temp += "\r\n\t\t\""+set.ToString()+"\"\r\n\t\t{\r\n";
+                        if(_setName[iSet] != null && _setName[iSet] != "") temp += "\t\t\t\"name\"\t\"" + _setName[iSet] + "\"\r\n";
+                        temp += "\t\t\t\"items\"\r\n\t\t\t{";
+                        for (int j = 0; j < NumberOfSetItems; j++)
+                        {
+                            if (_setItems[iSet, j] == null || _setItems[iSet, j] == "") continue;
+                            temp += "\r\n\t\t\t\t\"" + _setItems[iSet, j] + "\"\t\"1\"";
+                        }
+                        temp += "\r\n\t\t\t}\r\n";
+                        if (DoesSetHaveAttribs(iSet))
+                        {
+                            temp += "\t\t\t\"attributes\"\r\n\t\t\t{";
+                            for (int j = 0; j < NumberOfSetAttribs; j++)
+                            {
+                                if (_setAttribsName[iSet, j] == null || _setAttribsName[iSet, j] == "") continue;
+                                temp += "\r\n\t\t\t\t\"" + _setAttribsName[iSet, j] + "\"\r\n\t\t\t\t{\r\n";
+                                temp += "\t\t\t\t\t\"attribute_class\"\t\"" + GetAttribClass(_setAttribsName[iSet, j]) + "\"\r\n";
+                                temp += "\t\t\t\t\t\"value\"\t\"" + _setAttribsValue[iSet, j].ToString().Replace(",", ".") + "\"\r\n\t\t\t\t}";
+                            }
+                            temp += "\r\n\t\t\t}\r\n";
+                        }
+                        if (_setBundle[iSet] != null && _setBundle[iSet] != "") temp += "\t\t\t\"store_bundle\"\t\"" + _setBundle[iSet] + "\"\r\n";
+                        temp += "\t\t}";
+                        iSet++;
+                    }
+                    goto end;
+                } 
+                
                 if (line.Contains("\"tool\"") && !line.Contains("_class"))
                 {
                     inTools = true;
@@ -772,6 +960,11 @@ namespace TF2Items
                     don = false;
                     for (int ii = 0; ii < 14; ii++) _saved[ii] = false;
                     temp = i < NumberOfItems ? line.Replace(current, _name[i - 1]) : line;
+                    inSetItem = 0;
+                    for (int h = 0; h < wasInSet.Length; h++)
+                    {
+                        wasInSet[h] = null;
+                    }
                     goto end;
                 }
                 
@@ -976,8 +1169,8 @@ namespace TF2Items
 
                 #endregion
                 if (current == null) goto end;
-                if (current.Contains("Upgradeable")) goto end;
-                if (line.Contains("\"attributes\"") && !current.Contains("Badge"))
+                //if (current.Contains("Upgradeable")) goto end;
+                if (line.Contains("\"attributes\"") && !current.Contains("Employee Badge"))
                 {
                     itemAtr++;
                     don = false;
@@ -1019,12 +1212,14 @@ namespace TF2Items
                                 "\t\t\t\t\"set supply crate series\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t\"supply_crate_series\"\r\n\t\t\t\t\t\"value\"\t\"" + _itemAttribsValue[i-1, j] + "\"\r\n\t\t\t\t\t\"force_gc_to_generate\"\t\"1\"\r\n\t\t\t\t}\r\n";
                             continue;
                         }
-                        if (_itemAttribs[i - 1, j] == "set item tint RGB" && current == "Paint Can")
+                        if(current == "Paint Can")
                         {
-                            //And paint cans
-                            temp =
-                                "\t\t\t\t\"set item tint RGB\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t\"set_item_tint_rgb\"\r\n\t\t\t\t\t\"force_gc_to_generate\"\t\"1\"\r\n\t\t\t\t}\r\n";
-                            continue;
+                            if (j == 0)
+                            {
+                                //And paint cans
+                                temp =
+                                    "\t\t\t\t\"set item tint RGB\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t\"set_item_tint_rgb\"\r\n\t\t\t\t\t\"force_gc_to_generate\"\t\"1\"\r\n\t\t\t\t}\r\n";
+                            }
                         }
                         if (GetAttribClass(_itemAttribs[i - 1, j]) != null &&
                             GetAttribClass(_itemAttribs[i - 1, j]) != "")
@@ -1048,7 +1243,7 @@ namespace TF2Items
 
                     don = true;
                 }
-                if (line.Contains("\"used_by_classes\""))
+                if (line.Contains("\"used_by_classes\"") && !current.Contains("Upgradeable TF_"))
                 {
                     usedBy = true;
                     goto end;
@@ -1072,7 +1267,28 @@ namespace TF2Items
                 if (line.Contains("}") && level == 2)
                 {
                     temp = "";
+                    if (!don && DoesItemHaveAttribs(i - 1) && !current.Contains("Employee Badge"))
+                    {
+                        temp = "\t\t\t\"attributes\"\r\n\t\t\t{\r\n";
+                        for (int j = 0; j < NumberOfAttribs; j++)
+                        {
+                            if (i >= NumberOfItems - 1) break;
+                            if (GetAttribClass(_itemAttribs[i - 1, j]) != null)
+                            {
+                                temp += "\t\t\t\t\"" + _itemAttribs[i - 1, j] +
+                                        "\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t" + "\"" +
+                                        GetAttribClass(_itemAttribs[i - 1, j]) + "\"\r\n\t\t\t\t\t" + "\"value\"\t" + "\"" +
+                                        _itemAttribsValue[i - 1, j].ToString().Replace(",", ".") + "\"\r\n\t\t\t\t}\r\n";
+                            }
+                            if (GetAttribClass(_itemAttribs[i - 1, j + 1]) != null) continue;
+                            temp += "\t\t\t}";
+                            itemAtr--;
+                            break;
+                        }
+                        don = true;
+                    }
                     int count = 0;
+                    
                     for (int k = 0; k < 14; k++)
                     {
                         if (_saved[k] || ReturnSettingVal(i - 1, k) == null || ReturnSettingVal(i - 1, k) == "") continue;
@@ -1080,29 +1296,36 @@ namespace TF2Items
                         _saved[k] = true;
                         count++;
                     }
+                    for (int k = 0; k < comboSets.Items.Count; k++)
+                    {
+                        bool brk = false;
+                        for (int j = 0; j < NumberOfSetItems; j++)
+                        {
 
+                            if (current == _setItems[k, j])
+                            {
+                                for (int h = 0; h < wasInSet.Length; h++)
+                                {
+                                    string itm = comboSets.Items[k].ToString();
+                                    if (wasInSet[h] == itm)
+                                    {
+                                        brk = true;
+                                        break;
+                                    }
+                                    if (h == wasInSet.Length - 1)
+                                    {
+                                        temp += "\t\t\t\"item_set\"\t\"" + itm + "\"\r\n";
+                                        count = 0;
+                                        break;
+                                    }
+                                }
+                                if (brk) break;
+                            }
+                            if (brk) break;
+                        }
+                    }
                     temp += count > 0 ? "\r\n\t\t}" : "\t\t}";
                     goto end;
-                }
-                if (line.Contains("}") && level == 2 && !don && DoesItemHaveAttribs(i - 1))
-                {
-                    temp = "\t\t\t\"attributes\"\r\n\t\t\t{\r\n";
-                    for (int j = 0; j < NumberOfAttribs; j++)
-                    {
-                        if (i >= NumberOfItems - 1) break;
-                        if (GetAttribClass(_itemAttribs[i - 1, j]) != null)
-                        {
-                            temp += "\t\t\t\t\"" + _itemAttribs[i - 1, j] +
-                                    "\"\r\n\t\t\t\t{\r\n\t\t\t\t\t\"attribute_class\"\t" + "\"" +
-                                    GetAttribClass(_itemAttribs[i - 1, j]) + "\"\r\n\t\t\t\t\t" + "\"value\"\t" + "\"" +
-                                    _itemAttribsValue[i - 1, j] + "\"\r\n\t\t\t\t}\r\n";
-                        }
-                        if (GetAttribClass(_itemAttribs[i - 1, j + 1]) != null) continue;
-                        temp += "\t\t\t}";
-                        itemAtr--;
-                        break;
-                    }
-                    don = true;
                 }
                 if (IsNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) && lastline.Contains("\t\t\t}")) temp = "\t\t}\r\n" + line;
                 end:
@@ -1123,6 +1346,35 @@ namespace TF2Items
                                 MessageBoxIcon.Error);
             }
             progressReading.Value = 100;
+        }
+
+        private bool DoesSetHaveAttribs(int p)
+        {
+            for (int i = 0; i < NumberOfSetAttribs; i++)
+            {
+                if (_setAttribsName[p, i] != null && _setAttribsName[p, i] != "") return true;
+            }
+            return false;
+        }
+
+        private int GetSetID(string p)
+        {
+            int i = 0;
+            foreach (object item in comboSets.Items)
+            {
+                if (item.ToString() == p) return i;
+                i++;
+            }
+            return -1;
+        }
+
+        private bool IsSetName(string p)
+        {
+            foreach (object item in comboSets.Items)
+            {
+                if (item.ToString() == p) return true;
+            }
+            return false;
         }
 
         private void BtnSaveClick(object sender, EventArgs e)
@@ -1153,7 +1405,7 @@ namespace TF2Items
             }
         }
 
-        private void LinkLabel1LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string target = linkLabel1.Text;
 
@@ -1187,13 +1439,16 @@ namespace TF2Items
             return false;
         }
 
-        private void BtnCopyClick(object sender, EventArgs e)
+        private void btnCopy_Click(object sender, EventArgs e)
         {
             if (comboName.SelectedIndex == -1) return;
             string[] file = File.ReadAllLines(_fileName);
             int level = 0;
             string lastline = "";
             _saveStr = "";
+            _lastSet = comboSets.SelectedIndex;
+            _lastSetItem = comboAddSetItem.SelectedIndex;
+            _lastItem = comboName.SelectedIndex;
             bool saving = false;
             foreach (string line in file)
             {
@@ -1233,7 +1488,7 @@ namespace TF2Items
             return;
         }
 
-        private void BtnPasteClick(object sender, EventArgs e)
+        private void btnPaste_Click(object sender, EventArgs e)
         {
             if (comboName.SelectedIndex == -1) return;
             if (_saveNum == -1) return;
@@ -1300,9 +1555,12 @@ namespace TF2Items
             }
 
             ReadFile();
+            comboAddSetItem.SelectedIndex = _lastSetItem;
+            comboSets.SelectedIndex = _lastSet;
+            comboName.SelectedIndex = _lastItem;
         }
 
-        private void ListAllAttribsMouseMove1(object sender, MouseEventArgs e)
+        private void list_all_attribs_MouseMove(object sender, MouseEventArgs e)
         {
             var listBox = (ListBox) sender;
             try
@@ -1345,7 +1603,7 @@ namespace TF2Items
             }
         }
 
-        private void TextBox1TextChanged(object sender, EventArgs e)
+        private void searchBox_TextChanged(object sender, EventArgs e)
         {
             if (comboName.SelectedIndex == -1) return;
             list_all_attribs.Items.Clear();
@@ -1356,7 +1614,7 @@ namespace TF2Items
             }
         }
 
-        private void ComboNameTextUpdate(object sender, EventArgs e)
+        private void comboName_TextUpdate(object sender, EventArgs e)
         {
             if (_firstSetup) return;
             if (comboName.Text == "") return;
@@ -1516,5 +1774,113 @@ namespace TF2Items
         }
 
         #endregion
+            
+
+        private void comboSets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listSetItems.Items.Clear();
+            gridSet.Rows.Clear();
+            int set = comboSets.SelectedIndex;
+            for (int i = 0; i < NumberOfSetItems; i++)
+            {
+                if (_setItems[set, i] == null || _setItems[set, i] == "") continue;
+                listSetItems.Items.Add(_setItems[set, i]);
+            }
+            textStoreBundle.Text = _setBundle[set];
+            textSetName.Text = _setName[set];
+            for (int i = 0; i < NumberOfSetAttribs; i++)
+            {
+                if (_setAttribsName[set,i] == null || _setAttribsName[set,i] == "") continue;
+                int n = gridSet.Rows.Add();
+                gridSet.Rows[n].Cells[0].Value = _setAttribsName[set, i];
+                gridSet.Rows[n].Cells[1].Value = GetAttribClass(_setAttribsName[set, i]);
+                gridSet.Rows[n].Cells[2].Value = _setAttribsValue[set, i].ToString().Replace(",", ".");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (IsSetItem(comboSets.SelectedIndex, comboAddSetItem.SelectedItem.ToString().Replace("\r\n", "")))
+            {
+                MessageBox.Show("This item already exists in the set!",
+                                Resources.Form1_SaveFile_Who_send_all_these_babies_to_fight__,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return;
+            }
+            if(GetFreeSetItem(comboSets.SelectedIndex) == -1)
+            {
+                MessageBox.Show("You've reached the maximum number of set items allowed!\r\nIt's just impossible to equip more than " + NumberOfSetItems +" items at once!",
+                                Resources.Form1_SaveFile_Who_send_all_these_babies_to_fight__,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return;
+            }
+            if (comboAddSetItem.SelectedIndex == -1) return;
+            listSetItems.Items.Add(comboAddSetItem.SelectedItem);
+            _setItems[comboSets.SelectedIndex, GetFreeSetItem(comboSets.SelectedIndex)] = comboAddSetItem.SelectedItem.ToString().Replace("\r\n", "");
+        }
+
+        private bool IsSetItem(int j, string p)
+        {
+            for (int i = 0; i < NumberOfSetItems; i++)
+            {
+                if (_setItems[j, i] == p) return true;
+            }
+            return false;
+        }
+
+        private int GetFreeSetItem(int p)
+        {
+            for(int i = 0; i < NumberOfSetItems; i++)
+            {
+                if(_setItems[p,i] == "" || _setItems[p,i] == null) return i;
+            }
+            return -1;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (listSetItems.SelectedIndex == -1) return;
+            _setItems[comboSets.SelectedIndex, listSetItems.SelectedIndex] = "";
+            listSetItems.Items.RemoveAt(listSetItems.SelectedIndex);
+            for (int i = comboSets.SelectedIndex+1; i < NumberOfSetItems; i++)
+            {
+                _setItems[comboSets.SelectedIndex, i - 1] = _setItems[comboSets.SelectedIndex, i];
+            }
+        }
+
+        private void btnAddSet_Click(object sender, EventArgs e)
+        {
+            string resp = Microsoft.VisualBasic.Interaction.InputBox("Please type in a name for the item set.", "All righty then!");
+            if (resp == null || resp == "") return;
+            comboSets.Items.Add(resp);
+            comboSets.SelectedIndex = comboSets.Items.Count - 1;
+        }
+
+        private void textSetName_TextChanged(object sender, EventArgs e)
+        {
+            _setName[comboSets.SelectedIndex] = textSetName.Text;
+        }
+
+        private void textStoreBundle_TextChanged(object sender, EventArgs e)
+        {
+            _setBundle[comboSets.SelectedIndex] = textStoreBundle.Text;
+        }
+
+        private void gridSet_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (comboSets.SelectedIndex == -1) return;
+            if (e == null) return;
+            int i = 0;
+            if (e.ColumnIndex == 0 || _firstSetup) return;
+            foreach (DataGridViewRow roo in gridSet.Rows)
+            {
+                if (roo.Cells[2].Value == null) continue;
+                _setAttribsValue[comboSets.SelectedIndex, i] = Converter.ToDouble(roo.Cells[2].Value.ToString());
+                _setAttribsName[comboSets.SelectedIndex, i] = roo.Cells[0].Value.ToString();
+                i++;
+            }
+        }
     }
 }
