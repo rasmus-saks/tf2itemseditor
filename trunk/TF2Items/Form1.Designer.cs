@@ -105,11 +105,11 @@
             this.label20 = new System.Windows.Forms.Label();
             this.comboName = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.gridSet = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -117,8 +117,8 @@
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSet)).BeginInit();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSet)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOpen
@@ -128,6 +128,7 @@
             this.btnOpen.Size = new System.Drawing.Size(49, 23);
             this.btnOpen.TabIndex = 1;
             this.btnOpen.Text = "Open";
+            this.ListToolTip.SetToolTip(this.btnOpen, "Open a file.");
             this.btnOpen.UseVisualStyleBackColor = true;
             this.btnOpen.Click += new System.EventHandler(this.Button1Click);
             // 
@@ -142,6 +143,7 @@
             this.btnSave.Size = new System.Drawing.Size(49, 23);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
+            this.ListToolTip.SetToolTip(this.btnSave, "Save the file");
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSaveClick);
             // 
@@ -152,6 +154,7 @@
             this.btnSaveAs.Size = new System.Drawing.Size(28, 23);
             this.btnSaveAs.TabIndex = 3;
             this.btnSaveAs.Text = "As";
+            this.ListToolTip.SetToolTip(this.btnSaveAs, "Save the file to a different path.");
             this.btnSaveAs.UseVisualStyleBackColor = true;
             this.btnSaveAs.Click += new System.EventHandler(this.BtnSaveAsClick);
             // 
@@ -453,6 +456,7 @@
             this.button1.Size = new System.Drawing.Size(72, 23);
             this.button1.TabIndex = 359;
             this.button1.Text = "Save Item";
+            this.ListToolTip.SetToolTip(this.button1, "Only save the selected item to a file.");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1Click2);
             // 
@@ -462,6 +466,8 @@
             this.textStoreBundle.Name = "textStoreBundle";
             this.textStoreBundle.Size = new System.Drawing.Size(196, 20);
             this.textStoreBundle.TabIndex = 382;
+            this.ListToolTip.SetToolTip(this.textStoreBundle, "This is the name of the bundle that can be bought from the store.\r\nProbably won\'t" +
+                    " do anything with custom sets.");
             this.textStoreBundle.TextChanged += new System.EventHandler(this.textStoreBundle_TextChanged);
             // 
             // label22
@@ -479,6 +485,7 @@
             this.textSetName.Name = "textSetName";
             this.textSetName.Size = new System.Drawing.Size(196, 20);
             this.textSetName.TabIndex = 379;
+            this.ListToolTip.SetToolTip(this.textSetName, "This is the reference to the set\'s name in tf/resource/tf_english.txt.");
             this.textSetName.TextChanged += new System.EventHandler(this.textSetName_TextChanged);
             // 
             // groupBox4
@@ -489,18 +496,19 @@
             this.groupBox4.Controls.Add(this.listSetItems);
             this.groupBox4.Location = new System.Drawing.Point(6, 127);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(298, 133);
+            this.groupBox4.Size = new System.Drawing.Size(254, 133);
             this.groupBox4.TabIndex = 380;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Set items";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(246, 20);
+            this.button3.Location = new System.Drawing.Point(202, 112);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(46, 21);
             this.button3.TabIndex = 5;
             this.button3.Text = "Delete";
+            this.ListToolTip.SetToolTip(this.button3, "Select an item from the list and press this button to delete it from the items.");
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -511,6 +519,7 @@
             this.button2.Size = new System.Drawing.Size(35, 21);
             this.button2.TabIndex = 3;
             this.button2.Text = "Add";
+            this.ListToolTip.SetToolTip(this.button2, "Adds the selected item to the required items list.");
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -530,6 +539,7 @@
             this.btnDelSet.Size = new System.Drawing.Size(46, 21);
             this.btnDelSet.TabIndex = 377;
             this.btnDelSet.Text = "Delete";
+            this.ListToolTip.SetToolTip(this.btnDelSet, "Deletes the selected item set.");
             this.btnDelSet.UseVisualStyleBackColor = true;
             // 
             // btnAddSet
@@ -539,6 +549,7 @@
             this.btnAddSet.Size = new System.Drawing.Size(35, 21);
             this.btnAddSet.TabIndex = 376;
             this.btnAddSet.Text = "Add";
+            this.ListToolTip.SetToolTip(this.btnAddSet, "Adds a new item set.");
             this.btnAddSet.UseVisualStyleBackColor = true;
             this.btnAddSet.Click += new System.EventHandler(this.btnAddSet_Click);
             // 
@@ -757,6 +768,7 @@
             this.btnPaste.Size = new System.Drawing.Size(43, 21);
             this.btnPaste.TabIndex = 374;
             this.btnPaste.Text = "Paste";
+            this.ListToolTip.SetToolTip(this.btnPaste, "Paste the copied item.");
             this.btnPaste.UseVisualStyleBackColor = true;
             this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
             // 
@@ -797,6 +809,7 @@
             this.btnCopy.Size = new System.Drawing.Size(43, 21);
             this.btnCopy.TabIndex = 373;
             this.btnCopy.Text = "Copy";
+            this.ListToolTip.SetToolTip(this.btnCopy, "Copy the selected item.");
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
@@ -861,6 +874,16 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Item sets";
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.gridSet);
+            this.groupBox6.Location = new System.Drawing.Point(6, 266);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(501, 255);
+            this.groupBox6.TabIndex = 383;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Set attributes";
+            // 
             // gridSet
             // 
             this.gridSet.AllowDrop = true;
@@ -904,16 +927,6 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Width = 60;
             // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.gridSet);
-            this.groupBox6.Location = new System.Drawing.Point(6, 266);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(501, 255);
-            this.groupBox6.TabIndex = 383;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Set attributes";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -945,8 +958,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "TF2 Items Editor v1.0";
-            this.ListToolTip.SetToolTip(this, "The item\'s backpack image.");
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).EndInit();
             this.groupBox4.ResumeLayout(false);
@@ -957,8 +969,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSet)).EndInit();
             this.groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
