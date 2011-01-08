@@ -189,7 +189,7 @@ namespace TF2Items.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Who send all these babies to fight!?.
+        ///   Looks up a localized string similar to Who sent all these babies to fight!?.
         /// </summary>
         internal static string Form1_SaveFile_Who_send_all_these_babies_to_fight__ {
             get {

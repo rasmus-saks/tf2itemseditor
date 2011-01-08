@@ -53,6 +53,8 @@
     <ApplicationIcon>033bdd91842b6aca0633ee1e5f3e6b82f2e8962f.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.Compatibility" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
