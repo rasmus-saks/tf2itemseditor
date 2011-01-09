@@ -921,6 +921,7 @@
             this.gridSet.Size = new System.Drawing.Size(488, 215);
             this.gridSet.TabIndex = 23;
             this.gridSet.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridSet_CellValueChanged);
+            this.gridSet.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridSet_UserDeletedRow);
             // 
             // dataGridViewTextBoxColumn1
             // 

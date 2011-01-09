@@ -1890,5 +1890,22 @@ namespace TF2Items
 		{
 			this.Text = "TF2 Items Editor v" + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString();
 		}
+		private void gridSet_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+		{
+			if (comboSets.SelectedIndex == -1) return;
+			if (e == null || _firstSetup) return;
+			for (int i = 0; i < NumberOfSetAttribs; i++)
+			{
+				_setAttribsName[comboSets.SelectedIndex, i] = null;
+				_setAttribsValue[comboSets.SelectedIndex, i] = 0;
+			}
+			foreach (DataGridViewRow roo in gridSet.Rows)
+			{
+				if (roo.Cells[2].Value == null) roo.Cells[2].Value = 0;
+				_setAttribsValue[comboName.SelectedIndex, roo.Index] =
+					Converter.ToDouble(roo.Cells[2].Value.ToString());
+				_setAttribsName[comboName.SelectedIndex, roo.Index] = roo.Cells[0].Value.ToString();
+			}
+		}
 	}
 }
