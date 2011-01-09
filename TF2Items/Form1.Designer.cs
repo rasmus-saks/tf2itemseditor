@@ -68,14 +68,16 @@
             this.radioSet = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.textStoreBundle = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.textSetName = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
             this.btnDelSet = new System.Windows.Forms.Button();
             this.btnAddSet = new System.Windows.Forms.Button();
+            this.btnPaste = new System.Windows.Forms.Button();
+            this.btnCopy = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.comboSets = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -95,11 +97,9 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.btnPaste = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label17 = new System.Windows.Forms.Label();
             this.list_all_attribs = new System.Windows.Forms.ListBox();
-            this.btnCopy = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label20 = new System.Windows.Forms.Label();
@@ -207,6 +207,7 @@
             this.txt_item_type_name.TabIndex = 19;
             this.ListToolTip.SetToolTip(this.txt_item_type_name, "This is the type of the item, which appears next to \"Level xx\" such as \"Level 5 S" +
                     "yringe Gun\".");
+            this.txt_item_type_name.TextChanged += new System.EventHandler(this.txt_item_type_name_TextChanged);
             // 
             // txt_max_ilevel
             // 
@@ -215,6 +216,7 @@
             this.txt_max_ilevel.Size = new System.Drawing.Size(71, 20);
             this.txt_max_ilevel.TabIndex = 18;
             this.ListToolTip.SetToolTip(this.txt_max_ilevel, "Maximum level that this item can be.");
+            this.txt_max_ilevel.TextChanged += new System.EventHandler(this.txt_max_ilevel_TextChanged);
             // 
             // txt_min_ilevel
             // 
@@ -223,6 +225,7 @@
             this.txt_min_ilevel.Size = new System.Drawing.Size(65, 20);
             this.txt_min_ilevel.TabIndex = 17;
             this.ListToolTip.SetToolTip(this.txt_min_ilevel, "Minimum level that this item can be.");
+            this.txt_min_ilevel.TextChanged += new System.EventHandler(this.txt_min_ilevel_TextChanged);
             // 
             // txt_attach_to_hands
             // 
@@ -232,6 +235,7 @@
             this.txt_attach_to_hands.TabIndex = 15;
             this.ListToolTip.SetToolTip(this.txt_attach_to_hands, "Attach the item to the player\'s hands. Used by weapons,\r\nattaching your hat to yo" +
                     "ur hands would just be silly.");
+            this.txt_attach_to_hands.TextChanged += new System.EventHandler(this.txt_attach_to_hands_TextChanged);
             // 
             // txt_baseitem
             // 
@@ -240,6 +244,7 @@
             this.txt_baseitem.Size = new System.Drawing.Size(61, 20);
             this.txt_baseitem.TabIndex = 16;
             this.ListToolTip.SetToolTip(this.txt_baseitem, "Is this item one of the stock items (like the Minigun, Medigun, Pistol etc..)?");
+            this.txt_baseitem.TextChanged += new System.EventHandler(this.txt_baseitem_TextChanged);
             // 
             // txt_model_player
             // 
@@ -248,6 +253,7 @@
             this.txt_model_player.Size = new System.Drawing.Size(209, 20);
             this.txt_model_player.TabIndex = 14;
             this.ListToolTip.SetToolTip(this.txt_model_player, "The item\'s model (unsure).");
+            this.txt_model_player.TextChanged += new System.EventHandler(this.txt_model_player_TextChanged);
             // 
             // txt_image_inventory_size_h
             // 
@@ -256,6 +262,7 @@
             this.txt_image_inventory_size_h.Size = new System.Drawing.Size(209, 20);
             this.txt_image_inventory_size_h.TabIndex = 13;
             this.ListToolTip.SetToolTip(this.txt_image_inventory_size_h, "The height of the backpack image.");
+            this.txt_image_inventory_size_h.TextChanged += new System.EventHandler(this.txt_image_inventory_size_h_TextChanged);
             // 
             // txt_image_inventory_size_w
             // 
@@ -264,6 +271,7 @@
             this.txt_image_inventory_size_w.Size = new System.Drawing.Size(209, 20);
             this.txt_image_inventory_size_w.TabIndex = 12;
             this.ListToolTip.SetToolTip(this.txt_image_inventory_size_w, "The width of the backpack image.");
+            this.txt_image_inventory_size_w.TextChanged += new System.EventHandler(this.txt_image_inventory_size_w_TextChanged);
             // 
             // txt_image_inventory
             // 
@@ -272,6 +280,7 @@
             this.txt_image_inventory.Size = new System.Drawing.Size(209, 20);
             this.txt_image_inventory.TabIndex = 11;
             this.ListToolTip.SetToolTip(this.txt_image_inventory, "The path to the item\'s backpack image.");
+            this.txt_image_inventory.TextChanged += new System.EventHandler(this.txt_image_inventory_TextChanged);
             // 
             // txt_item_quality
             // 
@@ -280,6 +289,7 @@
             this.txt_item_quality.Size = new System.Drawing.Size(208, 20);
             this.txt_item_quality.TabIndex = 10;
             this.ListToolTip.SetToolTip(this.txt_item_quality, "The item\'s quality (like vintage, valve, unique etc...)");
+            this.txt_item_quality.TextChanged += new System.EventHandler(this.txt_item_quality_TextChanged);
             // 
             // txt_item_slot
             // 
@@ -288,6 +298,7 @@
             this.txt_item_slot.Size = new System.Drawing.Size(208, 20);
             this.txt_item_slot.TabIndex = 9;
             this.ListToolTip.SetToolTip(this.txt_item_slot, "Which slot this item is in?");
+            this.txt_item_slot.TextChanged += new System.EventHandler(this.txt_item_slot_TextChanged);
             // 
             // txt_item_name
             // 
@@ -296,6 +307,7 @@
             this.txt_item_name.Size = new System.Drawing.Size(208, 20);
             this.txt_item_name.TabIndex = 8;
             this.ListToolTip.SetToolTip(this.txt_item_name, "The name of the item.");
+            this.txt_item_name.TextChanged += new System.EventHandler(this.txt_item_name_TextChanged);
             // 
             // txt_craft_class
             // 
@@ -304,6 +316,7 @@
             this.txt_craft_class.Size = new System.Drawing.Size(208, 20);
             this.txt_craft_class.TabIndex = 6;
             this.ListToolTip.SetToolTip(this.txt_craft_class, "What to treat this as when crafting?");
+            this.txt_craft_class.TextChanged += new System.EventHandler(this.txt_craft_class_TextChanged);
             // 
             // txt_item_class
             // 
@@ -313,6 +326,7 @@
             this.txt_item_class.TabIndex = 5;
             this.ListToolTip.SetToolTip(this.txt_item_class, "This is the internal reference name used by the game.\r\nThis should not be changed" +
                     "!");
+            this.txt_item_class.TextChanged += new System.EventHandler(this.txt_item_class_TextChanged);
             // 
             // move_right_btn
             // 
@@ -470,15 +484,6 @@
                     " do anything with custom sets.");
             this.textStoreBundle.TextChanged += new System.EventHandler(this.textStoreBundle_TextChanged);
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(6, 85);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(67, 13);
-            this.label22.TabIndex = 381;
-            this.label22.Text = "Store bundle";
-            // 
             // textSetName
             // 
             this.textSetName.Location = new System.Drawing.Point(9, 59);
@@ -487,19 +492,6 @@
             this.textSetName.TabIndex = 379;
             this.ListToolTip.SetToolTip(this.textSetName, "This is the reference to the set\'s name in tf/resource/tf_english.txt.");
             this.textSetName.TextChanged += new System.EventHandler(this.textSetName_TextChanged);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.button3);
-            this.groupBox4.Controls.Add(this.comboAddSetItem);
-            this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Controls.Add(this.listSetItems);
-            this.groupBox4.Location = new System.Drawing.Point(6, 127);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(254, 133);
-            this.groupBox4.TabIndex = 380;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Set items";
             // 
             // button3
             // 
@@ -523,15 +515,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 43);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(35, 13);
-            this.label21.TabIndex = 378;
-            this.label21.Text = "Name";
-            // 
             // btnDelSet
             // 
             this.btnDelSet.Location = new System.Drawing.Point(252, 19);
@@ -552,6 +535,59 @@
             this.ListToolTip.SetToolTip(this.btnAddSet, "Adds a new item set.");
             this.btnAddSet.UseVisualStyleBackColor = true;
             this.btnAddSet.Click += new System.EventHandler(this.btnAddSet_Click);
+            // 
+            // btnPaste
+            // 
+            this.btnPaste.Location = new System.Drawing.Point(266, 41);
+            this.btnPaste.Name = "btnPaste";
+            this.btnPaste.Size = new System.Drawing.Size(43, 21);
+            this.btnPaste.TabIndex = 374;
+            this.btnPaste.Text = "Paste";
+            this.ListToolTip.SetToolTip(this.btnPaste, "Paste the copied item.");
+            this.btnPaste.UseVisualStyleBackColor = true;
+            this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.Location = new System.Drawing.Point(217, 41);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(43, 21);
+            this.btnCopy.TabIndex = 373;
+            this.btnCopy.Text = "Copy";
+            this.ListToolTip.SetToolTip(this.btnCopy, "Copy the selected item.");
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 85);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(67, 13);
+            this.label22.TabIndex = 381;
+            this.label22.Text = "Store bundle";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.button3);
+            this.groupBox4.Controls.Add(this.comboAddSetItem);
+            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Controls.Add(this.listSetItems);
+            this.groupBox4.Location = new System.Drawing.Point(6, 127);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(254, 133);
+            this.groupBox4.TabIndex = 380;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Set items";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 43);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(35, 13);
+            this.label21.TabIndex = 378;
+            this.label21.Text = "Name";
             // 
             // comboSets
             // 
@@ -761,17 +797,6 @@
             this.label15.TabIndex = 7;
             this.label15.Text = "Used by classes";
             // 
-            // btnPaste
-            // 
-            this.btnPaste.Location = new System.Drawing.Point(266, 41);
-            this.btnPaste.Name = "btnPaste";
-            this.btnPaste.Size = new System.Drawing.Size(43, 21);
-            this.btnPaste.TabIndex = 374;
-            this.btnPaste.Text = "Paste";
-            this.ListToolTip.SetToolTip(this.btnPaste, "Paste the copied item.");
-            this.btnPaste.UseVisualStyleBackColor = true;
-            this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.grid_attribs);
@@ -801,17 +826,6 @@
             this.list_all_attribs.TabIndex = 24;
             this.list_all_attribs.DoubleClick += new System.EventHandler(this.list_all_attribs_DoubleClick);
             this.list_all_attribs.MouseMove += new System.Windows.Forms.MouseEventHandler(this.list_all_attribs_MouseMove);
-            // 
-            // btnCopy
-            // 
-            this.btnCopy.Location = new System.Drawing.Point(217, 41);
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(43, 21);
-            this.btnCopy.TabIndex = 373;
-            this.btnCopy.Text = "Copy";
-            this.ListToolTip.SetToolTip(this.btnCopy, "Copy the selected item.");
-            this.btnCopy.UseVisualStyleBackColor = true;
-            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // label19
             // 

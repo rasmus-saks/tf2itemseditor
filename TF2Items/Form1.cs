@@ -1692,85 +1692,85 @@ namespace TF2Items
 
 		#region Save textboxes
 
-		private void TxtItemClassTextChanged(object sender, EventArgs e)
+		private void txt_item_class_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_itemClass[comboName.SelectedIndex] = txt_item_class.Text;
 		}
 
-		private void TxtItemNameTextChanged(object sender, EventArgs e)
+		private void txt_item_name_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_itemName[comboName.SelectedIndex] = txt_item_name.Text;
 		}
 
-		private void TxtItemSlotTextChanged(object sender, EventArgs e)
+		private void txt_item_slot_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_itemSlot[comboName.SelectedIndex] = txt_item_slot.Text;
 		}
 
-		private void TxtItemQualityTextChanged(object sender, EventArgs e)
+		private void txt_item_quality_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_itemQuality[comboName.SelectedIndex] = txt_item_quality.Text;
 		}
 
-		private void TxtBaseitemTextChanged(object sender, EventArgs e)
+		private void txt_baseitem_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_baseitem[comboName.SelectedIndex] = txt_baseitem.Text;
 		}
 
-		private void TxtMinIlevelTextChanged(object sender, EventArgs e)
+		private void txt_min_ilevel_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_minIlevel[comboName.SelectedIndex] = txt_min_ilevel.Text;
 		}
 
-		private void TxtMaxIlevelTextChanged(object sender, EventArgs e)
+		private void txt_max_ilevel_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_maxIlevel[comboName.SelectedIndex] = txt_max_ilevel.Text;
 		}
 
-		private void TxtImageInventoryTextChanged(object sender, EventArgs e)
+		private void txt_image_inventory_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_imageInventory[comboName.SelectedIndex] = txt_image_inventory.Text;
 		}
 
-		private void TxtImageInventorySizeWTextChanged(object sender, EventArgs e)
+		private void txt_image_inventory_size_w_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_imageInventorySizeW[comboName.SelectedIndex] = txt_image_inventory_size_w.Text;
 		}
 
-		private void TxtImageInventorySizeHTextChanged(object sender, EventArgs e)
+		private void txt_image_inventory_size_h_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_imageInventorySizeH[comboName.SelectedIndex] = txt_image_inventory_size_h.Text;
 		}
 
-		private void TxtModelPlayerTextChanged(object sender, EventArgs e)
+		private void txt_model_player_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_modelPlayer[comboName.SelectedIndex] = txt_model_player.Text;
 		}
 
-		private void TxtAttachToHandsTextChanged(object sender, EventArgs e)
+		private void txt_attach_to_hands_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_attachToHands[comboName.SelectedIndex] = txt_attach_to_hands.Text;
 		}
 
-		private void TxtItemTypeNameTextChanged(object sender, EventArgs e)
+		private void txt_item_type_name_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_itemTypeName[comboName.SelectedIndex] = txt_item_type_name.Text;
 		}
 
-		private void TxtCraftClassTextChanged(object sender, EventArgs e)
+		private void txt_craft_class_TextChanged(object sender, EventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			_craftClass[comboName.SelectedIndex] = txt_craft_class.Text;
