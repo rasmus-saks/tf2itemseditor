@@ -406,6 +406,7 @@
             this.grid_attribs.TabIndex = 23;
             this.ListToolTip.SetToolTip(this.grid_attribs, resources.GetString("grid_attribs.ToolTip"));
             this.grid_attribs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_attribs_CellValueChanged);
+            this.grid_attribs.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.grid_attribs_UserDeletedRow);
             // 
             // data_hdr_name
             // 

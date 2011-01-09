@@ -1588,7 +1588,7 @@ namespace TF2Items
 		}
 
 
-		private void GridAttribsUserDeletedRow(object sender, DataGridViewRowEventArgs e)
+		private void grid_attribs_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
 		{
 			if (comboName.SelectedIndex == -1) return;
 			if (e == null || _firstSetup) return;
