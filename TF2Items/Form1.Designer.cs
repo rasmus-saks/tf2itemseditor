@@ -110,6 +110,13 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tab_itemsgame = new System.Windows.Forms.TabPage();
+            this.tab_tfenglish = new System.Windows.Forms.TabPage();
+            this.englishProgress = new System.Windows.Forms.ProgressBar();
+            this.englishOpen = new System.Windows.Forms.Button();
+            this.englishSave = new System.Windows.Forms.Button();
+            this.englishSaveAs = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -119,11 +126,14 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridSet)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tab_itemsgame.SuspendLayout();
+            this.tab_tfenglish.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(12, 12);
+            this.btnOpen.Location = new System.Drawing.Point(6, 16);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(49, 23);
             this.btnOpen.TabIndex = 1;
@@ -138,7 +148,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(67, 12);
+            this.btnSave.Location = new System.Drawing.Point(61, 16);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(49, 23);
             this.btnSave.TabIndex = 2;
@@ -149,7 +159,7 @@
             // 
             // btnSaveAs
             // 
-            this.btnSaveAs.Location = new System.Drawing.Point(115, 12);
+            this.btnSaveAs.Location = new System.Drawing.Point(109, 16);
             this.btnSaveAs.Name = "btnSaveAs";
             this.btnSaveAs.Size = new System.Drawing.Size(28, 23);
             this.btnSaveAs.TabIndex = 3;
@@ -160,10 +170,10 @@
             // 
             // progressReading
             // 
-            this.progressReading.Location = new System.Drawing.Point(12, 2);
+            this.progressReading.Location = new System.Drawing.Point(6, 6);
             this.progressReading.MarqueeAnimationSpeed = 1;
             this.progressReading.Name = "progressReading";
-            this.progressReading.Size = new System.Drawing.Size(1194, 10);
+            this.progressReading.Size = new System.Drawing.Size(1209, 10);
             this.progressReading.Step = 1;
             this.progressReading.TabIndex = 2;
             // 
@@ -172,7 +182,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(433, 18);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(330, 36);
             this.pictureBox1.TabIndex = 18;
@@ -207,7 +217,7 @@
             this.txt_item_type_name.TabIndex = 19;
             this.ListToolTip.SetToolTip(this.txt_item_type_name, "This is the type of the item, which appears next to \"Level xx\" such as \"Level 5 S" +
                     "yringe Gun\".");
-            this.txt_item_type_name.TextChanged += new System.EventHandler(this.txt_item_type_name_TextChanged);
+            this.txt_item_type_name.TextChanged += new System.EventHandler(this.TxtItemTypeNameTextChanged);
             // 
             // txt_max_ilevel
             // 
@@ -216,7 +226,7 @@
             this.txt_max_ilevel.Size = new System.Drawing.Size(71, 20);
             this.txt_max_ilevel.TabIndex = 18;
             this.ListToolTip.SetToolTip(this.txt_max_ilevel, "Maximum level that this item can be.");
-            this.txt_max_ilevel.TextChanged += new System.EventHandler(this.txt_max_ilevel_TextChanged);
+            this.txt_max_ilevel.TextChanged += new System.EventHandler(this.TxtMaxIlevelTextChanged);
             // 
             // txt_min_ilevel
             // 
@@ -225,7 +235,7 @@
             this.txt_min_ilevel.Size = new System.Drawing.Size(65, 20);
             this.txt_min_ilevel.TabIndex = 17;
             this.ListToolTip.SetToolTip(this.txt_min_ilevel, "Minimum level that this item can be.");
-            this.txt_min_ilevel.TextChanged += new System.EventHandler(this.txt_min_ilevel_TextChanged);
+            this.txt_min_ilevel.TextChanged += new System.EventHandler(this.TxtMinIlevelTextChanged);
             // 
             // txt_attach_to_hands
             // 
@@ -235,7 +245,7 @@
             this.txt_attach_to_hands.TabIndex = 15;
             this.ListToolTip.SetToolTip(this.txt_attach_to_hands, "Attach the item to the player\'s hands. Used by weapons,\r\nattaching your hat to yo" +
                     "ur hands would just be silly.");
-            this.txt_attach_to_hands.TextChanged += new System.EventHandler(this.txt_attach_to_hands_TextChanged);
+            this.txt_attach_to_hands.TextChanged += new System.EventHandler(this.TxtAttachToHandsTextChanged);
             // 
             // txt_baseitem
             // 
@@ -244,7 +254,7 @@
             this.txt_baseitem.Size = new System.Drawing.Size(61, 20);
             this.txt_baseitem.TabIndex = 16;
             this.ListToolTip.SetToolTip(this.txt_baseitem, "Is this item one of the stock items (like the Minigun, Medigun, Pistol etc..)?");
-            this.txt_baseitem.TextChanged += new System.EventHandler(this.txt_baseitem_TextChanged);
+            this.txt_baseitem.TextChanged += new System.EventHandler(this.TxtBaseitemTextChanged);
             // 
             // txt_model_player
             // 
@@ -253,7 +263,7 @@
             this.txt_model_player.Size = new System.Drawing.Size(209, 20);
             this.txt_model_player.TabIndex = 14;
             this.ListToolTip.SetToolTip(this.txt_model_player, "The item\'s model (unsure).");
-            this.txt_model_player.TextChanged += new System.EventHandler(this.txt_model_player_TextChanged);
+            this.txt_model_player.TextChanged += new System.EventHandler(this.TxtModelPlayerTextChanged);
             // 
             // txt_image_inventory_size_h
             // 
@@ -262,7 +272,7 @@
             this.txt_image_inventory_size_h.Size = new System.Drawing.Size(209, 20);
             this.txt_image_inventory_size_h.TabIndex = 13;
             this.ListToolTip.SetToolTip(this.txt_image_inventory_size_h, "The height of the backpack image.");
-            this.txt_image_inventory_size_h.TextChanged += new System.EventHandler(this.txt_image_inventory_size_h_TextChanged);
+            this.txt_image_inventory_size_h.TextChanged += new System.EventHandler(this.TxtImageInventorySizeHTextChanged);
             // 
             // txt_image_inventory_size_w
             // 
@@ -271,7 +281,7 @@
             this.txt_image_inventory_size_w.Size = new System.Drawing.Size(209, 20);
             this.txt_image_inventory_size_w.TabIndex = 12;
             this.ListToolTip.SetToolTip(this.txt_image_inventory_size_w, "The width of the backpack image.");
-            this.txt_image_inventory_size_w.TextChanged += new System.EventHandler(this.txt_image_inventory_size_w_TextChanged);
+            this.txt_image_inventory_size_w.TextChanged += new System.EventHandler(this.TxtImageInventorySizeWTextChanged);
             // 
             // txt_image_inventory
             // 
@@ -280,7 +290,7 @@
             this.txt_image_inventory.Size = new System.Drawing.Size(209, 20);
             this.txt_image_inventory.TabIndex = 11;
             this.ListToolTip.SetToolTip(this.txt_image_inventory, "The path to the item\'s backpack image.");
-            this.txt_image_inventory.TextChanged += new System.EventHandler(this.txt_image_inventory_TextChanged);
+            this.txt_image_inventory.TextChanged += new System.EventHandler(this.TxtImageInventoryTextChanged);
             // 
             // txt_item_quality
             // 
@@ -289,7 +299,7 @@
             this.txt_item_quality.Size = new System.Drawing.Size(208, 20);
             this.txt_item_quality.TabIndex = 10;
             this.ListToolTip.SetToolTip(this.txt_item_quality, "The item\'s quality (like vintage, valve, unique etc...)");
-            this.txt_item_quality.TextChanged += new System.EventHandler(this.txt_item_quality_TextChanged);
+            this.txt_item_quality.TextChanged += new System.EventHandler(this.TxtItemQualityTextChanged);
             // 
             // txt_item_slot
             // 
@@ -298,7 +308,7 @@
             this.txt_item_slot.Size = new System.Drawing.Size(208, 20);
             this.txt_item_slot.TabIndex = 9;
             this.ListToolTip.SetToolTip(this.txt_item_slot, "Which slot this item is in?");
-            this.txt_item_slot.TextChanged += new System.EventHandler(this.txt_item_slot_TextChanged);
+            this.txt_item_slot.TextChanged += new System.EventHandler(this.TxtItemSlotTextChanged);
             // 
             // txt_item_name
             // 
@@ -307,7 +317,7 @@
             this.txt_item_name.Size = new System.Drawing.Size(208, 20);
             this.txt_item_name.TabIndex = 8;
             this.ListToolTip.SetToolTip(this.txt_item_name, "The name of the item.");
-            this.txt_item_name.TextChanged += new System.EventHandler(this.txt_item_name_TextChanged);
+            this.txt_item_name.TextChanged += new System.EventHandler(this.TxtItemNameTextChanged);
             // 
             // txt_craft_class
             // 
@@ -316,7 +326,7 @@
             this.txt_craft_class.Size = new System.Drawing.Size(208, 20);
             this.txt_craft_class.TabIndex = 6;
             this.ListToolTip.SetToolTip(this.txt_craft_class, "What to treat this as when crafting?");
-            this.txt_craft_class.TextChanged += new System.EventHandler(this.txt_craft_class_TextChanged);
+            this.txt_craft_class.TextChanged += new System.EventHandler(this.TxtCraftClassTextChanged);
             // 
             // txt_item_class
             // 
@@ -326,7 +336,7 @@
             this.txt_item_class.TabIndex = 5;
             this.ListToolTip.SetToolTip(this.txt_item_class, "This is the internal reference name used by the game.\r\nThis should not be changed" +
                     "!");
-            this.txt_item_class.TextChanged += new System.EventHandler(this.txt_item_class_TextChanged);
+            this.txt_item_class.TextChanged += new System.EventHandler(this.TxtItemClassTextChanged);
             // 
             // move_right_btn
             // 
@@ -339,7 +349,7 @@
             this.ListToolTip.SetToolTip(this.move_right_btn, "Select a class from the list on the left and push this button to not allow the se" +
                     "lected class to use this item.");
             this.move_right_btn.UseVisualStyleBackColor = true;
-            this.move_right_btn.Click += new System.EventHandler(this.move_right_btn_Click);
+            this.move_right_btn.Click += new System.EventHandler(this.MoveRightBtnClick);
             // 
             // move_left_btn
             // 
@@ -352,7 +362,7 @@
             this.ListToolTip.SetToolTip(this.move_left_btn, "Select a class from the list on the right and push this button to allow the selec" +
                     "ted class to use this item.\r\n");
             this.move_left_btn.UseVisualStyleBackColor = true;
-            this.move_left_btn.Click += new System.EventHandler(this.move_left_btn_Click);
+            this.move_left_btn.Click += new System.EventHandler(this.MoveLeftBtnClick);
             // 
             // list_available_classes
             // 
@@ -376,12 +386,12 @@
             // 
             // searchBox
             // 
-            this.searchBox.Location = new System.Drawing.Point(519, 357);
+            this.searchBox.Location = new System.Drawing.Point(513, 361);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(183, 20);
             this.searchBox.TabIndex = 25;
             this.ListToolTip.SetToolTip(this.searchBox, "Just type something in and it will start searching!");
-            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            this.searchBox.TextChanged += new System.EventHandler(this.SearchBoxTextChanged);
             // 
             // grid_attribs
             // 
@@ -405,8 +415,8 @@
             this.grid_attribs.Size = new System.Drawing.Size(488, 215);
             this.grid_attribs.TabIndex = 23;
             this.ListToolTip.SetToolTip(this.grid_attribs, resources.GetString("grid_attribs.ToolTip"));
-            this.grid_attribs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_attribs_CellValueChanged);
-            this.grid_attribs.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.grid_attribs_UserDeletedRow);
+            this.grid_attribs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridAttribsCellValueChanged);
+            this.grid_attribs.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.GridAttribsUserDeletedRow);
             // 
             // data_hdr_name
             // 
@@ -431,7 +441,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(519, 392);
+            this.label18.Location = new System.Drawing.Point(513, 396);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(163, 13);
             this.label18.TabIndex = 7;
@@ -444,7 +454,7 @@
             // 
             this.radioItem.AutoSize = true;
             this.radioItem.Checked = true;
-            this.radioItem.Location = new System.Drawing.Point(519, 574);
+            this.radioItem.Location = new System.Drawing.Point(513, 578);
             this.radioItem.Name = "radioItem";
             this.radioItem.Size = new System.Drawing.Size(45, 17);
             this.radioItem.TabIndex = 27;
@@ -456,7 +466,7 @@
             // radioSet
             // 
             this.radioSet.AutoSize = true;
-            this.radioSet.Location = new System.Drawing.Point(661, 576);
+            this.radioSet.Location = new System.Drawing.Point(655, 580);
             this.radioSet.Name = "radioSet";
             this.radioSet.Size = new System.Drawing.Size(41, 17);
             this.radioSet.TabIndex = 28;
@@ -466,7 +476,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(149, 12);
+            this.button1.Location = new System.Drawing.Point(143, 16);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(72, 23);
             this.button1.TabIndex = 359;
@@ -483,7 +493,7 @@
             this.textStoreBundle.TabIndex = 382;
             this.ListToolTip.SetToolTip(this.textStoreBundle, "This is the name of the bundle that can be bought from the store.\r\nProbably won\'t" +
                     " do anything with custom sets.");
-            this.textStoreBundle.TextChanged += new System.EventHandler(this.textStoreBundle_TextChanged);
+            this.textStoreBundle.TextChanged += new System.EventHandler(this.TextStoreBundleTextChanged);
             // 
             // textSetName
             // 
@@ -492,7 +502,7 @@
             this.textSetName.Size = new System.Drawing.Size(196, 20);
             this.textSetName.TabIndex = 379;
             this.ListToolTip.SetToolTip(this.textSetName, "This is the reference to the set\'s name in tf/resource/tf_english.txt.");
-            this.textSetName.TextChanged += new System.EventHandler(this.textSetName_TextChanged);
+            this.textSetName.TextChanged += new System.EventHandler(this.TextSetNameTextChanged);
             // 
             // button3
             // 
@@ -503,7 +513,7 @@
             this.button3.Text = "Delete";
             this.ListToolTip.SetToolTip(this.button3, "Select an item from the list and press this button to delete it from the items.");
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3Click);
             // 
             // button2
             // 
@@ -514,7 +524,7 @@
             this.button2.Text = "Add";
             this.ListToolTip.SetToolTip(this.button2, "Adds the selected item to the required items list.");
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2Click);
             // 
             // btnDelSet
             // 
@@ -535,29 +545,29 @@
             this.btnAddSet.Text = "Add";
             this.ListToolTip.SetToolTip(this.btnAddSet, "Adds a new item set.");
             this.btnAddSet.UseVisualStyleBackColor = true;
-            this.btnAddSet.Click += new System.EventHandler(this.btnAddSet_Click);
+            this.btnAddSet.Click += new System.EventHandler(this.BtnAddSetClick);
             // 
             // btnPaste
             // 
-            this.btnPaste.Location = new System.Drawing.Point(266, 41);
+            this.btnPaste.Location = new System.Drawing.Point(260, 45);
             this.btnPaste.Name = "btnPaste";
             this.btnPaste.Size = new System.Drawing.Size(43, 21);
             this.btnPaste.TabIndex = 374;
             this.btnPaste.Text = "Paste";
             this.ListToolTip.SetToolTip(this.btnPaste, "Paste the copied item.");
             this.btnPaste.UseVisualStyleBackColor = true;
-            this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
+            this.btnPaste.Click += new System.EventHandler(this.BtnPasteClick);
             // 
             // btnCopy
             // 
-            this.btnCopy.Location = new System.Drawing.Point(217, 41);
+            this.btnCopy.Location = new System.Drawing.Point(211, 45);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(43, 21);
             this.btnCopy.TabIndex = 373;
             this.btnCopy.Text = "Copy";
             this.ListToolTip.SetToolTip(this.btnCopy, "Copy the selected item.");
             this.btnCopy.UseVisualStyleBackColor = true;
-            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            this.btnCopy.Click += new System.EventHandler(this.BtnCopyClick);
             // 
             // label22
             // 
@@ -598,7 +608,7 @@
             this.comboSets.Name = "comboSets";
             this.comboSets.Size = new System.Drawing.Size(199, 21);
             this.comboSets.TabIndex = 375;
-            this.comboSets.SelectedIndexChanged += new System.EventHandler(this.comboSets_SelectedIndexChanged);
+            this.comboSets.SelectedIndexChanged += new System.EventHandler(this.ComboSetsSelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -630,7 +640,7 @@
             this.groupBox1.Controls.Add(this.txt_item_name);
             this.groupBox1.Controls.Add(this.txt_craft_class);
             this.groupBox1.Controls.Add(this.txt_item_class);
-            this.groupBox1.Location = new System.Drawing.Point(12, 68);
+            this.groupBox1.Location = new System.Drawing.Point(6, 72);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(438, 260);
             this.groupBox1.TabIndex = 369;
@@ -771,7 +781,7 @@
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.list_available_classes);
             this.groupBox2.Controls.Add(this.list_used_by_classes);
-            this.groupBox2.Location = new System.Drawing.Point(456, 170);
+            this.groupBox2.Location = new System.Drawing.Point(450, 174);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(249, 158);
             this.groupBox2.TabIndex = 370;
@@ -801,7 +811,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.grid_attribs);
-            this.groupBox3.Location = new System.Drawing.Point(12, 334);
+            this.groupBox3.Location = new System.Drawing.Point(6, 338);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(501, 270);
             this.groupBox3.TabIndex = 371;
@@ -811,7 +821,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(519, 338);
+            this.label17.Location = new System.Drawing.Point(513, 342);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(41, 13);
             this.label17.TabIndex = 26;
@@ -820,38 +830,38 @@
             // list_all_attribs
             // 
             this.list_all_attribs.FormattingEnabled = true;
-            this.list_all_attribs.Location = new System.Drawing.Point(519, 408);
+            this.list_all_attribs.Location = new System.Drawing.Point(513, 412);
             this.list_all_attribs.Name = "list_all_attribs";
             this.list_all_attribs.Size = new System.Drawing.Size(183, 160);
             this.list_all_attribs.Sorted = true;
             this.list_all_attribs.TabIndex = 24;
-            this.list_all_attribs.DoubleClick += new System.EventHandler(this.list_all_attribs_DoubleClick);
-            this.list_all_attribs.MouseMove += new System.Windows.Forms.MouseEventHandler(this.list_all_attribs_MouseMove);
+            this.list_all_attribs.DoubleClick += new System.EventHandler(this.ListAllAttribsDoubleClick);
+            this.list_all_attribs.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ListAllAttribsMouseMove);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(505, 68);
+            this.label19.Location = new System.Drawing.Point(348, 9);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(194, 39);
+            this.label19.Size = new System.Drawing.Size(194, 26);
             this.label19.TabIndex = 367;
-            this.label19.Text = "Created by bogeyman_EST, 2010-2011\r\n\r\nGCF extracter thanks to Nem\'s tools:";
+            this.label19.Text = "Created by bogeyman_EST, 2010-2011\r\nGCF extracter thanks to Nem\'s tools:";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(457, 109);
+            this.linkLabel1.Location = new System.Drawing.Point(348, 37);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(248, 13);
             this.linkLabel1.TabIndex = 372;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "http://nemesis.thewavelength.net/index.php?p=35";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1LinkClicked);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(453, 144);
+            this.label20.Location = new System.Drawing.Point(595, 9);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(252, 13);
             this.label20.TabIndex = 368;
@@ -864,12 +874,12 @@
             this.comboName.FormattingEnabled = true;
             this.comboName.IntegralHeight = false;
             this.comboName.ItemHeight = 13;
-            this.comboName.Location = new System.Drawing.Point(12, 41);
+            this.comboName.Location = new System.Drawing.Point(6, 45);
             this.comboName.Name = "comboName";
             this.comboName.Size = new System.Drawing.Size(199, 21);
             this.comboName.TabIndex = 366;
-            this.comboName.SelectedIndexChanged += new System.EventHandler(this.comboName_SelectedIndexChanged);
-            this.comboName.TextUpdate += new System.EventHandler(this.comboName_TextUpdate);
+            this.comboName.SelectedIndexChanged += new System.EventHandler(this.ComboNameSelectedIndexChanged);
+            this.comboName.TextUpdate += new System.EventHandler(this.ComboNameTextUpdate);
             // 
             // groupBox5
             // 
@@ -882,7 +892,7 @@
             this.groupBox5.Controls.Add(this.label21);
             this.groupBox5.Controls.Add(this.btnAddSet);
             this.groupBox5.Controls.Add(this.comboSets);
-            this.groupBox5.Location = new System.Drawing.Point(708, 68);
+            this.groupBox5.Location = new System.Drawing.Point(702, 72);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(513, 536);
             this.groupBox5.TabIndex = 383;
@@ -920,8 +930,8 @@
             this.gridSet.ShowRowErrors = false;
             this.gridSet.Size = new System.Drawing.Size(488, 215);
             this.gridSet.TabIndex = 23;
-            this.gridSet.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridSet_CellValueChanged);
-            this.gridSet.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridSet_UserDeletedRow);
+            this.gridSet.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridSetCellValueChanged);
+            this.gridSet.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.GridSetUserDeletedRow);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -943,38 +953,113 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Width = 60;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tab_itemsgame);
+            this.tabControl1.Controls.Add(this.tab_tfenglish);
+            this.tabControl1.Location = new System.Drawing.Point(12, 46);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1240, 655);
+            this.tabControl1.TabIndex = 384;
+            // 
+            // tab_itemsgame
+            // 
+            this.tab_itemsgame.Controls.Add(this.progressReading);
+            this.tab_itemsgame.Controls.Add(this.radioSet);
+            this.tab_itemsgame.Controls.Add(this.btnOpen);
+            this.tab_itemsgame.Controls.Add(this.groupBox5);
+            this.tab_itemsgame.Controls.Add(this.btnSave);
+            this.tab_itemsgame.Controls.Add(this.radioItem);
+            this.tab_itemsgame.Controls.Add(this.btnSaveAs);
+            this.tab_itemsgame.Controls.Add(this.label18);
+            this.tab_itemsgame.Controls.Add(this.button1);
+            this.tab_itemsgame.Controls.Add(this.groupBox1);
+            this.tab_itemsgame.Controls.Add(this.label17);
+            this.tab_itemsgame.Controls.Add(this.comboName);
+            this.tab_itemsgame.Controls.Add(this.groupBox2);
+            this.tab_itemsgame.Controls.Add(this.searchBox);
+            this.tab_itemsgame.Controls.Add(this.btnPaste);
+            this.tab_itemsgame.Controls.Add(this.list_all_attribs);
+            this.tab_itemsgame.Controls.Add(this.btnCopy);
+            this.tab_itemsgame.Controls.Add(this.groupBox3);
+            this.tab_itemsgame.Location = new System.Drawing.Point(4, 22);
+            this.tab_itemsgame.Name = "tab_itemsgame";
+            this.tab_itemsgame.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_itemsgame.Size = new System.Drawing.Size(1232, 629);
+            this.tab_itemsgame.TabIndex = 0;
+            this.tab_itemsgame.Text = "items_game.txt";
+            this.tab_itemsgame.UseVisualStyleBackColor = true;
+            // 
+            // tab_tfenglish
+            // 
+            this.tab_tfenglish.Controls.Add(this.englishProgress);
+            this.tab_tfenglish.Controls.Add(this.englishOpen);
+            this.tab_tfenglish.Controls.Add(this.englishSave);
+            this.tab_tfenglish.Controls.Add(this.englishSaveAs);
+            this.tab_tfenglish.Location = new System.Drawing.Point(4, 22);
+            this.tab_tfenglish.Name = "tab_tfenglish";
+            this.tab_tfenglish.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_tfenglish.Size = new System.Drawing.Size(1232, 629);
+            this.tab_tfenglish.TabIndex = 1;
+            this.tab_tfenglish.Text = "tf_english.txt";
+            this.tab_tfenglish.UseVisualStyleBackColor = true;
+            // 
+            // englishProgress
+            // 
+            this.englishProgress.Location = new System.Drawing.Point(6, 6);
+            this.englishProgress.MarqueeAnimationSpeed = 1;
+            this.englishProgress.Name = "englishProgress";
+            this.englishProgress.Size = new System.Drawing.Size(1209, 10);
+            this.englishProgress.Step = 1;
+            this.englishProgress.TabIndex = 6;
+            // 
+            // englishOpen
+            // 
+            this.englishOpen.Location = new System.Drawing.Point(6, 16);
+            this.englishOpen.Name = "englishOpen";
+            this.englishOpen.Size = new System.Drawing.Size(49, 23);
+            this.englishOpen.TabIndex = 4;
+            this.englishOpen.Text = "Open";
+            this.ListToolTip.SetToolTip(this.englishOpen, "Open a file.");
+            this.englishOpen.UseVisualStyleBackColor = true;
+            this.englishOpen.Click += new System.EventHandler(this.EnglishOpenClick);
+            // 
+            // englishSave
+            // 
+            this.englishSave.Location = new System.Drawing.Point(61, 16);
+            this.englishSave.Name = "englishSave";
+            this.englishSave.Size = new System.Drawing.Size(49, 23);
+            this.englishSave.TabIndex = 5;
+            this.englishSave.Text = "Save";
+            this.ListToolTip.SetToolTip(this.englishSave, "Save the file");
+            this.englishSave.UseVisualStyleBackColor = true;
+            // 
+            // englishSaveAs
+            // 
+            this.englishSaveAs.Location = new System.Drawing.Point(109, 16);
+            this.englishSaveAs.Name = "englishSaveAs";
+            this.englishSaveAs.Size = new System.Drawing.Size(28, 23);
+            this.englishSaveAs.TabIndex = 7;
+            this.englishSaveAs.Text = "As";
+            this.ListToolTip.SetToolTip(this.englishSaveAs, "Save the file to a different path.");
+            this.englishSaveAs.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1227, 605);
-            this.Controls.Add(this.radioSet);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.radioItem);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.searchBox);
-            this.Controls.Add(this.btnPaste);
-            this.Controls.Add(this.list_all_attribs);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.btnCopy);
-            this.Controls.Add(this.label19);
+            this.ClientSize = new System.Drawing.Size(1260, 713);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.label20);
-            this.Controls.Add(this.comboName);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnSaveAs);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.progressReading);
-            this.Controls.Add(this.btnOpen);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.label20);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Load += new System.EventHandler(this.MainFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).EndInit();
             this.groupBox4.ResumeLayout(false);
@@ -987,6 +1072,10 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridSet)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tab_itemsgame.ResumeLayout(false);
+            this.tab_itemsgame.PerformLayout();
+            this.tab_tfenglish.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1074,6 +1163,13 @@
         private System.Windows.Forms.RadioButton radioSet;
         private System.Windows.Forms.RadioButton radioItem;
         private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tab_itemsgame;
+        private System.Windows.Forms.TabPage tab_tfenglish;
+        private System.Windows.Forms.ProgressBar englishProgress;
+        private System.Windows.Forms.Button englishOpen;
+        private System.Windows.Forms.Button englishSave;
+        private System.Windows.Forms.Button englishSaveAs;
     }
 }
 
