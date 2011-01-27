@@ -197,6 +197,81 @@ namespace TF2Items.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;ve saved the file, but TF2 seems to be open. To see the changes you made, please restart the game..
+        /// </summary>
+        internal static string MainForm_BtnSaveClick_I_ve_saved_the_file__but_TF2_seems_to_be_open__To_see_the_changes_you_made__please_restart_the_game_ {
+            get {
+                return ResourceManager.GetString("MainForm_BtnSaveClick_I_ve_saved_the_file__but_TF2_seems_to_be_open__To_see_the_c" +
+                        "hanges_you_made__please_restart_the_game_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nice job, pardner!.
+        /// </summary>
+        internal static string MainForm_BtnSaveClick_Nice_job__pardner_ {
+            get {
+                return ResourceManager.GetString("MainForm_BtnSaveClick_Nice_job__pardner_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;ve reached the maximum number of set items allowed!
+        ///It&apos;s just impossible to equip more than .
+        /// </summary>
+        internal static string MainForm_Button2Click_ {
+            get {
+                return ResourceManager.GetString("MainForm_Button2Click_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  items at once!.
+        /// </summary>
+        internal static string MainForm_Button2Click__items_at_once_ {
+            get {
+                return ResourceManager.GetString("MainForm_Button2Click__items_at_once_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This item already exists in the set!.
+        /// </summary>
+        internal static string MainForm_Button2Click_This_item_already_exists_in_the_set_ {
+            get {
+                return ResourceManager.GetString("MainForm_Button2Click_This_item_already_exists_in_the_set_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select tf_english.txt or team fortress content.gcf.
+        /// </summary>
+        internal static string MainForm_EnglishOpenClick_Select_tf_english_txt_or_team_fortress_content_gcf {
+            get {
+                return ResourceManager.GetString("MainForm_EnglishOpenClick_Select_tf_english_txt_or_team_fortress_content_gcf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tf_english.txt|tf_english.txt|Team Fortress 2 content|team fortress 2 content.gcf.
+        /// </summary>
+        internal static string MainForm_EnglishOpenClick_tf_english_txt_tf_english_txt_Team_Fortress_2_content_team_fortress_2_content_gcf {
+            get {
+                return ResourceManager.GetString("MainForm_EnglishOpenClick_tf_english_txt_tf_english_txt_Team_Fortress_2_content_t" +
+                        "eam_fortress_2_content_gcf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TF2 Items Editor v.
+        /// </summary>
+        internal static string MainForm_MainFormLoad_TF2_Items_Editor_v {
+            get {
+                return ResourceManager.GetString("MainForm_MainFormLoad_TF2_Items_Editor_v", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap tf2itemsmanager {
             get {
                 object obj = ResourceManager.GetObject("tf2itemsmanager", resourceCulture);

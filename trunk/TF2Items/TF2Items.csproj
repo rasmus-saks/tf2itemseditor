@@ -15,19 +15,25 @@
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\Updater\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <UpdateUrl>http://tf2itemseditor.googlecode.com/svn/trunk/Updater/</UpdateUrl>
+    <SupportUrl>http://forums.steampowered.com/forums/showthread.php%3ft=1405198</SupportUrl>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>TF2 Items Editor</ProductName>
+    <PublisherName>bogeyman_EST</PublisherName>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -52,12 +58,25 @@
   <PropertyGroup>
     <ApplicationIcon>033bdd91842b6aca0633ee1e5f3e6b82f2e8962f.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>8B60CE4FB9DC1458E4C9A1697DE45428D477E017</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TF2Items_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.Compatibility" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -65,7 +84,6 @@
   <ItemGroup>
     <Compile Include="ToolTips.cs" />
     <Compile Include="Converter.cs" />
-    <Compile Include="HLLib.cs" />
     <Compile Include="Osinfo.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -99,10 +117,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="TF2Items_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="033bdd91842b6aca0633ee1e5f3e6b82f2e8962f.ico" />
     <Content Include="HLExtract.exe" />
+    <Content Include="HLLib.dll" />
     <None Include="Resources\tf2itemsmanager3.png" />
   </ItemGroup>
   <ItemGroup>
