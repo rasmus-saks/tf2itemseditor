@@ -75,6 +75,11 @@
             this.btnAddSet = new System.Windows.Forms.Button();
             this.btnPaste = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
+            this.englishOpen = new System.Windows.Forms.Button();
+            this.englishSave = new System.Windows.Forms.Button();
+            this.englishSaveAs = new System.Windows.Forms.Button();
+            this.englishComboTips = new System.Windows.Forms.ComboBox();
+            this.englishTextTip = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -113,10 +118,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_itemsgame = new System.Windows.Forms.TabPage();
             this.tab_tfenglish = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.englishProgress = new System.Windows.Forms.ProgressBar();
-            this.englishOpen = new System.Windows.Forms.Button();
-            this.englishSave = new System.Windows.Forms.Button();
-            this.englishSaveAs = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -129,6 +132,7 @@
             this.tabControl1.SuspendLayout();
             this.tab_itemsgame.SuspendLayout();
             this.tab_tfenglish.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOpen
@@ -175,6 +179,7 @@
             this.progressReading.Name = "progressReading";
             this.progressReading.Size = new System.Drawing.Size(1209, 10);
             this.progressReading.Step = 1;
+            this.progressReading.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressReading.TabIndex = 2;
             // 
             // pictureBox1
@@ -569,6 +574,70 @@
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.BtnCopyClick);
             // 
+            // englishOpen
+            // 
+            this.englishOpen.Location = new System.Drawing.Point(6, 16);
+            this.englishOpen.Name = "englishOpen";
+            this.englishOpen.Size = new System.Drawing.Size(49, 23);
+            this.englishOpen.TabIndex = 4;
+            this.englishOpen.Text = "Open";
+            this.ListToolTip.SetToolTip(this.englishOpen, "Open a file.");
+            this.englishOpen.UseVisualStyleBackColor = true;
+            this.englishOpen.Click += new System.EventHandler(this.EnglishOpenClick);
+            // 
+            // englishSave
+            // 
+            this.englishSave.Location = new System.Drawing.Point(61, 16);
+            this.englishSave.Name = "englishSave";
+            this.englishSave.Size = new System.Drawing.Size(49, 23);
+            this.englishSave.TabIndex = 5;
+            this.englishSave.Text = "Save";
+            this.ListToolTip.SetToolTip(this.englishSave, "Save the file.");
+            this.englishSave.UseVisualStyleBackColor = true;
+            this.englishSave.Click += new System.EventHandler(this.EnglishSaveClick);
+            // 
+            // englishSaveAs
+            // 
+            this.englishSaveAs.Location = new System.Drawing.Point(109, 16);
+            this.englishSaveAs.Name = "englishSaveAs";
+            this.englishSaveAs.Size = new System.Drawing.Size(28, 23);
+            this.englishSaveAs.TabIndex = 7;
+            this.englishSaveAs.Text = "As";
+            this.ListToolTip.SetToolTip(this.englishSaveAs, "Save the file to a different path.");
+            this.englishSaveAs.UseVisualStyleBackColor = true;
+            // 
+            // englishComboTips
+            // 
+            this.englishComboTips.FormattingEnabled = true;
+            this.englishComboTips.Items.AddRange(new object[] {
+            "Scout",
+            "Sniper",
+            "Soldier",
+            "Demoman",
+            "Medic",
+            "Heavy",
+            "Pyro",
+            "Spy",
+            "Engineer",
+            "Arena"});
+            this.englishComboTips.Location = new System.Drawing.Point(6, 19);
+            this.englishComboTips.Name = "englishComboTips";
+            this.englishComboTips.Size = new System.Drawing.Size(98, 21);
+            this.englishComboTips.TabIndex = 0;
+            this.ListToolTip.SetToolTip(this.englishComboTips, "Choose what type of tips to show.");
+            this.englishComboTips.SelectedIndexChanged += new System.EventHandler(this.ComboBox1SelectedIndexChanged);
+            // 
+            // englishTextTip
+            // 
+            this.englishTextTip.Location = new System.Drawing.Point(7, 47);
+            this.englishTextTip.Multiline = true;
+            this.englishTextTip.Name = "englishTextTip";
+            this.englishTextTip.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.englishTextTip.Size = new System.Drawing.Size(544, 225);
+            this.englishTextTip.TabIndex = 1;
+            this.ListToolTip.SetToolTip(this.englishTextTip, "The tips, place every tip on a separate line.");
+            this.englishTextTip.TextChanged += new System.EventHandler(this.EnglishTextTipTextChanged);
+            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -957,8 +1026,14 @@
             // 
             this.tabControl1.Controls.Add(this.tab_itemsgame);
             this.tabControl1.Controls.Add(this.tab_tfenglish);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.tabControl1.HotTrack = true;
+            this.tabControl1.ItemSize = new System.Drawing.Size(150, 18);
             this.tabControl1.Location = new System.Drawing.Point(12, 46);
+            this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
+            this.tabControl1.Padding = new System.Drawing.Point(9, 2);
+            this.tabControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1240, 655);
             this.tabControl1.TabIndex = 384;
@@ -993,6 +1068,7 @@
             // 
             // tab_tfenglish
             // 
+            this.tab_tfenglish.Controls.Add(this.groupBox7);
             this.tab_tfenglish.Controls.Add(this.englishProgress);
             this.tab_tfenglish.Controls.Add(this.englishOpen);
             this.tab_tfenglish.Controls.Add(this.englishSave);
@@ -1005,6 +1081,17 @@
             this.tab_tfenglish.Text = "tf_english.txt";
             this.tab_tfenglish.UseVisualStyleBackColor = true;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.englishTextTip);
+            this.groupBox7.Controls.Add(this.englishComboTips);
+            this.groupBox7.Location = new System.Drawing.Point(6, 45);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(559, 278);
+            this.groupBox7.TabIndex = 9;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Tips";
+            // 
             // englishProgress
             // 
             this.englishProgress.Location = new System.Drawing.Point(6, 6);
@@ -1012,38 +1099,8 @@
             this.englishProgress.Name = "englishProgress";
             this.englishProgress.Size = new System.Drawing.Size(1209, 10);
             this.englishProgress.Step = 1;
+            this.englishProgress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.englishProgress.TabIndex = 6;
-            // 
-            // englishOpen
-            // 
-            this.englishOpen.Location = new System.Drawing.Point(6, 16);
-            this.englishOpen.Name = "englishOpen";
-            this.englishOpen.Size = new System.Drawing.Size(49, 23);
-            this.englishOpen.TabIndex = 4;
-            this.englishOpen.Text = "Open";
-            this.ListToolTip.SetToolTip(this.englishOpen, "Open a file.");
-            this.englishOpen.UseVisualStyleBackColor = true;
-            this.englishOpen.Click += new System.EventHandler(this.EnglishOpenClick);
-            // 
-            // englishSave
-            // 
-            this.englishSave.Location = new System.Drawing.Point(61, 16);
-            this.englishSave.Name = "englishSave";
-            this.englishSave.Size = new System.Drawing.Size(49, 23);
-            this.englishSave.TabIndex = 5;
-            this.englishSave.Text = "Save";
-            this.ListToolTip.SetToolTip(this.englishSave, "Save the file");
-            this.englishSave.UseVisualStyleBackColor = true;
-            // 
-            // englishSaveAs
-            // 
-            this.englishSaveAs.Location = new System.Drawing.Point(109, 16);
-            this.englishSaveAs.Name = "englishSaveAs";
-            this.englishSaveAs.Size = new System.Drawing.Size(28, 23);
-            this.englishSaveAs.TabIndex = 7;
-            this.englishSaveAs.Text = "As";
-            this.ListToolTip.SetToolTip(this.englishSaveAs, "Save the file to a different path.");
-            this.englishSaveAs.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1076,6 +1133,8 @@
             this.tab_itemsgame.ResumeLayout(false);
             this.tab_itemsgame.PerformLayout();
             this.tab_tfenglish.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1170,6 +1229,9 @@
         private System.Windows.Forms.Button englishOpen;
         private System.Windows.Forms.Button englishSave;
         private System.Windows.Forms.Button englishSaveAs;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.ComboBox englishComboTips;
+        private System.Windows.Forms.TextBox englishTextTip;
     }
 }
 
