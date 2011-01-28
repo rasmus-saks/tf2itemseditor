@@ -70,11 +70,10 @@ namespace TF2Items
 
 
 		//tf_english tab
-		private bool _engfirstSetup;
-		private string _engfileName;
+	    private string _engfileName;
 
 		private const int NumberOfTips = 50;
-		private string[,] _engTips = new string[9,NumberOfTips];
+		private readonly string[,] _engTips = new string[10,NumberOfTips];
 
 		public MainForm()
 		{
@@ -1971,8 +1970,7 @@ namespace TF2Items
 				extract.Close();
 			}
 			else _engfileName = filediagOpen.FileName;
-			_engfirstSetup = true;
-			ReadEnglishFile();
+		    ReadEnglishFile();
 		}
 		private void ReadEnglishFile()
 		{
@@ -1980,8 +1978,7 @@ namespace TF2Items
 			{
 				string line;
 				string current = "";
-				int tipclass = 0;
-				int tipnum = 0;
+				int tipclass = -1;
 				_percent = sReader.BaseStream.Length / (double)100;
 				while ((line = sReader.ReadLine()) != null)
 				{
@@ -1989,9 +1986,125 @@ namespace TF2Items
 												? 100
 												: (int)sReader.BaseStream.Position / (int)_percent;
 					// if (Osinfo.MajorVersion.ToString() + "." + Osinfo.MinorVersion.ToString() == "6.1") progressReading.SetTaskbarProgress(); //Only show progress bar on the taskbar if using Windows 7
-				    
-                }
+					#region Tips
+					Match mTip = Regex.Match(line, @"""Tip_(\d)_(\d*)""\t*""(.*)""");
+					if (mTip.Success)
+					{
+						int tipnum = Convert.ToInt32(mTip.Groups[2].Value)-1;
+						_engTips[Convert.ToInt32(mTip.Groups[1].Value)-1, tipnum] = mTip.Groups[3].Value;
+					}
+					Match mAtip = Regex.Match(line, @"""Tip_arena_(\d*)""\t*""(.*)""");
+					if (mAtip.Success)
+					{
+						_engTips[9, Convert.ToInt32(mAtip.Groups[1].Value) - 1] = mAtip.Groups[2].Value;
+					}
+					#endregion
+				}
 			}
+			englishProgress.Value = 100;
+			englishComboTips.SelectedIndex = 0;
+
 		}
+
+		private void ComboBox1SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (englishComboTips.SelectedIndex == -1) englishTextTip.Text = "";
+			var str = new StringBuilder();
+			for (int i = 0; i < NumberOfTips; i++)
+			{
+				if (_engTips[englishComboTips.SelectedIndex, i] == null || _engTips[englishComboTips.SelectedIndex, i] == "") continue;
+					str.AppendLine(_engTips[englishComboTips.SelectedIndex, i]);
+			}
+			englishTextTip.Text = str.ToString();
+		}
+
+		private void EnglishTextTipTextChanged(object sender, EventArgs e)
+		{
+			if (englishComboTips.SelectedIndex == -1) return;
+            for (int i = 0; i < NumberOfTips; i++)
+            {
+                _engTips[englishComboTips.SelectedIndex, i] = "";
+            }
+            for (int i = 0; i < englishTextTip.Lines.Length; i++)
+            {
+                _engTips[englishComboTips.SelectedIndex, i] = englishTextTip.Lines[i];
+            }
+		}
+
+		private void EnglishSaveClick(object sender, EventArgs e)
+		{
+            SaveEnglishFile();
+		}
+        public void SaveEnglishFile()
+        {
+            var newFile = new StringBuilder();
+            string lastline = "";
+            if (!File.Exists(_engfileName))
+            {
+                FileStream rofl = File.Create(_engfileName);
+                rofl.Close();
+            }
+            string[] file = File.ReadAllLines(_engfileName);
+            foreach (string line in file)
+            {
+                string temp = line;
+                Match mTip = Regex.Match(line, @"""Tip_(\d)_Count""\t*""\d*""");
+                if (mTip.Success)
+                {
+                    int tipClass = Convert.ToInt32(mTip.Groups[1].Value)-1;
+                    int tp = tipClass + 1;
+                    int c = 1;
+                    temp = "";
+                    for (int i = 0; i < NumberOfTips; i++)
+                    {
+                        if (_engTips[tipClass, i] == null || _engTips[tipClass, i] == "") continue;
+                        temp += "\r\n\"Tip_" + tp + "_" + c + "\"\t\t\t\"" + _engTips[tipClass, i] + "\"";
+                        c++;
+                    }
+                    temp = "\"Tip_" + tp + "_Count\"\t\t\t\"" + (c-1) + "\"" + temp;
+                    goto end;
+                }
+                Match aTip = Regex.Match(line, @"""Tip_arena_Count""\t*""\d*""");
+                if (aTip.Success)
+                {
+                    const int tipClass = 9;
+                    int c = 1;
+                    temp = "";
+                    for (int i = 0; i < NumberOfTips; i++)
+                    {
+                        if (_engTips[tipClass, i] == null || _engTips[tipClass, i] == "") continue;
+                        temp += "\r\n\"Tip_arena_" + c + "\"\t\t\t\"" + _engTips[tipClass, i] + "\"";
+                        c++;
+                    }
+                    temp = "\"Tip_arena_Count\"\t\t\t\"" + (c-1) + "\"" + temp;
+                    goto end;
+                }
+                Match tCount = Regex.Match(line, @"""Tip_\d_Count""\t*""\d*""");
+                Match tNum = Regex.Match(line, @"""Tip_\d_\d*""\t*"".*""");
+                Match aCount = Regex.Match(line, @"""Tip_arena_Count""\t*""\d*""");
+                Match aNum = Regex.Match(line, @"""Tip_arena_\d*""\t*"".*""");
+                if (tCount.Success || tNum.Success || aCount.Success || aNum.Success) continue;
+
+                end:
+                    newFile.Append(temp + "\r\n");
+// ReSharper disable RedundantAssignment
+                    lastline = temp;
+// ReSharper restore RedundantAssignment
+            }
+            try
+            {
+                var lol = new StreamWriter(_engfileName);
+                lol.Write(newFile.ToString());
+                lol.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(Resources.Form1_SaveFile_Something_went_wrong_while_saving_ + Environment.NewLine + ex,
+                                Resources.Form1_SaveFile_Who_send_all_these_babies_to_fight__,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+            progressReading.Value = 100;
+        }
 	}
 }
