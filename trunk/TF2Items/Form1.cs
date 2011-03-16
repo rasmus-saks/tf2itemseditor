@@ -15,8 +15,8 @@ namespace TF2Items
 {
 	public partial class MainForm : Form
 	{
-		private const int NumberOfItems = 425;
-		public const int NumberOfAttribs = 250;
+		private const int NumberOfItems = 450;
+		public const int NumberOfAttribs = 270;
 		private const int NumberOfSets = 20;
 		private const int NumberOfSetItems = 6;
 		private const int NumberOfSetAttribs = 250;
@@ -70,7 +70,7 @@ namespace TF2Items
 
 
 		//tf_english tab
-	    private string _engfileName;
+		private string _engfileName;
 
 		private const int NumberOfTips = 50;
 		private readonly string[,] _engTips = new string[10,NumberOfTips];
@@ -134,15 +134,18 @@ namespace TF2Items
 					return;
 				}
 				MessageBox.Show(
-					Resources.Form1_button1_Click_Extracted_successfully_to_ +
+					Resources.Form1_button1_Click_Extracted_successfully_to_ + Environment.NewLine +
 					filediagOpen.FileName.Replace("team fortress 2 content.gcf", "items_game.txt") +
 					Resources.Form1_button1_Click_,
 					Resources.Form1_button1_Click_Listen_up_,
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Information);
 				_fileName = filediagOpen.FileName.Replace("team fortress 2 content.gcf", "items_game.txt");
-				extract.Kill();
-				extract.Close();
+				if (!extract.HasExited)
+				{
+					extract.Kill();
+					extract.Close();
+				}
 			}
 			else _fileName = filediagOpen.FileName;
 			_firstSetup = true;
@@ -732,6 +735,18 @@ namespace TF2Items
 			move_right_btn.Enabled = comboName.SelectedIndex > 30;
 			grid_attribs.Enabled = comboName.SelectedIndex > 30;
 			searchBox.Enabled = true;
+			comboSets.Enabled = true;
+			textSetName.Enabled = true;
+			textStoreBundle.Enabled = true;
+			comboAddSetItem.Enabled = true;
+			listSetItems.Enabled = true;
+			gridSet.Enabled = true;
+			btnCopy.Enabled = true;
+			btnPaste.Enabled = true;
+			btnAddSet.Enabled = true;
+			btnDelSet.Enabled = true;
+			button2.Enabled = true;
+			button3.Enabled = true;
 
 			list_used_by_classes.Items.Clear();
 			list_available_classes.Items.Clear();
@@ -1350,24 +1365,32 @@ namespace TF2Items
 		{
 			//here we're going to get a list of all running processes on
 			//the computer
-			foreach (Process clsProcess in Process.GetProcesses())
+			try
 			{
-				//now we're going to see if any of the running processes
-				//match the currently running processes. Be sure to not
-				//add the .exe to the name you provide, i.e: NOTEPAD,
-				//not NOTEPAD.EXE or false is always returned even if
-				//notepad is running.
-				//Remember, if you have the process running more than once, 
-				//say IE open 4 times the loop thr way it is now will close all 4,
-				//if you want it to just close the first one it finds
-				//then add a return; after the Kill
-				if (clsProcess.ProcessName.Contains(name))
+				foreach (Process clsProcess in Process.GetProcesses())
 				{
-					//if the process is found to be running then we
-					//return a true
-					return true;
+					//now we're going to see if any of the running processes
+					//match the currently running processes. Be sure to not
+					//add the .exe to the name you provide, i.e: NOTEPAD,
+					//not NOTEPAD.EXE or false is always returned even if
+					//notepad is running.
+					//Remember, if you have the process running more than once, 
+					//say IE open 4 times the loop thr way it is now will close all 4,
+					//if you want it to just close the first one it finds
+					//then add a return; after the Kill
+					if (clsProcess.ProcessName.Contains(name))
+					{
+						//if the process is found to be running then we
+						//return a true
+						return true;
+					}
 				}
 			}
+			catch (Exception)
+			{
+				return false;
+			}
+			
 			//otherwise we return a false
 			return false;
 		}
@@ -1885,6 +1908,42 @@ namespace TF2Items
 		private void MainFormLoad(object sender, EventArgs e)
 		{
 			Text = Resources.MainForm_MainFormLoad_TF2_Items_Editor_v + System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+			englishComboTips.Enabled = false;
+			englishTextTip.Enabled = false;
+			txt_item_class.Enabled = false;
+			txt_craft_class.Enabled = false;
+			txt_item_type_name.Enabled = false;
+			txt_item_name.Enabled = false;
+			txt_item_slot.Enabled = false;
+			txt_item_quality.Enabled = false;
+			txt_baseitem.Enabled = false;
+			txt_min_ilevel.Enabled = false;
+			txt_max_ilevel.Enabled = false;
+			txt_image_inventory.Enabled = false;
+			txt_image_inventory_size_w.Enabled = false;
+			txt_image_inventory_size_h.Enabled = false;
+			txt_model_player.Enabled = false;
+			txt_attach_to_hands.Enabled = false;
+			list_all_attribs.Enabled = true;
+			list_used_by_classes.Enabled = false;
+			list_available_classes.Enabled = false;
+			move_left_btn.Enabled = false;
+			move_right_btn.Enabled = false;
+			grid_attribs.Enabled = false;
+			searchBox.Enabled = true;
+			comboSets.Enabled = false;
+			textSetName.Enabled = false;
+			textStoreBundle.Enabled = false;
+			comboAddSetItem.Enabled = false;
+			listSetItems.Enabled = false;
+			gridSet.Enabled = false;
+			btnCopy.Enabled = false;
+			btnPaste.Enabled = false;
+			btnAddSet.Enabled = false;
+			btnDelSet.Enabled = false;
+			button2.Enabled = false;
+			button3.Enabled = false;
+
 		}
 		private void GridSetUserDeletedRow(object sender, DataGridViewRowEventArgs e)
 		{
@@ -1959,18 +2018,23 @@ namespace TF2Items
 					return;
 				}
 				MessageBox.Show(
-					Resources.Form1_button1_Click_Extracted_successfully_to_ +
-					filediagOpen.FileName.Replace("team fortress 2 content.gcf", "tf_english.txt") +
-					Resources.Form1_button1_Click_,
+					Resources.Form1_button1_Click_Extracted_successfully_to_ + Environment.NewLine +
+					filediagOpen.FileName.Replace("team fortress 2 content.gcf", "tf_english.txt") + Environment.NewLine +
+					Resources.MainForm_btnEngSave_Click_,
 					Resources.Form1_button1_Click_Listen_up_,
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Information);
 				_engfileName = filediagOpen.FileName.Replace("team fortress 2 content.gcf", "tf_english.txt");
-				extract.Kill();
-				extract.Close();
+				if (!extract.HasExited)
+				{
+					extract.Kill();
+					extract.Close();
+				}
 			}
 			else _engfileName = filediagOpen.FileName;
-		    ReadEnglishFile();
+			ReadEnglishFile();
+			englishTextTip.Enabled = true;
+			englishComboTips.Enabled = true;
 		}
 		private void ReadEnglishFile()
 		{
@@ -2021,90 +2085,90 @@ namespace TF2Items
 		private void EnglishTextTipTextChanged(object sender, EventArgs e)
 		{
 			if (englishComboTips.SelectedIndex == -1) return;
-            for (int i = 0; i < NumberOfTips; i++)
-            {
-                _engTips[englishComboTips.SelectedIndex, i] = "";
-            }
-            for (int i = 0; i < englishTextTip.Lines.Length; i++)
-            {
-                _engTips[englishComboTips.SelectedIndex, i] = englishTextTip.Lines[i];
-            }
+			for (int i = 0; i < NumberOfTips; i++)
+			{
+				_engTips[englishComboTips.SelectedIndex, i] = "";
+			}
+			for (int i = 0; i < englishTextTip.Lines.Length; i++)
+			{
+				_engTips[englishComboTips.SelectedIndex, i] = englishTextTip.Lines[i];
+			}
 		}
 
 		private void EnglishSaveClick(object sender, EventArgs e)
 		{
-            SaveEnglishFile();
+			SaveEnglishFile();
 		}
-        public void SaveEnglishFile()
-        {
-            var newFile = new StringBuilder();
-            string lastline = "";
-            if (!File.Exists(_engfileName))
-            {
-                FileStream rofl = File.Create(_engfileName);
-                rofl.Close();
-            }
-            string[] file = File.ReadAllLines(_engfileName);
-            foreach (string line in file)
-            {
-                string temp = line;
-                Match mTip = Regex.Match(line, @"""Tip_(\d)_Count""\t*""\d*""");
-                if (mTip.Success)
-                {
-                    int tipClass = Convert.ToInt32(mTip.Groups[1].Value)-1;
-                    int tp = tipClass + 1;
-                    int c = 1;
-                    temp = "";
-                    for (int i = 0; i < NumberOfTips; i++)
-                    {
-                        if (_engTips[tipClass, i] == null || _engTips[tipClass, i] == "") continue;
-                        temp += "\r\n\"Tip_" + tp + "_" + c + "\"\t\t\t\"" + _engTips[tipClass, i] + "\"";
-                        c++;
-                    }
-                    temp = "\"Tip_" + tp + "_Count\"\t\t\t\"" + (c-1) + "\"" + temp;
-                    goto end;
-                }
-                Match aTip = Regex.Match(line, @"""Tip_arena_Count""\t*""\d*""");
-                if (aTip.Success)
-                {
-                    const int tipClass = 9;
-                    int c = 1;
-                    temp = "";
-                    for (int i = 0; i < NumberOfTips; i++)
-                    {
-                        if (_engTips[tipClass, i] == null || _engTips[tipClass, i] == "") continue;
-                        temp += "\r\n\"Tip_arena_" + c + "\"\t\t\t\"" + _engTips[tipClass, i] + "\"";
-                        c++;
-                    }
-                    temp = "\"Tip_arena_Count\"\t\t\t\"" + (c-1) + "\"" + temp;
-                    goto end;
-                }
-                Match tCount = Regex.Match(line, @"""Tip_\d_Count""\t*""\d*""");
-                Match tNum = Regex.Match(line, @"""Tip_\d_\d*""\t*"".*""");
-                Match aCount = Regex.Match(line, @"""Tip_arena_Count""\t*""\d*""");
-                Match aNum = Regex.Match(line, @"""Tip_arena_\d*""\t*"".*""");
-                if (tCount.Success || tNum.Success || aCount.Success || aNum.Success) continue;
+		public void SaveEnglishFile()
+		{
+			var newFile = new StringBuilder();
+			string lastline = "";
+			if (!File.Exists(_engfileName))
+			{
+				FileStream rofl = File.Create(_engfileName);
+				rofl.Close();
+			}
+			string[] file = File.ReadAllLines(_engfileName);
+			foreach (string line in file)
+			{
+				string temp = line;
+				Match mTip = Regex.Match(line, @"""Tip_(\d)_Count""\t*""\d*""");
+				if (mTip.Success)
+				{
+					int tipClass = Convert.ToInt32(mTip.Groups[1].Value)-1;
+					int tp = tipClass + 1;
+					int c = 1;
+					temp = "";
+					for (int i = 0; i < NumberOfTips; i++)
+					{
+						if (_engTips[tipClass, i] == null || _engTips[tipClass, i] == "") continue;
+						temp += "\r\n\"Tip_" + tp + "_" + c + "\"\t\t\t\"" + _engTips[tipClass, i] + "\"";
+						c++;
+					}
+					temp = "\"Tip_" + tp + "_Count\"\t\t\t\"" + (c-1) + "\"" + temp;
+					goto end;
+				}
+				Match aTip = Regex.Match(line, @"""Tip_arena_Count""\t*""\d*""");
+				if (aTip.Success)
+				{
+					const int tipClass = 9;
+					int c = 1;
+					temp = "";
+					for (int i = 0; i < NumberOfTips; i++)
+					{
+						if (_engTips[tipClass, i] == null || _engTips[tipClass, i] == "") continue;
+						temp += "\r\n\"Tip_arena_" + c + "\"\t\t\t\"" + _engTips[tipClass, i] + "\"";
+						c++;
+					}
+					temp = "\"Tip_arena_Count\"\t\t\t\"" + (c-1) + "\"" + temp;
+					goto end;
+				}
+				Match tCount = Regex.Match(line, @"""Tip_\d_Count""\t*""\d*""");
+				Match tNum = Regex.Match(line, @"""Tip_\d_\d*""\t*"".*""");
+				Match aCount = Regex.Match(line, @"""Tip_arena_Count""\t*""\d*""");
+				Match aNum = Regex.Match(line, @"""Tip_arena_\d*""\t*"".*""");
+				if (tCount.Success || tNum.Success || aCount.Success || aNum.Success) continue;
 
-                end:
-                    newFile.Append(temp + "\r\n");
+				end:
+					newFile.Append(temp + "\r\n");
 // ReSharper disable RedundantAssignment
-                    lastline = temp;
+					lastline = temp;
 // ReSharper restore RedundantAssignment
-            }
-            try
-            {
-                var lol = new StreamWriter(_engfileName);
-                lol.Write(newFile.ToString());
-                lol.Close();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(Resources.Form1_SaveFile_Something_went_wrong_while_saving_ + Environment.NewLine + ex,
-                                Resources.Form1_SaveFile_Who_send_all_these_babies_to_fight__,
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
-            progressReading.Value = 100;
-        }
+			}
+			try
+			{
+				var lol = new StreamWriter(_engfileName);
+				lol.Write(newFile.ToString());
+				lol.Close();
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show(Resources.Form1_SaveFile_Something_went_wrong_while_saving_ + Environment.NewLine + ex,
+								Resources.Form1_SaveFile_Who_send_all_these_babies_to_fight__,
+								MessageBoxButtons.OK,
+								MessageBoxIcon.Error);
+			}
+			progressReading.Value = 100;
+		}
 	}
 }
