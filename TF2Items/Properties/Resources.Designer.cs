@@ -153,7 +153,7 @@ namespace TF2Items.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Who send all these babies to fight?!.
+        ///   Looks up a localized string similar to Who sent all these babies to fight?!.
         /// </summary>
         internal static string Form1_button1_Click_Who_send_all_these_babies_to_fight__ {
             get {
@@ -198,7 +198,16 @@ namespace TF2Items.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I&apos;ve saved the file, but TF2 seems to be open. To see the changes you made, please restart the game..
+        ///   Looks up a localized string similar to After saving, remember to place this in your \steamapps\username\team fortress 2\tf\resources\ folder!.
+        /// </summary>
+        internal static string MainForm_btnEngSave_Click_ {
+            get {
+                return ResourceManager.GetString("MainForm_btnEngSave_Click_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;ve saved the file, but hl2.exe (which could be TF2) seems to be open. To see the changes you made, please restart the game. If TF2 isn&apos;t open, ignore this message..
         /// </summary>
         internal static string MainForm_BtnSaveClick_I_ve_saved_the_file__but_TF2_seems_to_be_open__To_see_the_changes_you_made__please_restart_the_game_ {
             get {
