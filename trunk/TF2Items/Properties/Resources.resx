@@ -178,7 +178,7 @@ After saving, remember to place this in your \steamapps\username\team fortress 2
   </data>
   <data name="MainForm_Button2Click_" xml:space="preserve">
     <value>You've reached the maximum number of set items allowed!
-It's just impossible to equip more than </value>
+It's just impossible to equip more</value>
   </data>
   <data name="MainForm_Button2Click__items_at_once_" xml:space="preserve">
     <value> items at once!</value>
