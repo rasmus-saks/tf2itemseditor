@@ -227,7 +227,7 @@ namespace TF2Items.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to You&apos;ve reached the maximum number of set items allowed!
-        ///It&apos;s just impossible to equip more.
+        ///It&apos;s just impossible to equip more than .
         /// </summary>
         internal static string MainForm_Button2Click_ {
             get {
