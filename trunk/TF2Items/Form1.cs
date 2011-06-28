@@ -68,12 +68,14 @@ namespace TF2Items
 		private int _lastSetItem;
 		private int _lastItem;
 
-
 		//tf_english tab
 		private string _engfileName;
 
 		private const int NumberOfTips = 50;
 		private readonly string[,] _engTips = new string[10, NumberOfTips];
+
+		//Ctx tab
+		private string _ctxFileName;
 
 		public MainForm()
 		{
@@ -226,7 +228,7 @@ namespace TF2Items
 							current = tmp;
 							i++;
 							aN = 0;
-							if (current == "afafassfag43") continue;
+							//if (current == "afafassfag43") continue;
 						}
 						if (line.Contains("\"attributes\""))
 						{
@@ -942,7 +944,7 @@ namespace TF2Items
 						for (int j = 0; j < NumberOfSetItems; j++)
 						{
 							if (_setItems[iSet, j] == null || _setItems[iSet, j] == "") continue;
-							temp += "\r\n\t\t\t\t\"" + _setItems[iSet, j] + "\"\t\"1\"";
+							temp += "\r\n\t\t\t\t\"" + _setItems[iSet, j].TrimEnd(new char[] {' '}) + "\"\t\"1\"";
 						}
 						temp += "\r\n\t\t\t}\r\n";
 						if (DoesSetHaveAttribs(iSet))
@@ -1957,6 +1959,8 @@ namespace TF2Items
 			button2.Enabled = false;
 			button3.Enabled = false;
 
+            tabControl1.TabPages.Remove(tab_ctx);//Removes work in progress tab from view
+
 		}
 		private void GridSetUserDeletedRow(object sender, DataGridViewRowEventArgs e)
 		{
@@ -2118,8 +2122,8 @@ namespace TF2Items
 			string lastline = "";
 			if (!File.Exists(_engfileName))
 			{
-				FileStream rofl = File.Create(_engfileName);
-				rofl.Close();
+				FileStream create = File.Create(_engfileName);
+				create.Close();
 			}
 			string[] file = File.ReadAllLines(_engfileName);
 			foreach (string line in file)
@@ -2182,6 +2186,75 @@ namespace TF2Items
 					MessageBoxIcon.Error);
 			}
 			progressReading.Value = 100;
+		}
+
+		//CTX LOADING
+		private void btn_open_ctx_Click(object sender, EventArgs e)
+		{
+			filediagOpen.Title = "Select a file to open";
+
+			filediagOpen.Filter = "ctx files|*.ctx|txt files|*.txt|Team Fortress 2 Content|team fortress 2 content.gcf";
+			filediagOpen.RestoreDirectory = false;
+			DialogResult result = filediagOpen.ShowDialog();
+			if (result != DialogResult.OK) return;
+			if (filediagOpen.FileName.Contains(".gcf"))
+			{
+				var extract = new Process
+				              	{
+				              		StartInfo =
+				              			{
+				              				FileName = "HLExtract.exe",
+				              				Arguments = "-c -v -p \"" + filediagOpen.FileName +
+				              				            "\" -e \"root\\tf\\scripts\"" + "-d \"" + Path.GetDirectoryName(filediagOpen.FileName) + "\""
+				              			}
+				              	};
+				if (!File.Exists("HLExtract.exe"))
+				{
+					MessageBox.Show(Resources.Form1_button1_Click_HLExtract_exe_is_missing_from_the_program_folder_,
+					                Resources.Form1_button1_Click_Who_send_all_these_babies_to_fight__,
+					                MessageBoxButtons.OK,
+					                MessageBoxIcon.Error);
+					return;
+				}
+				if (!File.Exists("HLLib.dll"))
+				{
+					MessageBox.Show(Resources.Form1_button1_Click_HLLib_dll_is_missing_from_the_program_folder_,
+					                Resources.Form1_button1_Click_Who_send_all_these_babies_to_fight__,
+					                MessageBoxButtons.OK,
+					                MessageBoxIcon.Error);
+					return;
+				}
+				try
+				{
+					//extract.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+					extract.Start();
+					/* System.IO.WaitForChangedResult resultt;
+					string directory = fileName.Replace("items_game.txt", "");
+					System.IO.FileSystemWatcher watcher = new System.IO.FileSystemWatcher(directory, "items_game.txt");
+					resultt = watcher.WaitForChanged(System.IO.WatcherChangeTypes.All);*/
+				}
+				catch
+				{
+					MessageBox.Show(Resources.Form1_button1_Click_Something_went_wrong_when_extracting___,
+					                Resources.Form1_button1_Click_Who_send_all_these_babies_to_fight__,
+					                MessageBoxButtons.OK,
+					                MessageBoxIcon.Error);
+					return;
+				}
+				MessageBox.Show(
+					"Successfully extracted all ctx files to " + Environment.NewLine +
+					filediagOpen.FileName.Replace("team fortress 2 content.gcf", "") +
+					Resources.Form1_button1_Click_,
+					Resources.Form1_button1_Click_Listen_up_,
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Information);
+				if (!extract.HasExited)
+				{
+					extract.Kill();
+					extract.Close();
+				}
+			}
+			else _ctxFileName = filediagOpen.FileName;
 		}
 	}
 }
