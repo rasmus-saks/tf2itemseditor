@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnOpen = new System.Windows.Forms.Button();
             this.filediagOpen = new System.Windows.Forms.OpenFileDialog();
             this.btnSave = new System.Windows.Forms.Button();
@@ -81,9 +81,12 @@
             this.btnCopy = new System.Windows.Forms.Button();
             this.englishOpen = new System.Windows.Forms.Button();
             this.englishSave = new System.Windows.Forms.Button();
-            this.englishSaveAs = new System.Windows.Forms.Button();
             this.englishComboTips = new System.Windows.Forms.ComboBox();
             this.englishTextTip = new System.Windows.Forms.TextBox();
+            this.btn_open_ctx = new System.Windows.Forms.Button();
+            this.btn_save_ctx = new System.Windows.Forms.Button();
+            this.btn_save_ctx_as = new System.Windows.Forms.Button();
+            this.englishSaveAs = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -124,6 +127,8 @@
             this.tab_tfenglish = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.englishProgress = new System.Windows.Forms.ProgressBar();
+            this.tab_ctx = new System.Windows.Forms.TabPage();
+            this.progress_ctx = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid_attribs)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -137,6 +142,7 @@
             this.tab_itemsgame.SuspendLayout();
             this.tab_tfenglish.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.tab_ctx.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOpen
@@ -407,27 +413,27 @@
             this.grid_attribs.AllowDrop = true;
             this.grid_attribs.AllowUserToAddRows = false;
             this.grid_attribs.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grid_attribs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grid_attribs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.grid_attribs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_attribs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.data_hdr_name,
             this.grid_hdr_class,
             this.grid_hdr_value});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grid_attribs.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grid_attribs.DefaultCellStyle = dataGridViewCellStyle6;
             this.grid_attribs.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.grid_attribs.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.grid_attribs.Location = new System.Drawing.Point(5, 19);
@@ -616,16 +622,6 @@
             this.englishSave.UseVisualStyleBackColor = true;
             this.englishSave.Click += new System.EventHandler(this.EnglishSaveClick);
             // 
-            // englishSaveAs
-            // 
-            this.englishSaveAs.Location = new System.Drawing.Point(109, 16);
-            this.englishSaveAs.Name = "englishSaveAs";
-            this.englishSaveAs.Size = new System.Drawing.Size(28, 23);
-            this.englishSaveAs.TabIndex = 7;
-            this.englishSaveAs.Text = "As";
-            this.ListToolTip.SetToolTip(this.englishSaveAs, "Save the file to a different path.");
-            this.englishSaveAs.UseVisualStyleBackColor = true;
-            // 
             // englishComboTips
             // 
             this.englishComboTips.FormattingEnabled = true;
@@ -657,6 +653,49 @@
             this.englishTextTip.TabIndex = 1;
             this.ListToolTip.SetToolTip(this.englishTextTip, "The tips, place every tip on a separate line.");
             this.englishTextTip.TextChanged += new System.EventHandler(this.EnglishTextTipTextChanged);
+            // 
+            // btn_open_ctx
+            // 
+            this.btn_open_ctx.Location = new System.Drawing.Point(6, 16);
+            this.btn_open_ctx.Name = "btn_open_ctx";
+            this.btn_open_ctx.Size = new System.Drawing.Size(49, 23);
+            this.btn_open_ctx.TabIndex = 8;
+            this.btn_open_ctx.Text = "Open";
+            this.ListToolTip.SetToolTip(this.btn_open_ctx, "Open a file.");
+            this.btn_open_ctx.UseVisualStyleBackColor = true;
+            this.btn_open_ctx.Click += new System.EventHandler(this.btn_open_ctx_Click);
+            // 
+            // btn_save_ctx
+            // 
+            this.btn_save_ctx.Location = new System.Drawing.Point(61, 16);
+            this.btn_save_ctx.Name = "btn_save_ctx";
+            this.btn_save_ctx.Size = new System.Drawing.Size(49, 23);
+            this.btn_save_ctx.TabIndex = 9;
+            this.btn_save_ctx.Text = "Save";
+            this.ListToolTip.SetToolTip(this.btn_save_ctx, "Save the file.");
+            this.btn_save_ctx.UseVisualStyleBackColor = true;
+            // 
+            // btn_save_ctx_as
+            // 
+            this.btn_save_ctx_as.Location = new System.Drawing.Point(109, 16);
+            this.btn_save_ctx_as.Name = "btn_save_ctx_as";
+            this.btn_save_ctx_as.Size = new System.Drawing.Size(28, 23);
+            this.btn_save_ctx_as.TabIndex = 11;
+            this.btn_save_ctx_as.Text = "As";
+            this.ListToolTip.SetToolTip(this.btn_save_ctx_as, "Save the file to a different path.");
+            this.btn_save_ctx_as.UseVisualStyleBackColor = true;
+            this.btn_save_ctx_as.Visible = false;
+            // 
+            // englishSaveAs
+            // 
+            this.englishSaveAs.Location = new System.Drawing.Point(109, 16);
+            this.englishSaveAs.Name = "englishSaveAs";
+            this.englishSaveAs.Size = new System.Drawing.Size(28, 23);
+            this.englishSaveAs.TabIndex = 7;
+            this.englishSaveAs.Text = "As";
+            this.ListToolTip.SetToolTip(this.englishSaveAs, "Save the file to a different path.");
+            this.englishSaveAs.UseVisualStyleBackColor = true;
+            this.englishSaveAs.Visible = false;
             // 
             // label22
             // 
@@ -1003,27 +1042,27 @@
             this.gridSet.AllowDrop = true;
             this.gridSet.AllowUserToAddRows = false;
             this.gridSet.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.gridSet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridSet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridSet.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridSet.DefaultCellStyle = dataGridViewCellStyle8;
             this.gridSet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.gridSet.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.gridSet.Location = new System.Drawing.Point(6, 19);
@@ -1062,6 +1101,7 @@
             // 
             this.tabControl1.Controls.Add(this.tab_itemsgame);
             this.tabControl1.Controls.Add(this.tab_tfenglish);
+            this.tabControl1.Controls.Add(this.tab_ctx);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.tabControl1.HotTrack = true;
             this.tabControl1.ItemSize = new System.Drawing.Size(150, 18);
@@ -1138,6 +1178,29 @@
             this.englishProgress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.englishProgress.TabIndex = 6;
             // 
+            // tab_ctx
+            // 
+            this.tab_ctx.Controls.Add(this.progress_ctx);
+            this.tab_ctx.Controls.Add(this.btn_open_ctx);
+            this.tab_ctx.Controls.Add(this.btn_save_ctx);
+            this.tab_ctx.Controls.Add(this.btn_save_ctx_as);
+            this.tab_ctx.Location = new System.Drawing.Point(4, 22);
+            this.tab_ctx.Name = "tab_ctx";
+            this.tab_ctx.Size = new System.Drawing.Size(1232, 629);
+            this.tab_ctx.TabIndex = 2;
+            this.tab_ctx.Text = "ctx files";
+            this.tab_ctx.UseVisualStyleBackColor = true;
+            // 
+            // progress_ctx
+            // 
+            this.progress_ctx.Location = new System.Drawing.Point(6, 6);
+            this.progress_ctx.MarqueeAnimationSpeed = 1;
+            this.progress_ctx.Name = "progress_ctx";
+            this.progress_ctx.Size = new System.Drawing.Size(1209, 10);
+            this.progress_ctx.Step = 1;
+            this.progress_ctx.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progress_ctx.TabIndex = 10;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1171,6 +1234,7 @@
             this.tab_tfenglish.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.tab_ctx.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1263,11 +1327,16 @@
         private System.Windows.Forms.TabPage tab_tfenglish;
         private System.Windows.Forms.ProgressBar englishProgress;
         private System.Windows.Forms.Button englishOpen;
-        private System.Windows.Forms.Button englishSave;
-        private System.Windows.Forms.Button englishSaveAs;
+		private System.Windows.Forms.Button englishSave;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.ComboBox englishComboTips;
         private System.Windows.Forms.TextBox englishTextTip;
+		private System.Windows.Forms.TabPage tab_ctx;
+		private System.Windows.Forms.ProgressBar progress_ctx;
+		private System.Windows.Forms.Button btn_open_ctx;
+		private System.Windows.Forms.Button btn_save_ctx;
+		private System.Windows.Forms.Button btn_save_ctx_as;
+		private System.Windows.Forms.Button englishSaveAs;
     }
 }
 
