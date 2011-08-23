@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="TF2 Items Editor.exe" version="1.1.6.11" publicKeyToken="ec885eabeb6ba575" language="en" processorArchitecture="x86" type="win32" />
+  <description asmv2:iconFile="033bdd91842b6aca0633ee1e5f3e6b82f2e8962f.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="TF2 Items Editor" version="1.1.6.14" language="neutral" processorArchitecture="x86" />
+    <commandLine file="TF2 Items Editor.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="WindowsBase" version="3.0.0.0" publicKeyToken="31bf3856ad364e35" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TF2 Items Editor.exe" size="228352">
+      <assemblyIdentity name="TF2 Items Editor" version="1.1.6.14" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>XyMv8elf6duZybfekwsb0nZopow=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="033bdd91842b6aca0633ee1e5f3e6b82f2e8962f.ico" size="21342">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>AzvdkYQrasoGM+4eXz5rgvLoli8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="HLExtract.exe" size="101376">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>h+JMs9ixki7mGf8v71Zel7jzd3M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="HLLib.dll" size="221184">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>olKZG5gZbXeY/Mr/I2lHx0CkMqQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="TF2 Items Editor.exe.config" size="117">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>a3Forh+i+nzyaONrpGeK7Sudu10=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=Rasmus-PC\Bogeyman" issuerKeyHash="94d8f1b1b10c6ef04468a0d97037e92294d5cd67" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>/OozU2zyEXJksotWINGivUlbEPQ=</DigestValue></Reference></SignedInfo><SignatureValue>DAzUp+R5r9GCoK3SkOp1gC0OhhZRPJtTHwh2YIhMkjsGEIrEX7WzxMQPeWzKGJQcdkhnuD/15Yk75kqC8gEN6lR8wu/cm6W4XcgJQ7rjqhRQx3DCzng3UgVMAVmm5PNm4QZoeLxaZNBPP62whlofA6w9puhbOI6kFORKG1fF/mY=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>qVSh9mnnt8bla4ILekfsZD08hqFwgV2RwCw+U8tMyC1GzxD9uPDyjbEXpXvkH3l6wohl+RPBa1EHnHgYzNzVDrmn+0EdvcUnww4vlhRn4kJMo42I8L2LmEm/Q1WTv3/FGqM+XcSCWzHOgxnXqyXzYqvlIIABAfM/MT3jLRAOsPk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="f4105b49bda2d120568bb2647211f26c5333eafc" Description="" Url=""><as:assemblyIdentity name="TF2 Items Editor.exe" version="1.1.6.11" publicKeyToken="ec885eabeb6ba575" language="en" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=Rasmus-PC\Bogeyman</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>LQap9YyPYL7mnHcvhjrx8SLN6LU=</DigestValue></Reference></SignedInfo><SignatureValue>SByaSEOR4f0y6Yoyh6nNqYVtULnM1lXSJw6igRg74s+nr4o1Cpyrs5TwiIklUkxUJOSxrYfJLoAKZXFEm+IEzuOkNFBtPKfSJyaTOcQAA4Y/xPLFdaMVg1UPG6JEOB6N0U5te4fPy8PncYhWnivmKzzGo29oWa5OX3NnqGSzziQ=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>qVSh9mnnt8bla4ILekfsZD08hqFwgV2RwCw+U8tMyC1GzxD9uPDyjbEXpXvkH3l6wohl+RPBa1EHnHgYzNzVDrmn+0EdvcUnww4vlhRn4kJMo42I8L2LmEm/Q1WTv3/FGqM+XcSCWzHOgxnXqyXzYqvlIIABAfM/MT3jLRAOsPk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB4TCCAUqgAwIBAgIQJyOZS8me1oRA8jctE96rXTANBgkqhkiG9w0BAQUFADAvMS0wKwYDVQQDHiQAUgBhAHMAbQB1AHMALQBQAEMAXABCAG8AZwBlAHkAbQBhAG4wHhcNMTEwMTA5MTYzNjEwWhcNMTIwMTA5MjIzNjEwWjAvMS0wKwYDVQQDHiQAUgBhAHMAbQB1AHMALQBQAEMAXABCAG8AZwBlAHkAbQBhAG4wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKlUofZp57fG5WuCC3pH7GQ9PIahcIFdkcAsPlPLTMgtRs8Q/bjw8o2xF6V75B95esKIZfkTwWtRB5x4GMzc1Q65p/tBHb3FJ8MOL5YUZ+JCTKONiPC9i5hJv0NVk79/xRqjPl3EglsxzoMZ16sl82Kr5SCAAQHzPzE94y0QDrD5AgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAR9skz6dqcryKP4QAmjlf4hr3hBl0p7VzsKohq8w7K08kWFDQokNec4x11fZq+mJlh4dHtG5U0QuGnPaAiFVzNPhacVr8ufAaFvixqg7Qe2hpMPYKDQrgcm5s4URE72CE5SckS3zfBNXsdf+OBxwiX7Lu0aB7uLAuivZIqFI+WaA=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
