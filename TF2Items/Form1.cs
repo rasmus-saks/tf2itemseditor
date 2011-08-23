@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Deployment.Application;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -1683,8 +1685,9 @@ namespace TF2Items
 			_saveStr = "";
 			bool saving = false;
 
-			foreach (string line in file)
+			for(int i = 0; i < file.Length; i++)
 			{
+			    string line = file[i];
 				string temp = line;
 				if (line.Contains("{"))
 				{
@@ -1696,18 +1699,14 @@ namespace TF2Items
 					level--;
 					if (!saving) goto end;
 				}
-
-				if (IsNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) &&
-					(lastline.Contains("\t\t}") || lastline.Contains("\t\t{")))
+                if(line.Contains("\"name\"") && line.Contains("\"" + comboName.Items[comboName.SelectedIndex].ToString().Replace("\r\n", "") + "\""))
 				{
-					if (Convert.ToInt32(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) ==
-						comboName.SelectedIndex)
-					{
-						saving = true;
-						_saveNum = comboName.SelectedIndex;
-						_saveStr += line + "\r\n";
-						goto end;
-					}
+					saving = true;
+					_saveNum = comboName.SelectedIndex;
+				    _saveStr += file[i - 2] + "\r\n";
+				    _saveStr += file[i - 1] + "\r\n";
+					_saveStr += line + "\r\n";
+					goto end;
 				}
 				if (saving && level == 2 && line.Contains("\t\t}"))
 				{
@@ -1721,6 +1720,10 @@ namespace TF2Items
 			var rofll = new StreamWriter(@tmpFile);
 			rofll.Write(_saveStr);
 			rofll.Close();
+		    MessageBox.Show("This item has been saved to " + @tmpFile,
+		                    "Item saved",
+		                    MessageBoxButtons.OK,
+		                    MessageBoxIcon.Information);
 			return;
 		}
 
@@ -1922,7 +1925,7 @@ namespace TF2Items
 
 		private void MainFormLoad(object sender, EventArgs e)
 		{
-			Text = Resources.MainForm_MainFormLoad_TF2_Items_Editor_v + System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+            Text = Resources.MainForm_MainFormLoad_TF2_Items_Editor_v + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.Major + "." + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.Minor + " build #" + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.Revision;
 			englishComboTips.Enabled = false;
 			englishTextTip.Enabled = false;
 			txt_item_class.Enabled = false;
@@ -1959,9 +1962,25 @@ namespace TF2Items
 			button2.Enabled = false;
 			button3.Enabled = false;
 
-            tabControl1.TabPages.Remove(tab_ctx);//Removes work in progress tab from view
+			tabControl1.TabPages.Remove(tab_ctx);//Removes work in progress tab from view
+
+            if (ApplicationDeployment.IsNetworkDeployed && ApplicationDeployment.CurrentDeployment.IsFirstRun)
+            {
+                var cl = new WebClient();
+                cl.DownloadStringCompleted += ChangesDownloaded;
+                cl.DownloadStringAsync(new Uri("http://tf2itemseditor.googlecode.com/svn/trunk/Updater/changes.txt"));
+
+            }
 
 		}
+        private void ChangesDownloaded(object sender, DownloadStringCompletedEventArgs args)
+        {
+            using (var form = new Changes())
+            {
+                form.Controls["textBox1"].Text = args.Result;
+                form.ShowDialog();
+            }
+        }
 		private void GridSetUserDeletedRow(object sender, DataGridViewRowEventArgs e)
 		{
 			if (comboSets.SelectedIndex == -1) return;
@@ -2200,28 +2219,28 @@ namespace TF2Items
 			if (filediagOpen.FileName.Contains(".gcf"))
 			{
 				var extract = new Process
-				              	{
-				              		StartInfo =
-				              			{
-				              				FileName = "HLExtract.exe",
-				              				Arguments = "-c -v -p \"" + filediagOpen.FileName +
-				              				            "\" -e \"root\\tf\\scripts\"" + "-d \"" + Path.GetDirectoryName(filediagOpen.FileName) + "\""
-				              			}
-				              	};
+								{
+									StartInfo =
+										{
+											FileName = "HLExtract.exe",
+											Arguments = "-c -v -p \"" + filediagOpen.FileName +
+														"\" -e \"root\\tf\\scripts\"" + "-d \"" + Path.GetDirectoryName(filediagOpen.FileName) + "\""
+										}
+								};
 				if (!File.Exists("HLExtract.exe"))
 				{
 					MessageBox.Show(Resources.Form1_button1_Click_HLExtract_exe_is_missing_from_the_program_folder_,
-					                Resources.Form1_button1_Click_Who_send_all_these_babies_to_fight__,
-					                MessageBoxButtons.OK,
-					                MessageBoxIcon.Error);
+									Resources.Form1_button1_Click_Who_send_all_these_babies_to_fight__,
+									MessageBoxButtons.OK,
+									MessageBoxIcon.Error);
 					return;
 				}
 				if (!File.Exists("HLLib.dll"))
 				{
 					MessageBox.Show(Resources.Form1_button1_Click_HLLib_dll_is_missing_from_the_program_folder_,
-					                Resources.Form1_button1_Click_Who_send_all_these_babies_to_fight__,
-					                MessageBoxButtons.OK,
-					                MessageBoxIcon.Error);
+									Resources.Form1_button1_Click_Who_send_all_these_babies_to_fight__,
+									MessageBoxButtons.OK,
+									MessageBoxIcon.Error);
 					return;
 				}
 				try
@@ -2236,9 +2255,9 @@ namespace TF2Items
 				catch
 				{
 					MessageBox.Show(Resources.Form1_button1_Click_Something_went_wrong_when_extracting___,
-					                Resources.Form1_button1_Click_Who_send_all_these_babies_to_fight__,
-					                MessageBoxButtons.OK,
-					                MessageBoxIcon.Error);
+									Resources.Form1_button1_Click_Who_send_all_these_babies_to_fight__,
+									MessageBoxButtons.OK,
+									MessageBoxIcon.Error);
 					return;
 				}
 				MessageBox.Show(
@@ -2256,5 +2275,5 @@ namespace TF2Items
 			}
 			else _ctxFileName = filediagOpen.FileName;
 		}
-	}
+    }
 }
