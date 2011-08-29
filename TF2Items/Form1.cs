@@ -813,6 +813,7 @@ namespace TF2Items
 		}
 		private void ListAllAttribsDoubleClick(object sender, EventArgs e)
 		{
+            if (comboName.SelectedIndex <= 30) return;
 			if (radioItem.Checked)
 			{
 				if (comboName.SelectedIndex == -1) return;
@@ -885,6 +886,7 @@ namespace TF2Items
 				{
 					temp = "//items_game.txt generated using " + Text + " (Created by bogeyman_EST)\r\n" + line;
 				}
+
 
 				if (line.Contains("{")) level++;
 				if (line.Contains("}")) level--;
@@ -1337,7 +1339,7 @@ namespace TF2Items
 									break;
 								}
 								if (h != wasInSet.Length - 1) continue;
-								temp += "\t\t\t\"item_set\"\t\"" + itm + "\"\r\n";
+								temp += (don ? "\r\n" : "") + "\t\t\t\"item_set\"\t\"" + itm + "\"\r\n";
 								count = 0;
 								break;
 							}
@@ -1345,10 +1347,14 @@ namespace TF2Items
 						}
 						if (brk) break;
 					}
+                    if (current == "The Holy Mackerel")
+                    {
+                        MessageBox.Show("a");
+                    }
 					temp += count > 0 ? "\r\n\t\t}" : "\t\t}";
 					goto end;
 				}
-				if (IsNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) && lastline.Contains("\t\t\t}")) temp = "\t\t}\r\n" + line;
+				if (IsNumeric(line.Replace("\"", "").Replace("\t", "").Replace(" ", "")) && lastline.Contains("\t\t\t}") && !lastline.Contains("\"item_set\"") && lastline.Contains("\"attributes\"")) temp = "\t\t}\r\n" + line;
 			end:
 				newFile.Append(temp + "\r\n");
 				lastline = temp;
@@ -1687,7 +1693,7 @@ namespace TF2Items
 
 			for(int i = 0; i < file.Length; i++)
 			{
-			    string line = file[i];
+				string line = file[i];
 				string temp = line;
 				if (line.Contains("{"))
 				{
@@ -1699,12 +1705,12 @@ namespace TF2Items
 					level--;
 					if (!saving) goto end;
 				}
-                if(line.Contains("\"name\"") && line.Contains("\"" + comboName.Items[comboName.SelectedIndex].ToString().Replace("\r\n", "") + "\""))
+				if(line.Contains("\"name\"") && line.Contains("\"" + comboName.Items[comboName.SelectedIndex].ToString().Replace("\r\n", "") + "\""))
 				{
 					saving = true;
 					_saveNum = comboName.SelectedIndex;
-				    _saveStr += file[i - 2] + "\r\n";
-				    _saveStr += file[i - 1] + "\r\n";
+					_saveStr += file[i - 2] + "\r\n";
+					_saveStr += file[i - 1] + "\r\n";
 					_saveStr += line + "\r\n";
 					goto end;
 				}
@@ -1720,10 +1726,10 @@ namespace TF2Items
 			var rofll = new StreamWriter(@tmpFile);
 			rofll.Write(_saveStr);
 			rofll.Close();
-		    MessageBox.Show("This item has been saved to " + @tmpFile,
-		                    "Item saved",
-		                    MessageBoxButtons.OK,
-		                    MessageBoxIcon.Information);
+			MessageBox.Show("This item has been saved to " + @tmpFile,
+							"Item saved",
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Information);
 			return;
 		}
 
@@ -1925,7 +1931,7 @@ namespace TF2Items
 
 		private void MainFormLoad(object sender, EventArgs e)
 		{
-            Text = Resources.MainForm_MainFormLoad_TF2_Items_Editor_v + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.Major + "." + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.Minor + " build #" + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.Revision;
+			Text = Resources.MainForm_MainFormLoad_TF2_Items_Editor_v + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.Major + "." + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.Minor + " build #" + System.Reflection.Assembly.GetEntryAssembly().GetName().Version.Revision;
 			englishComboTips.Enabled = false;
 			englishTextTip.Enabled = false;
 			txt_item_class.Enabled = false;
@@ -1964,23 +1970,23 @@ namespace TF2Items
 
 			tabControl1.TabPages.Remove(tab_ctx);//Removes work in progress tab from view
 
-            if (ApplicationDeployment.IsNetworkDeployed && ApplicationDeployment.CurrentDeployment.IsFirstRun)
-            {
-                var cl = new WebClient();
-                cl.DownloadStringCompleted += ChangesDownloaded;
-                cl.DownloadStringAsync(new Uri("http://tf2itemseditor.googlecode.com/svn/trunk/Updater/changes.txt"));
+			if (ApplicationDeployment.IsNetworkDeployed && ApplicationDeployment.CurrentDeployment.IsFirstRun)
+			{
+				var cl = new WebClient();
+				cl.DownloadStringCompleted += ChangesDownloaded;
+				cl.DownloadStringAsync(new Uri("http://tf2itemseditor.googlecode.com/svn/trunk/Updater/changes.txt"));
 
-            }
+			}
 
 		}
-        private void ChangesDownloaded(object sender, DownloadStringCompletedEventArgs args)
-        {
-            using (var form = new Changes())
-            {
-                form.Controls["textBox1"].Text = args.Result;
-                form.ShowDialog();
-            }
-        }
+		private void ChangesDownloaded(object sender, DownloadStringCompletedEventArgs args)
+		{
+			using (var form = new Changes())
+			{
+				form.Controls["textBox1"].Text = args.Result;
+				form.ShowDialog();
+			}
+		}
 		private void GridSetUserDeletedRow(object sender, DataGridViewRowEventArgs e)
 		{
 			if (comboSets.SelectedIndex == -1) return;
@@ -2275,5 +2281,5 @@ namespace TF2Items
 			}
 			else _ctxFileName = filediagOpen.FileName;
 		}
-    }
+	}
 }
