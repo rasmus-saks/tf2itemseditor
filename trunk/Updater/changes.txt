@@ -1,3 +1,2 @@
-Added a Recent Changes dialog.
-Updated attributes to Deus-Ex update.
-Fixed Save Item button.
+Removed ability to add attributes to stock items.
+Fixed corrupting file when saving after adding attributes to some weapons (for example The Shortstop, The Holy Mackerel and Mad Milk).
