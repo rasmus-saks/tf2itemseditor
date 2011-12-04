@@ -1,0 +1,7 @@
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormatTest\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormatTest\bin\Release\ValveFormatTest.exe
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormatTest\bin\Release\ValveFormatTest.pdb
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormatTest\bin\Release\ValveFormat.dll
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormatTest\bin\Release\ValveFormat.pdb
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormatTest\obj\x86\Release\ValveFormatTest.exe
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormatTest\obj\x86\Release\ValveFormatTest.pdb

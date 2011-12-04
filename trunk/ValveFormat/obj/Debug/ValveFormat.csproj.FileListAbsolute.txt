@@ -1,0 +1,5 @@
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormat\bin\Debug\ValveFormat.dll
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormat\bin\Debug\ValveFormat.pdb
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormat\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormat\obj\Debug\ValveFormat.dll
+C:\Users\Bogeyman\Documents\Visual Studio 2010\Projects\TF2Items\ValveFormat\obj\Debug\ValveFormat.pdb
