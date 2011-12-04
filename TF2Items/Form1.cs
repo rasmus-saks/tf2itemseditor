@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using TF2Items.Dialogs;
 using TF2Items.Properties;
 
 
@@ -813,7 +814,7 @@ namespace TF2Items
 		}
 		private void ListAllAttribsDoubleClick(object sender, EventArgs e)
 		{
-            if (comboName.SelectedIndex <= 30) return;
+			if (comboName.SelectedIndex <= 30) return;
 			if (radioItem.Checked)
 			{
 				if (comboName.SelectedIndex == -1) return;
@@ -925,7 +926,7 @@ namespace TF2Items
 					for (int k = 0; k < comboSets.Items.Count; k++)
 					{
 						bool brk = false;
-						if (comboSets.Items[k] != ss) continue;
+						if (comboSets.Items[k].ToString() != ss) continue;
 						for (int j = 0; j < NumberOfSetItems; j++)
 						{
 							if (_setItems[k, j] != current) continue;
@@ -1347,10 +1348,6 @@ namespace TF2Items
 						}
 						if (brk) break;
 					}
-                    if (current == "The Holy Mackerel")
-                    {
-                        MessageBox.Show("a");
-                    }
 					temp += count > 0 ? "\r\n\t\t}" : "\t\t}";
 					goto end;
 				}

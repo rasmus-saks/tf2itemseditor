@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TF2Items</RootNamespace>
     <AssemblyName>TF2 Items Editor</AssemblyName>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -31,7 +31,7 @@
     <ProductName>TF2 Items Editor</ProductName>
     <PublisherName>bogeyman_EST</PublisherName>
     <MinimumRequiredVersion>1.1.6.13</MinimumRequiredVersion>
-    <ApplicationRevision>16</ApplicationRevision>
+    <ApplicationRevision>17</ApplicationRevision>
     <ApplicationVersion>1.1.6.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -83,11 +83,73 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Changes.cs">
+    <Compile Include="Dialogs\AboutWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Changes.Designer.cs">
+    <Compile Include="Dialogs\AboutWindow.Designer.cs">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AddSetWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddSetWindow.Designer.cs">
+      <DependentUpon>AddSetWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Changes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Changes.Designer.cs">
       <DependentUpon>Changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CreateReferenceWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CreateReferenceWindow.Designer.cs">
+      <DependentUpon>CreateReferenceWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditSetsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditSetsWindow.Designer.cs">
+      <DependentUpon>EditSetsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OpenFileWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\OpenFileWindow.Designer.cs">
+      <DependentUpon>OpenFileWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SettingsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SettingsWindow.Designer.cs">
+      <DependentUpon>SettingsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SteamFolderSelectWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SteamFolderSelectWindow.Designer.cs">
+      <DependentUpon>SteamFolderSelectWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnglishReference.cs" />
+    <Compile Include="HLLib.cs" />
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AttributesWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AttributesWindow.Designer.cs">
+      <DependentUpon>AttributesWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ReferenceWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ReferenceWindow.Designer.cs">
+      <DependentUpon>ReferenceWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolTips.cs" />
     <Compile Include="Converter.cs" />
@@ -100,12 +162,39 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Changes.resx">
+    <EmbeddedResource Include="Dialogs\AboutWindow.resx">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AddSetWindow.resx">
+      <DependentUpon>AddSetWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Changes.resx">
       <DependentUpon>Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CreateReferenceWindow.resx">
+      <DependentUpon>CreateReferenceWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditSetsWindow.resx">
+      <DependentUpon>EditSetsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\OpenFileWindow.resx">
+      <DependentUpon>OpenFileWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SettingsWindow.resx">
+      <DependentUpon>SettingsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SteamFolderSelectWindow.resx">
+      <DependentUpon>SteamFolderSelectWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AttributesWindow.resx">
+      <DependentUpon>AttributesWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -117,9 +206,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Dialogs\ReferenceWindow.resx">
+      <DependentUpon>ReferenceWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -131,12 +223,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="033bdd91842b6aca0633ee1e5f3e6b82f2e8962f.ico" />
-    <Content Include="HLExtract.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HLLib.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="HLLib.x86.dll" />
+    <None Include="Resources\exclamation.png" />
+    <None Include="Resources\add.png" />
     <None Include="vice3.exe" />
     <None Include="Resources\tf2itemsmanager3.png" />
   </ItemGroup>
@@ -157,10 +246,16 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ValveFormat\ValveFormat.csproj">
+      <Project>{8EFEF957-69EE-46C7-8728-E2D460BA8807}</Project>
+      <Name>ValveFormat</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" />
+      <UserProperties BuildVersion_DetectChanges="False" BuildVersion_ConfigurationName="Any" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

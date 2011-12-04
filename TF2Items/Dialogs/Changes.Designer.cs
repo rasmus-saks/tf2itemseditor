@@ -1,4 +1,4 @@
-﻿namespace TF2Items
+﻿namespace TF2Items.Dialogs
 {
     partial class Changes
     {
@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Changes));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtChanges = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtChanges
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 29);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(469, 477);
-            this.textBox1.TabIndex = 0;
+            this.txtChanges.Location = new System.Drawing.Point(13, 29);
+            this.txtChanges.Multiline = true;
+            this.txtChanges.Name = "txtChanges";
+            this.txtChanges.Size = new System.Drawing.Size(469, 477);
+            this.txtChanges.TabIndex = 0;
             // 
             // label1
             // 
@@ -68,12 +68,13 @@
             this.ClientSize = new System.Drawing.Size(494, 545);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtChanges);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Changes";
             this.Text = "Recent changes";
+            this.Load += new System.EventHandler(this.Changes_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,7 +82,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtChanges;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
     }

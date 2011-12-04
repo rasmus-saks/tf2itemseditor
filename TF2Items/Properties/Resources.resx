@@ -112,63 +112,76 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tf2itemsmanager" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tf2itemsmanager3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Form1_BtnSaveAsClick_All_files____" xml:space="preserve">
-    <value>All files|*.*</value>
-  </data>
-  <data name="Form1_SaveFile_Something_went_wrong_while_saving_" xml:space="preserve">
-    <value>Something went wrong while saving!</value>
-  </data>
-  <data name="Form1_SaveFile_Who_send_all_these_babies_to_fight__" xml:space="preserve">
-    <value>Who sent all these babies to fight!?</value>
-  </data>
-  <data name="Form1_Button1Click2_Select_a_file_to_save_the_item_to" xml:space="preserve">
-    <value>Select a file to save the item to</value>
+  <data name="Form1_button1_Click_items_game_txt_items_game_txt_Team_Fortress_2_content_team_fortress_2_content_gcf" xml:space="preserve">
+    <value>items_game.txt|items_game.txt|Team Fortress 2 content|team fortress 2 content.gcf</value>
   </data>
   <data name="Form1_Button1Click2_Any_file____" xml:space="preserve">
     <value>Any file|*.*</value>
   </data>
-  <data name="Form1_button1_Click_Select_an_item" xml:space="preserve">
-    <value>Select an item</value>
+  <data name="Form1_button1_Click_Listen_up_" xml:space="preserve">
+    <value>Listen up!</value>
+  </data>
+  <data name="MainForm_EnglishOpenClick_tf_english_txt_tf_english_txt_Team_Fortress_2_content_team_fortress_2_content_gcf" xml:space="preserve">
+    <value>tf_english.txt|tf_english.txt|Team Fortress 2 content|team fortress 2 content.gcf</value>
   </data>
   <data name="Form1_button1_Click_Extracted_successfully_to_" xml:space="preserve">
     <value>Extracted successfully to </value>
+  </data>
+  <data name="Form1_button1_Click_Select_items_game_txt_or_team_fortress_2_content_gcf" xml:space="preserve">
+    <value>Select items_game.txt or team fortress 2 content.gcf</value>
+  </data>
+  <data name="Form1_button1_Click_Select_an_item" xml:space="preserve">
+    <value>Select an item</value>
+  </data>
+  <data name="Form1_button1_Click_Something_went_wrong_when_extracting___" xml:space="preserve">
+    <value>Something went wrong when extracting :(</value>
+  </data>
+  <data name="MainForm_MainFormLoad_TF2_Items_Editor_v" xml:space="preserve">
+    <value>TF2 Items Editor v</value>
+  </data>
+  <data name="MainForm_Button2Click_" xml:space="preserve">
+    <value>You've reached the maximum number of set items allowed!
+It's just impossible to equip more than </value>
+  </data>
+  <data name="Form1_SaveFile_Who_send_all_these_babies_to_fight__" xml:space="preserve">
+    <value>Who sent all these babies to fight!?</value>
+  </data>
+  <data name="Form1_BtnSaveAsClick_All_files____" xml:space="preserve">
+    <value>All files|*.*</value>
+  </data>
+  <data name="Form1_Button1Click2_Select_a_file_to_save_the_item_to" xml:space="preserve">
+    <value>Select a file to save the item to</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tf2itemsmanager" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tf2itemsmanager3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainForm_btnEngSave_Click_" xml:space="preserve">
+    <value>After saving, remember to place this in your \steamapps\username\team fortress 2\tf\resources\ folder!</value>
+  </data>
+  <data name="Form1_button1_Click_HLLib_dll_is_missing_from_the_program_folder_" xml:space="preserve">
+    <value>HLLib.dll is missing from the program folder!</value>
+  </data>
+  <data name="MainForm_EnglishOpenClick_Select_tf_english_txt_or_team_fortress_content_gcf" xml:space="preserve">
+    <value>Select tf_english.txt or team fortress content.gcf</value>
+  </data>
+  <data name="Form1_button1_Click_HLExtract_exe_is_missing_from_the_program_folder_" xml:space="preserve">
+    <value>HLExtract.exe is missing from the program folder!</value>
+  </data>
+  <data name="MainForm_Button2Click__items_at_once_" xml:space="preserve">
+    <value> items at once!</value>
   </data>
   <data name="Form1_button1_Click_" xml:space="preserve">
     <value>
 After saving, remember to place this in your \steamapps\username\team fortress 2\tf\scripts\items\ folder!</value>
   </data>
-  <data name="Form1_button1_Click_Listen_up_" xml:space="preserve">
-    <value>Listen up!</value>
-  </data>
-  <data name="Form1_button1_Click_Something_went_wrong_when_extracting___" xml:space="preserve">
-    <value>Something went wrong when extracting :(</value>
-  </data>
   <data name="Form1_button1_Click_Who_send_all_these_babies_to_fight__" xml:space="preserve">
     <value>Who sent all these babies to fight?!</value>
-  </data>
-  <data name="Form1_button1_Click_HLLib_dll_is_missing_from_the_program_folder_" xml:space="preserve">
-    <value>HLLib.dll is missing from the program folder!</value>
-  </data>
-  <data name="Form1_button1_Click_HLExtract_exe_is_missing_from_the_program_folder_" xml:space="preserve">
-    <value>HLExtract.exe is missing from the program folder!</value>
-  </data>
-  <data name="Form1_button1_Click_items_game_txt_items_game_txt_Team_Fortress_2_content_team_fortress_2_content_gcf" xml:space="preserve">
-    <value>items_game.txt|items_game.txt|Team Fortress 2 content|team fortress 2 content.gcf</value>
-  </data>
-  <data name="Form1_button1_Click_Select_items_game_txt_or_team_fortress_2_content_gcf" xml:space="preserve">
-    <value>Select items_game.txt or team fortress 2 content.gcf</value>
-  </data>
-  <data name="MainForm_BtnSaveClick_I_ve_saved_the_file__but_TF2_seems_to_be_open__To_see_the_changes_you_made__please_restart_the_game_" xml:space="preserve">
-    <value>I've saved the file, but hl2.exe (which could be TF2) seems to be open. To see the changes you made, please restart the game. If TF2 isn't open, ignore this message.</value>
   </data>
   <data name="MainForm_BtnSaveClick_Nice_job__pardner_" xml:space="preserve">
     <value>Nice job, pardner!</value>
@@ -176,23 +189,16 @@ After saving, remember to place this in your \steamapps\username\team fortress 2
   <data name="MainForm_Button2Click_This_item_already_exists_in_the_set_" xml:space="preserve">
     <value>This item already exists in the set!</value>
   </data>
-  <data name="MainForm_Button2Click_" xml:space="preserve">
-    <value>You've reached the maximum number of set items allowed!
-It's just impossible to equip more than </value>
+  <data name="MainForm_BtnSaveClick_I_ve_saved_the_file__but_TF2_seems_to_be_open__To_see_the_changes_you_made__please_restart_the_game_" xml:space="preserve">
+    <value>I've saved the file, but hl2.exe (which could be TF2) seems to be open. To see the changes you made, please restart the game. If TF2 isn't open, ignore this message.</value>
   </data>
-  <data name="MainForm_Button2Click__items_at_once_" xml:space="preserve">
-    <value> items at once!</value>
+  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MainForm_MainFormLoad_TF2_Items_Editor_v" xml:space="preserve">
-    <value>TF2 Items Editor v</value>
+  <data name="Form1_SaveFile_Something_went_wrong_while_saving_" xml:space="preserve">
+    <value>Something went wrong while saving!</value>
   </data>
-  <data name="MainForm_EnglishOpenClick_Select_tf_english_txt_or_team_fortress_content_gcf" xml:space="preserve">
-    <value>Select tf_english.txt or team fortress content.gcf</value>
-  </data>
-  <data name="MainForm_EnglishOpenClick_tf_english_txt_tf_english_txt_Team_Fortress_2_content_team_fortress_2_content_gcf" xml:space="preserve">
-    <value>tf_english.txt|tf_english.txt|Team Fortress 2 content|team fortress 2 content.gcf</value>
-  </data>
-  <data name="MainForm_btnEngSave_Click_" xml:space="preserve">
-    <value>After saving, remember to place this in your \steamapps\username\team fortress 2\tf\resources\ folder!</value>
+  <data name="exclamation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\exclamation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
