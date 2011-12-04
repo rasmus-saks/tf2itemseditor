@@ -1,2 +1,8 @@
-Removed ability to add attributes to stock items.
-Fixed corrupting file when saving after adding attributes to some weapons (for example The Shortstop, The Holy Mackerel and Mad Milk).
+--TF2 Items Editor VERSION 2--
+Complete redesign & rewrite to improve stability and user-friendliness.
+- Built-in .gcf extracting
+- Automatically finds the required files
+- Removed options that Valve has blocked from being edited
+- And much more
+
+!IMPORTANT! tf_english.txt editing is broken, saving the tf_english.txt file breaks almost every text in-game! I am trying to fix this :)
